@@ -67,6 +67,7 @@ app.listen(port, () => {
       new WritableStream({
         write(data) {
           textarea.value += stripAnsi(data);
+          textarea.scrollTop = textarea.scrollHeight;
         },
       });
 
