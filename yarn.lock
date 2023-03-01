@@ -600,13 +600,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ansi-regex@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "ansi-regex@npm:6.0.1"
-  checksum: 53669c3634190ead828055bcae5f0feff485fd8d7d05538d4f753ad56ffedb7aa5bcc93efaa8e99e4907ad970682413f2407cf4acac8deb1d408bc564bca9027
-  languageName: node
-  linkType: hard
-
 "ansi-styles@npm:^4.1.0":
   version: 4.3.0
   resolution: "ansi-styles@npm:4.3.0"
@@ -633,14 +626,16 @@ __metadata:
     "@sveltejs/adapter-auto": "npm:^2.0.0"
     "@sveltejs/kit": "npm:^1.5.0"
     "@webcontainer/api": "npm:^1.0.2"
+    chalk: "npm:^5.2.0"
     modern-normalize: "npm:^1.1.0"
     sass: "npm:^1.58.3"
-    strip-ansi: "npm:^7.0.1"
     svelte: "npm:^3.54.0"
     svelte-check: "npm:^3.0.1"
     tslib: "npm:^2.4.1"
     typescript: "npm:^4.9.3"
     vite: "npm:^4.0.0"
+    xterm: "npm:^5.1.0"
+    xterm-addon-fit: "npm:^0.7.0"
   languageName: unknown
   linkType: soft
 
@@ -773,6 +768,13 @@ __metadata:
     ansi-styles: "npm:^4.1.0"
     supports-color: "npm:^7.1.0"
   checksum: cb96ab47eb1b55525e72caac9eed1513bff28e686df7eee6b04379c80922df21c8283d9938af16a645826c94c9e19fb52ad63cbead6b5073d08ae5f8fa2661a2
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "chalk@npm:5.2.0"
+  checksum: c3c31253b9cb445ca917aab30767282a1c1951fb8d60e1e8389a3d6434eee296dae28a2b02871c89a866ed7e560438aaea4c5d290242e5fb50b5eda2b4ea4061
   languageName: node
   linkType: hard
 
@@ -2662,15 +2664,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strip-ansi@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "strip-ansi@npm:7.0.1"
-  dependencies:
-    ansi-regex: "npm:^6.0.1"
-  checksum: 552123468abae97929da64559af9c13f4518f8ea199038089bf5e49d7860d708e5e29b2e6401fcbab6f99f2c42f865c15a1976bcf51c5165f82152c7ce9a1043
-  languageName: node
-  linkType: hard
-
 "strip-indent@npm:^3.0.0":
   version: 3.0.0
   resolution: "strip-indent@npm:3.0.0"
@@ -3031,6 +3024,22 @@ __metadata:
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 37d243a577dfeee20586eae1e3208dfb4e4cea1211a2a4116a19b50d91e619ff3dbc5ec934e28ca9baaa11a65df826c8d65c5fd1bb81f0ce0dadb469d47061c2
+  languageName: node
+  linkType: hard
+
+"xterm-addon-fit@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "xterm-addon-fit@npm:0.7.0"
+  peerDependencies:
+    xterm: ^5.0.0
+  checksum: aca5de8c04b4a68819ec7594f6847d6cf0a824d26ada0d64a43251decede3952e7289ef296841d6573228c6a13fd7283d6068cb9fa1a4f848b6db669561bc05e
+  languageName: node
+  linkType: hard
+
+"xterm@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "xterm@npm:5.1.0"
+  checksum: 820c86b120e781eb0f26aa4ad529bea0d3fd8586f6e16b0e81fbbfe0f5535495fca2d81b4f9d325050c8340f41a67749d2a84559957e77b356f811d6704242f2
   languageName: node
   linkType: hard
 

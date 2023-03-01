@@ -46,7 +46,6 @@ export const schema = createSchema({
         },
       },
     },
-
     'package.json': {
       file: {
         contents: `{
@@ -59,7 +58,7 @@ export const schema = createSchema({
     "tsx": "latest"
   },
   "scripts": {
-    "start": "tsx watch src/index.ts"
+    "start": "tsx watch --clear-screen=false src/index.ts"
   }
 }`,
       },

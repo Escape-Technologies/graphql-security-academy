@@ -1,64 +1,77 @@
 <script lang="ts">
-  import Directory from '$lib/Directory.svelte';
+  // This component is browser only thanks to `{#await}` in its parent
+  import Directory from './Directory.svelte';
   import type { WebContainer } from '@webcontainer/api';
-  import stripAnsi from 'strip-ansi';
+  import { Terminal } from 'xterm';
+  import { FitAddon } from 'xterm-addon-fit';
+  import 'xterm/css/xterm.css';
+  import { onMount } from 'svelte';
+  import { spawnShell, type Shell } from './shell.js';
+  import chalk from 'chalk';
 
   export let container: WebContainer;
 
   let file: { path: string; content: string } | undefined;
+  let preview: HTMLIFrameElement;
+  let terminalWrapper: HTMLElement;
+  let shell: Shell;
 
-  const save = (container: WebContainer) => async () => {
+  const terminal = new Terminal({ convertEol: true, rows: 10 });
+  const fitAddon = new FitAddon();
+  terminal.loadAddon(fitAddon);
+
+  let dirRefresh = 0;
+
+  onMount(() => {
+    fitAddon.fit();
+    terminal.open(terminalWrapper);
+
+    return () => terminal.dispose();
+  });
+
+  onMount(async () => {
+    shell = await spawnShell(container, terminal);
+
+    shell.subscribe(($shell) => {
+      terminal.write(
+        chalk.bold.yellowBright(
+          '# Welcome! Run `npm install` and `npm start` to get started.\n'
+        )
+      );
+      $shell.output.pipeTo(
+        new WritableStream({
+          write(data) {
+            terminal.write(data);
+          },
+        })
+      );
+
+      const input = $shell.input.getWriter();
+      terminal.onData((data) => {
+        input.write(data);
+      });
+    });
+  });
+
+  type File = { name: string; files?: File[] | undefined };
+
+  const save = async () => {
     if (!file) return;
     await container.fs.writeFile(file.path, file.content);
   };
 
-  const preview = (iframe: HTMLIFrameElement, container: WebContainer) => {
-    iframe.src =
-      'data:text/html;base64,' +
-      btoa('<p style="text-align: center"><em>Loading preview...</em></p>');
-
-    container.on('server-ready', (port, url) => {
-      iframe.src = `${url}/graphql`;
-    });
+  const openFile = async (path: string) => {
+    file = { path, content: await container.fs.readFile(path, 'utf-8') };
   };
 
-  const run = (textarea: HTMLTextAreaElement, container: WebContainer) => {
-    const createLogStream = () =>
-      new WritableStream({
-        write(data) {
-          textarea.value += stripAnsi(data);
-          textarea.scrollTop = textarea.scrollHeight;
-        },
-      });
-
-    // Run tasks in an unbound context
-    (async () => {
-      // Install dependencies
-      const install = await container.spawn('npm', ['install']);
-      install.output.pipeTo(createLogStream());
-      if ((await install.exit) !== 0) return;
-
-      // Start the dev server
-      const run = await container.spawn('npm', ['run', 'start']);
-      run.output.pipeTo(createLogStream());
-    })();
-
-    return {};
-  };
-
-  type File = { name: string; files?: File[] | undefined };
-
-  const readDir = async (
-    container: WebContainer,
-    dir = '/'
-  ): Promise<File[]> => {
+  const readDir = async (dir = '/'): Promise<File[]> => {
     const entries = await container.fs.readdir(dir, { withFileTypes: true });
     const tree = await Promise.all(
       entries.map(async (entry) =>
         entry.isDirectory()
           ? {
               name: `${entry.name}/`,
-              files: await readDir(container, `${dir}${entry.name}/`),
+              files: await readDir(`${dir}${entry.name}/`),
             }
           : { name: entry.name }
       )
@@ -69,14 +82,17 @@
       return a.name.localeCompare(b.name);
     });
   };
-
-  let dirRefresh = 0;
-
-  const openFile = async (path: string) => {
-    console.log(path);
-    file = { path, content: await container.fs.readFile(path, 'utf-8') };
-  };
 </script>
+
+<svelte:window
+  on:resize={() => {
+    fitAddon.fit();
+    $shell?.resize({
+      cols: terminal.cols,
+      rows: terminal.rows,
+    });
+  }}
+/>
 
 <main>
   <div style:width="30rem" class="container">
@@ -91,7 +107,7 @@
       </button>
     </div>
     {#key dirRefresh}
-      {#await readDir(container, '/')}
+      {#await readDir('/')}
         <div style:text-align="center">🔃 Refreshing 🔃</div>
       {:then files}
         <Directory
@@ -108,9 +124,14 @@
   {:else}
     <div class="container">👈 Open a file first</div>
   {/if}
-  <button on:click={save(container)}>▶️</button>
-  <iframe use:preview={container} title="Preview" />
-  <textarea readonly use:run={container} style:grid-column="1 / 5" />
+  <button on:click={save}>▶️</button>
+  <iframe
+    bind:this={preview}
+    title="Preview"
+    src={'data:text/html;base64,' +
+      btoa('<p style="text-align: center"><em>Loading preview...</em></p>')}
+  />
+  <div bind:this={terminalWrapper} style:grid-column="1 / 5" />
 </main>
 
 <style lang="scss">
