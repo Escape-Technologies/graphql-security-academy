@@ -7,16 +7,39 @@
   const files = {
     'index.ts': {
       file: {
-        contents: `import express from 'express';
-const app = express();
-const port: number = 3111;
+        contents: `import { createSchema, createYoga } from 'graphql-yoga';
+import { renderGraphiQL } from '@graphql-yoga/render-graphiql'
+import { createServer } from 'node:http';
+import { schema } from './schema.ts';
 
-app.get('/', (req, res) => {
-  res.send('<h1>Hello World!</h1>');
-});
+const yoga = createYoga({
+  schema,
+  renderGraphiQL,
+  graphiql: { defaultQuery: '{ hello }' }
+})
 
-app.listen(port, () => {
-  console.log(\`App is live at http://localhost:\${port}\`);
+const server = createServer(yoga)
+
+server.listen(4000, () => {
+  console.info('Server is running on http://localhost:4000/graphql')
+})`,
+      },
+    },
+    'schema.ts': {
+      file: {
+        contents: `import { createSchema } from 'graphql-yoga';
+
+export const schema = createSchema({
+  typeDefs: /* GraphQL */ \`
+    type Query {
+      hello: String
+    }
+  \`,
+  resolvers: {
+    Query: {
+      hello: () => 'Hello from Yoga!'
+    }
+  }
 });`,
       },
     },
@@ -26,7 +49,9 @@ app.listen(port, () => {
   "name": "example-app",
   "type": "module",
   "dependencies": {
-    "express": "latest",
+    "@graphql-yoga/render-graphiql": "latest",
+    "graphql": "latest",
+    "graphql-yoga": "latest",
     "tsx": "latest"
   },
   "scripts": {
@@ -44,12 +69,12 @@ app.listen(port, () => {
     });
     container = await WebContainer.boot();
     await container.mount(files);
-    value = files['index.ts'].file.contents;
+    value = files['schema.ts'].file.contents;
     return container;
   };
 
   const save = (container: WebContainer) => async () => {
-    await container.fs.writeFile('/index.ts', value);
+    await container.fs.writeFile('/schema.ts', value);
   };
 
   const preview = (iframe: HTMLIFrameElement, container: WebContainer) => {
@@ -58,7 +83,7 @@ app.listen(port, () => {
       btoa('<p style="text-align: center"><em>Loading preview...</em></p>');
 
     container.on('server-ready', (port, url) => {
-      iframe.src = url;
+      iframe.src = `${url}/graphql`;
     });
   };
 
@@ -74,12 +99,12 @@ app.listen(port, () => {
     // Run tasks in an unbound context
     (async () => {
       // Install dependencies
-      const install = await container.spawn('yarn');
+      const install = await container.spawn('npm', ['install']);
       install.output.pipeTo(createLogStream());
       if ((await install.exit) !== 0) return;
 
       // Start the dev server
-      const run = await container.spawn('yarn', ['start']);
+      const run = await container.spawn('npm', ['run', 'start']);
       run.output.pipeTo(createLogStream());
     })();
 
@@ -107,7 +132,7 @@ app.listen(port, () => {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 4fr 1fr;
 
     > * {
       display: block;
@@ -118,6 +143,7 @@ app.listen(port, () => {
 
   textarea {
     font-family: monospace;
+    resize: none;
   }
 
   .loading {
