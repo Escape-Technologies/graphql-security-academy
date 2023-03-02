@@ -4,6 +4,8 @@ import type { Terminal } from 'xterm';
 
 export type Shell = Readable<WebContainerProcess>;
 
+const tasks: Array<Promise<void>> = [];
+
 export const spawnShell = async (
   container: WebContainer,
   terminal: Terminal
@@ -17,17 +19,19 @@ export const spawnShell = async (
     set(shell);
 
     // Start the shell in an unbound async context
-    (async () => {
-      while (run) {
-        await shell.exit;
-        terminal.clear();
-        // Restart a new shell if the previous one exited
-        shell = await container.spawn('jsh', {
-          terminal: { cols: terminal.cols, rows: terminal.rows },
-        });
-        set(shell);
-      }
-    })();
+    tasks.push(
+      (async () => {
+        while (run) {
+          await shell.exit;
+          terminal.clear();
+          // Restart a new shell if the previous one exited
+          shell = await container.spawn('jsh', {
+            terminal: { cols: terminal.cols, rows: terminal.rows },
+          });
+          set(shell);
+        }
+      })()
+    );
 
     return () => {
       run = false;

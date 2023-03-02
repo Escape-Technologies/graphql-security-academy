@@ -1,28 +1,55 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import type { WebContainer } from '@webcontainer/api';
+  import { createEventDispatcher, onMount } from 'svelte';
 
-  type File = { name: string; files?: File[] | undefined };
+  type File = { name: string; directory: boolean };
 
+  export let container: WebContainer;
   export let name: string;
-  export let files: File[];
+  export let path: string;
   export let expanded = false;
 
+  let files: File[] = [];
+
   const dispatch = createEventDispatcher<{ click: string }>();
+
+  const readDir = async (path: string): Promise<File[]> => {
+    const entries = await container.fs.readdir(path, { withFileTypes: true });
+    return entries
+      .map((entry) => ({ name: entry.name, directory: entry.isDirectory() }))
+      .sort((a, b) => {
+        if (a.directory && !b.directory) return -1;
+        if (!a.directory && b.directory) return 1;
+        return a.name.localeCompare(b.name);
+      });
+  };
+
+  const toggle = async () => {
+    if (expanded) {
+      expanded = false;
+      return;
+    }
+    files = await readDir(path);
+    expanded = true;
+  };
+
+  onMount(async () => {
+    // Open the root directory
+    if (path === '') await toggle();
+  });
 </script>
 
-<button
-  on:click={() => {
-    expanded = !expanded;
-  }}>{expanded ? '📂' : '📁'} {name}</button
->
+<button on:click={toggle}>{expanded ? '📂' : '📁'} {name}</button>
 
 {#if expanded}
   <ul>
     {#each files as file}
-      {#if file.files}
+      {#if file.directory}
         <li>
           <svelte:self
-            {...file}
+            {container}
+            name="{file.name}/"
+            path={`${path}${file.name}/`}
             on:click={({ detail: path }) => dispatch('click', `${name}${path}`)}
           />
         </li>
