@@ -1,7 +1,6 @@
 <script lang="ts">
   // This component is browser only thanks to `{#await}` in its parent
   import type { WebContainer } from '@webcontainer/api';
-  import chalk from 'chalk';
   import { onMount } from 'svelte';
   import type { Terminal } from 'xterm';
   import Directory from './Directory.svelte';
@@ -22,9 +21,7 @@
 
     shell.subscribe(($shell) => {
       terminal.write(
-        chalk.bold.yellowBright(
-          '# Welcome! Run `npm install` and `npm start` to get started.\n'
-        )
+        '# Welcome! Run `npm install` and `npm start` to get started.\n'
       );
       $shell.output.pipeTo(
         new WritableStream({
