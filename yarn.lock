@@ -322,17 +322,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/adapter-auto@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@sveltejs/adapter-auto@npm:2.0.0"
-  dependencies:
-    import-meta-resolve: "npm:^2.2.0"
-  peerDependencies:
-    "@sveltejs/kit": ^1.0.0
-  checksum: dd1647db6b29c2147768025195ef4abc224c3a7976c2391c800537c3758dcaac610bd7891dac0a68dcef967b63c2bffefd750a0dd3d798d899e567c8a5b8ab2a
-  languageName: node
-  linkType: hard
-
 "@sveltejs/adapter-vercel@npm:^2.2.1":
   version: 2.2.1
   resolution: "@sveltejs/adapter-vercel@npm:2.2.1"
@@ -692,11 +681,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "app@workspace:packages/app"
   dependencies:
-    "@sveltejs/adapter-auto": "npm:^2.0.0"
     "@sveltejs/adapter-vercel": "npm:^2.2.1"
     "@sveltejs/kit": "npm:^1.9.3"
     "@webcontainer/api": "npm:^1.0.2"
-    chalk: "npm:^5.2.0"
     mdsvex: "npm:^0.10.6"
     modern-normalize: "npm:^1.1.0"
     sass: "npm:^1.58.3"
@@ -865,13 +852,6 @@ __metadata:
     ansi-styles: "npm:^4.1.0"
     supports-color: "npm:^7.1.0"
   checksum: cb96ab47eb1b55525e72caac9eed1513bff28e686df7eee6b04379c80922df21c8283d9938af16a645826c94c9e19fb52ad63cbead6b5073d08ae5f8fa2661a2
-  languageName: node
-  linkType: hard
-
-"chalk@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "chalk@npm:5.2.0"
-  checksum: c3c31253b9cb445ca917aab30767282a1c1951fb8d60e1e8389a3d6434eee296dae28a2b02871c89a866ed7e560438aaea4c5d290242e5fb50b5eda2b4ea4061
   languageName: node
   linkType: hard
 
@@ -1714,13 +1694,6 @@ __metadata:
     parent-module: "npm:^1.0.0"
     resolve-from: "npm:^4.0.0"
   checksum: 81ec300d4d16df0ba4f4ed99f4c7e8f312c4c6f48c100afe801deae468479cb8d8209a7c71a943b3e6def4fa0c24ad3eac34e72cb4968424930df39e8d16e9c9
-  languageName: node
-  linkType: hard
-
-"import-meta-resolve@npm:^2.2.0":
-  version: 2.2.1
-  resolution: "import-meta-resolve@npm:2.2.1"
-  checksum: e542dfaa6c0ec1c267c542f1b13b850272ab8b8ec726001e435d403fe7d7ba185dc7d5c3419b856beb45153ec7d6047f679d52f5b32e5e1bc7b704aa971531fa
   languageName: node
   linkType: hard
 
