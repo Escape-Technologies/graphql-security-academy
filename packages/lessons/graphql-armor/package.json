@@ -1,0 +1,14 @@
+{
+  "name": "graphql-armor-lesson",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx watch --clear-screen=false src/index.ts"
+  },
+  "dependencies": {
+    "@graphql-yoga/render-graphiql": "latest",
+    "graphql": "latest",
+    "graphql-yoga": "latest",
+    "tsx": "latest"
+  }
+}

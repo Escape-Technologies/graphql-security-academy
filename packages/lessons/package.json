@@ -1,0 +1,15 @@
+{
+  "name": "lessons",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsx build.ts"
+  },
+  "devDependencies": {
+    "@webcontainer/api": "^1.0.2",
+    "tsx": "^3.12.3"
+  },
+  "workspaces": [
+    "*"
+  ]
+}
