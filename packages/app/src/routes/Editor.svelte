@@ -5,6 +5,7 @@
   import { onMount } from 'svelte';
   import type { Terminal } from 'xterm';
   import Directory from './Directory.svelte';
+  import Lesson from './Lesson.svelte';
   import { spawnShell, type Shell } from './shell.js';
   import Xterm from './Xterm.svelte';
 
@@ -14,7 +15,7 @@
   let terminal: Terminal;
   let shell: Shell;
 
-  let dirRefresh = 0;
+  $: input = $shell?.input.getWriter();
 
   onMount(async () => {
     shell = await spawnShell(container, terminal);
@@ -33,14 +34,11 @@
         })
       );
 
-      const input = $shell.input.getWriter();
       terminal.onData((data) => {
         input.write(data);
       });
     });
   });
-
-  type File = { name: string; files?: File[] | undefined };
 
   const save = async () => {
     if (!file) return;
@@ -55,6 +53,10 @@
     container.on('server-ready', (port, url) => {
       frame.src = `${url}/graphql`;
     });
+  };
+
+  const runCmd = async (cmd: string) => {
+    input.write(`${cmd}\n`);
   };
 </script>
 
@@ -73,11 +75,14 @@
       on:click={({ detail: path }) => openFile(path)}
     />
   </div>
-  {#if file}
-    <textarea bind:value={file.content} />
-  {:else}
-    <div class="container">👈 Open a file first</div>
-  {/if}
+  <div class="container" style="display:grid;grid-template-rows:1fr 1fr">
+    <Lesson on:cmd={({ detail: cmd }) => runCmd(cmd)} />
+    {#if file}
+      <textarea bind:value={file.content} />
+    {:else}
+      <div class="container">👈 Open a file first</div>
+    {/if}
+  </div>
   <button on:click={save}>▶️</button>
   <iframe
     use:preview
