@@ -19,6 +19,10 @@
   onMount(async () => {
     shell = await spawnShell(container, terminal);
 
+    terminal.onData((data) => {
+      input.write(data);
+    });
+
     shell.subscribe(($shell) => {
       terminal.write(
         '# Welcome! Run `npm install` and `npm start` to get started.\n'
@@ -30,10 +34,6 @@
           },
         })
       );
-
-      terminal.onData((data) => {
-        input.write(data);
-      });
     });
   });
 
