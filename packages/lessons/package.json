@@ -9,6 +9,9 @@
     "@webcontainer/api": "^1.0.2",
     "tsx": "^3.12.3"
   },
+  "volta": {
+    "extends": "../../package.json"
+  },
   "workspaces": [
     "*"
   ]

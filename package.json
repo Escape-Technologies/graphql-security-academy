@@ -1,6 +1,9 @@
 {
   "name": "learn",
   "private": true,
+  "scripts": {
+    "build": "yarn workspaces foreach -piv --topological-dev run build"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
@@ -16,5 +19,9 @@
   "packageManager": "yarn@4.0.0-rc.39",
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "volta": {
+    "node": "19.7.0",
+    "yarn": "1.22.19"
+  }
 }
