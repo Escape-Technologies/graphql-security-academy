@@ -9,7 +9,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
-    "@sveltejs/adapter-vercel": "^2.2.1",
+    "@sveltejs/adapter-static": "^2.0.1",
     "@sveltejs/kit": "^1.9.3",
     "mdsvex": "^0.10.6",
     "modern-normalize": "^1.1.0",
