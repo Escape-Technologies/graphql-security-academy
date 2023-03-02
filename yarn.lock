@@ -293,12 +293,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/adapter-static@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@sveltejs/adapter-static@npm:2.0.1"
+"@sveltejs/adapter-auto@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@sveltejs/adapter-auto@npm:2.0.0"
+  dependencies:
+    import-meta-resolve: "npm:^2.2.0"
   peerDependencies:
-    "@sveltejs/kit": ^1.5.0
-  checksum: 7b2b6697d4d2849bc43997c4d985e89eea064db7f030df68e728154454d7bf8b44e34ed04ddbde2d2f40896a59b48165e991c1a147e724da37a28b2acf7bca7e
+    "@sveltejs/kit": ^1.0.0
+  checksum: dd1647db6b29c2147768025195ef4abc224c3a7976c2391c800537c3758dcaac610bd7891dac0a68dcef967b63c2bffefd750a0dd3d798d899e567c8a5b8ab2a
   languageName: node
   linkType: hard
 
@@ -628,7 +630,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "app@workspace:packages/app"
   dependencies:
-    "@sveltejs/adapter-static": "npm:^2.0.1"
+    "@sveltejs/adapter-auto": "npm:^2.0.0"
     "@sveltejs/kit": "npm:^1.9.3"
     "@webcontainer/api": "npm:^1.0.2"
     mdsvex: "npm:^0.10.6"
@@ -1577,6 +1579,13 @@ __metadata:
     parent-module: "npm:^1.0.0"
     resolve-from: "npm:^4.0.0"
   checksum: 81ec300d4d16df0ba4f4ed99f4c7e8f312c4c6f48c100afe801deae468479cb8d8209a7c71a943b3e6def4fa0c24ad3eac34e72cb4968424930df39e8d16e9c9
+  languageName: node
+  linkType: hard
+
+"import-meta-resolve@npm:^2.2.0":
+  version: 2.2.1
+  resolution: "import-meta-resolve@npm:2.2.1"
+  checksum: e542dfaa6c0ec1c267c542f1b13b850272ab8b8ec726001e435d403fe7d7ba185dc7d5c3419b856beb45153ec7d6047f679d52f5b32e5e1bc7b704aa971531fa
   languageName: node
   linkType: hard
 
