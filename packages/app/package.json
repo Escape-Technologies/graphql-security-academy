@@ -9,6 +9,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/kit": "^1.9.3",
     "mdsvex": "^0.10.6",
@@ -23,6 +24,7 @@
   "type": "module",
   "dependencies": {
     "@webcontainer/api": "^1.0.2",
+    "chalk": "^5.2.0",
     "xterm": "^5.1.0",
     "xterm-addon-fit": "^0.7.0"
   }

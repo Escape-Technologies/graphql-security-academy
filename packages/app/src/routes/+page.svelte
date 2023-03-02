@@ -1,7 +1,6 @@
 <script lang="ts">
   import { WebContainer, type FileSystemTree } from '@webcontainer/api';
   import { onDestroy } from 'svelte';
-  import Editor from './Editor.svelte';
 
   const files = {
     src: {
@@ -76,12 +75,12 @@ export const schema = createSchema({
   };
 </script>
 
-{#await createContainer()}
+{#await Promise.all([import('./Editor.svelte'), createContainer()])}
   <div class="loading">
     <h1>Loading...</h1>
   </div>
-{:then container}
-  <Editor {container} />
+{:then [editor, container]}
+  <svelte:component this={editor.default} {container} />
 {:catch error}
   <pre>{error}</pre>
 {/await}

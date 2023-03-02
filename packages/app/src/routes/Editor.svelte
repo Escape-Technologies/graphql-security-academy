@@ -1,7 +1,7 @@
 <script lang="ts">
   // This component is browser only thanks to `{#await}` in its parent
+  import { chalk } from '$lib/chalk.js';
   import type { WebContainer } from '@webcontainer/api';
-  import { onMount } from 'svelte';
   import type { Terminal } from 'xterm';
   import Directory from './Directory.svelte';
   import Lesson from './Lesson.svelte';
@@ -11,12 +11,13 @@
   export let container: WebContainer;
 
   let file: { path: string; content: string } | undefined;
-  let terminal: Terminal;
+  let activeTerminal: Terminal;
   let shell: Shell;
 
   $: input = $shell?.input.getWriter();
 
-  onMount(async () => {
+  const onTerminalReady = async (terminal: Terminal) => {
+    activeTerminal = terminal;
     shell = await spawnShell(container, terminal);
 
     terminal.onData((data) => {
@@ -25,7 +26,9 @@
 
     shell.subscribe(($shell) => {
       terminal.write(
-        '# Welcome! Run `npm install` and `npm start` to get started.\n'
+        `# Welcome! Run ${chalk.yellowBright(
+          'npm install'
+        )} and ${chalk.yellowBright('npm start')} to get started.\n`
       );
       $shell.output.pipeTo(
         new WritableStream({
@@ -35,7 +38,7 @@
         })
       );
     });
-  });
+  };
 
   const save = async () => {
     if (!file) return;
@@ -59,7 +62,7 @@
 
 <svelte:window
   on:resize={() => {
-    $shell.resize({ cols: terminal.cols, rows: terminal.rows });
+    $shell.resize({ cols: activeTerminal.cols, rows: activeTerminal.rows });
   }}
 />
 
@@ -87,7 +90,13 @@
     src={'data:text/html;base64,' +
       btoa('<p style="text-align: center"><em>Loading preview...</em></p>')}
   />
-  <div style:grid-column="1 / 5"><Xterm bind:terminal /></div>
+  <div style:grid-column="1 / 5">
+    <Xterm
+      on:ready={({ detail: terminal }) => {
+        onTerminalReady(terminal);
+      }}
+    />
+  </div>
 </main>
 
 <style lang="scss">

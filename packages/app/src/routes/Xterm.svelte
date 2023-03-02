@@ -1,19 +1,27 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import { Terminal } from 'xterm';
   import { FitAddon } from 'xterm-addon-fit';
   import 'xterm/css/xterm.css';
 
-  export let terminal: Terminal;
+  let terminal: Terminal;
   let fitAddon: FitAddon;
   let wrapper: HTMLElement;
 
+  const dispatch = createEventDispatcher<{ ready: Terminal }>();
+
   onMount(() => {
-    terminal = new Terminal({ convertEol: true, rows: 10 });
+    terminal = new Terminal({
+      convertEol: true,
+      rows: 10,
+      fontFamily: 'Consolas, Monaco, "Ubuntu Mono", monospace',
+    });
     fitAddon = new FitAddon();
     terminal.loadAddon(fitAddon);
     fitAddon.fit();
     terminal.open(wrapper);
+
+    dispatch('ready', terminal);
 
     return () => {
       fitAddon.dispose();
