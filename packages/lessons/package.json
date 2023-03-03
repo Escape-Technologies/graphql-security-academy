@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "tsx build.ts",
-    "dev": "chokidar '**' -c 'yarn build'"
+    "dev": "yarn build && chokidar '**' -c 'yarn build'"
   },
   "devDependencies": {
     "@webcontainer/api": "^1.0.2",
