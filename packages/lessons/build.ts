@@ -9,6 +9,7 @@ import type { FileSystemTree } from '@webcontainer/api';
 
 /** Computes a path relative to this file. */
 const relative = (path: string) => new URL(path, import.meta.url);
+const dest = '../app/src/lessons/';
 
 /** Main build function, builds all directories in `lessons`. */
 const build = async () => {
@@ -19,16 +20,14 @@ const build = async () => {
   );
 };
 
+/** Build a single lesson. */
 const buildLesson = async (name: string, dir: URL) => {
+  console.log(`Building lesson ${name}...`);
   try {
     const files = await buildLessonFiles(dir);
-    await mkdir(relative(`../app/lessons/${name}`), { recursive: true });
-    await writeFile(`../app/lessons/${name}/files.json`, JSON.stringify(files));
-    await copyFile(
-      new URL('README.svx', dir),
-      `../app/lessons/${name}/README.svx`
-    );
-    console.log(`Built lesson ${name}.`);
+    await mkdir(relative(`${dest}${name}`), { recursive: true });
+    await writeFile(`${dest}${name}/files.json`, JSON.stringify(files));
+    await copyFile(new URL('README.svx', dir), `${dest}${name}/README.svx`);
   } catch (error) {
     console.error(`Error building lesson ${name}: ${error}`);
   }

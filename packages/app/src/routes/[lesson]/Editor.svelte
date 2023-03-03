@@ -3,12 +3,13 @@
   import { chalk } from '$lib/chalk.js';
   import type { WebContainer } from '@webcontainer/api';
   import type { Terminal } from 'xterm';
+  import type { PageData } from './$types.js';
   import Directory from './Directory.svelte';
-  import Lesson from './Lesson.svelte';
   import { spawnShell, type Shell } from './shell.js';
   import Xterm from './Xterm.svelte';
 
   export let container: WebContainer;
+  export let readme: PageData['readme'];
 
   let file: { path: string; content: string } | undefined;
   let activeTerminal: Terminal;
@@ -76,7 +77,10 @@
     />
   </div>
   <div class="container" style="display:grid;grid-template-rows:1fr 1fr">
-    <Lesson on:cmd={({ detail: cmd }) => runCmd(cmd)} />
+    <svelte:component
+      this={readme.default}
+      on:cmd={({ detail: cmd }) => runCmd(cmd)}
+    />
     {#if file}
       <textarea bind:value={file.content} />
     {:else}
