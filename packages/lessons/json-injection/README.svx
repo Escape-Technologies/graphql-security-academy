@@ -70,9 +70,48 @@ query {
 
 We will use [zod](https://zod.dev/) to validate the `JSON` input object. Zod is a TypeScript library that allows to define a schema for a JavaScript object, and to validate it.
 
+```ts
+Query: {
+  findUsers: (_, { where }) => {
+    // Allows equality, contains, startsWith and endsWith filters on columns
+    const filterSchema = z.union([
+      z.string(),
+      z
+        .object({
+          contains: z.string(),
+          startsWith: z.string(),
+          endsWith: z.string(),
+        })
+        .partial(),
+    ]);
+    // Restrict to firstName, lastName and email
+    const whereSchema = z
+      .object({
+        firstName: filterSchema,
+        lastName: filterSchema,
+        email: filterSchema,
+      })
+      .partial();
+
+    // Validate the input object
+    const results = whereSchema.safeParse(where);
+
+    if (results.success) {
+      // Use the safe version of the input objects
+      return prisma.user.findMany({ where: results.data });
+    } else {
+      // Return an error in case the input object is invalid
+      return new GraphQLError('Validation error');
+    }
+  },
+}
+```
+
 <Task>
 
   - Install zod with `npm install zod`. <RunCommand cmd="npm install zod" on:cmd>▶️</RunCommand>
   - Write a zod schema that allows searching with `email`, `firstName` and `lastName` fields, but not others.
 
 </Task>
+
+You can now try to run the exploit again. It should not work anymore since Zod strips all unknown fields like `apiKey`.

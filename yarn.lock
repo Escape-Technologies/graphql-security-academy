@@ -1015,7 +1015,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@whatwg-node/fetch@npm:^0.8.2":
+"@whatwg-node/fetch@npm:latest":
   version: 0.8.2
   resolution: "@whatwg-node/fetch@npm:0.8.2"
   dependencies:
@@ -2331,7 +2331,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"graphql-scalars@npm:^1.20.1":
+"graphql-scalars@npm:latest":
   version: 1.20.1
   resolution: "graphql-scalars@npm:1.20.1"
   dependencies:
@@ -2631,9 +2631,9 @@ __metadata:
   dependencies:
     "@graphql-yoga/render-graphiql": "npm:latest"
     "@prisma/client": "npm:latest"
-    "@whatwg-node/fetch": "npm:^0.8.2"
+    "@whatwg-node/fetch": "npm:latest"
     graphql: "npm:latest"
-    graphql-scalars: "npm:^1.20.1"
+    graphql-scalars: "npm:latest"
     graphql-yoga: "npm:latest"
     prisma: "npm:latest"
     tsx: "npm:latest"

@@ -10,9 +10,9 @@
   "devDependencies": {
     "@graphql-yoga/render-graphiql": "latest",
     "@prisma/client": "latest",
-    "@whatwg-node/fetch": "^0.8.2",
+    "@whatwg-node/fetch": "latest",
     "graphql": "latest",
-    "graphql-scalars": "^1.20.1",
+    "graphql-scalars": "latest",
     "graphql-yoga": "latest",
     "prisma": "latest",
     "tsx": "latest"
