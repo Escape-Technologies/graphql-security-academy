@@ -5,7 +5,7 @@
   "scripts": {
     "start": "tsx watch --clear-screen=false src/index.ts"
   },
-  "dependencies": {
+  "devDependencies": {
     "@graphql-yoga/render-graphiql": "latest",
     "graphql": "latest",
     "graphql-yoga": "latest",

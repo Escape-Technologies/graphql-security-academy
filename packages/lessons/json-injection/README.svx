@@ -1,0 +1,9 @@
+---
+title: JSON Injection
+---
+
+# JSON Injection with Prisma
+
+Using `JSON` as a GraphQL input object can lead to vulnerabilities. This tutorial will show how one can exploit a `JSON` input object to perform arbitrary SQL queries with [Prisma](https://www.prisma.io) ORM, and how to prevent it.
+
+This lesson requires a browser extension to work: [CORS Unblock](https://github.com/balvin-perrie/Access-Control-Allow-Origin---Unblock) ([prisma#17710](https://github.com/prisma/prisma/issues/17710))

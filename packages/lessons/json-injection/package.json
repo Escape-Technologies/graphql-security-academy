@@ -1,0 +1,23 @@
+{
+  "name": "json-injection-lesson",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "exploit": "tsx exploit/index.ts",
+    "start": "tsx watch --clear-screen=false src/index.ts",
+    "studio": "tsx src/studio.ts"
+  },
+  "devDependencies": {
+    "@graphql-yoga/render-graphiql": "latest",
+    "@prisma/client": "latest",
+    "@whatwg-node/fetch": "^0.8.2",
+    "graphql": "latest",
+    "graphql-scalars": "^1.20.1",
+    "graphql-yoga": "latest",
+    "prisma": "latest",
+    "tsx": "latest"
+  },
+  "prisma": {
+    "seed": "tsx src/seed.ts"
+  }
+}

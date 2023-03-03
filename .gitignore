@@ -8,3 +8,7 @@
 .svelte-kit/
 build/
 node_modules/
+
+# Specific to lessons
+*.db
+*.db-journal

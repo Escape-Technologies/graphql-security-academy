@@ -4,7 +4,6 @@ import { getFriends, getUser, User } from './users.js';
 export const schema = createSchema({
   typeDefs: /* GraphQL */ `
     type Query {
-      hello: String
       user(id: ID!): User
     }
 
