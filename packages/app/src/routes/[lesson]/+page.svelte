@@ -5,12 +5,12 @@
   export let data: PageData;
 
   const createContainer = async () => {
-    const container = await window.webcontainer;
     onDestroy(async () => {
       // Clear the container on unmount
       await container.fs.rm('.', { recursive: true, force: true });
     });
 
+    const container = await window.webcontainer;
     await container.fs.mkdir('.', { recursive: true });
     await container.mount(data.files.default);
     return container;
