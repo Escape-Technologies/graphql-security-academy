@@ -11,7 +11,7 @@
       container?.teardown();
     });
     container = await WebContainer.boot();
-    await container.mount(data.files);
+    await container.mount(data.files.default);
     return container;
   };
 </script>

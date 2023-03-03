@@ -2,6 +2,10 @@
 title: GraphQL Armor
 ---
 
+<script>
+  import Task from '$lib/Task.svelte';
+</script>
+
 # GraphQL Armor
 
 [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) is a library that helps you protect your GraphQL API from malicious queries and mutations. It runs on all major GraphQL engines without configuration, and adds various security features to your GraphQL API.
@@ -41,6 +45,7 @@ This attack is one of the many that GraphQL Armor can protect you from.
   - [ ] Install dependencies with `npm install`
   - [ ] Run the server with `npm start`
   - [ ] Send a deep query to the server
+
 
   Note: the server is running directly inside your browser, don't make it crash!
 
