@@ -1,16 +1,17 @@
 <script lang="ts">
-  import { WebContainer } from '@webcontainer/api';
   import { onDestroy } from 'svelte';
   import type { PageData } from './$types.js';
 
   export let data: PageData;
 
   const createContainer = async () => {
-    let container: WebContainer | undefined;
-    onDestroy(() => {
-      container?.teardown();
+    const container = await window.webcontainer;
+    onDestroy(async () => {
+      // Clear the container on unmount
+      await container.fs.rm('.', { recursive: true, force: true });
     });
-    container = await WebContainer.boot();
+
+    await container.fs.mkdir('.', { recursive: true });
     await container.mount(data.files.default);
     return container;
   };
