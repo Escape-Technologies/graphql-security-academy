@@ -1,0 +1,42 @@
+:where(.markdown-content) {
+  padding: 0 0.5em;
+
+  > :where(*) {
+    width: var(--main-width);
+    max-width: 100%;
+    margin: 1rem auto;
+  }
+
+  table {
+    min-width: 100%;
+
+    tr {
+      height: 1px;
+    }
+
+    tr + tr,
+    tbody > tr {
+      border-top: 1px solid gray;
+    }
+
+    td,
+    th {
+      height: inherit;
+      padding: 0.25rem;
+      vertical-align: top;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 2rem auto 1rem;
+
+    > a {
+      margin-right: 0.5rem;
+    }
+  }
+}

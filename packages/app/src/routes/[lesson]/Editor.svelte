@@ -8,6 +8,7 @@
   import File from './File.svelte';
   import type { PaneChild } from './files.js';
   import Pane from './Pane.svelte';
+  import Readme from './Readme.svelte';
   import { spawnShell, type Shell } from './shell.js';
   import Xterm from './Xterm.svelte';
 
@@ -18,7 +19,12 @@
   let shell: Shell;
 
   let children: PaneChild[] = [
-    { type: 'readme', name: 'README', component: readme.default },
+    {
+      type: 'readme',
+      name: 'README',
+      component: Readme,
+      context: { contents: readme.default },
+    },
   ];
   let selected = children[0];
   let saving = false;
@@ -55,8 +61,12 @@
     try {
       for (const child of children) {
         if (child.type !== 'file') continue;
-        await container.fs.writeFile(child.name, child.props.contents, 'utf-8');
-        child.props.dirty = false;
+        await container.fs.writeFile(
+          child.name,
+          child.context.contents,
+          'utf-8'
+        );
+        child.context.dirty = false;
       }
       children = [...children];
     } finally {
@@ -75,14 +85,22 @@
 
     const child: PaneChild =
       name === 'README'
-        ? { type: 'readme', name, component: readme.default }
+        ? {
+            type: 'readme',
+            name,
+            component: Readme,
+            context: {
+              dirty: false,
+              contents: readme.default,
+            },
+          }
         : {
             type: 'file',
             name,
             component: File,
-            props: {
-              contents: await container.fs.readFile(path, 'utf-8'),
+            context: {
               dirty: false,
+              contents: await container.fs.readFile(path, 'utf-8'),
             },
           };
     children = [...children, child];
@@ -113,7 +131,7 @@
 />
 
 <main>
-  <div style:width="30rem" class="container">
+  <div style:width="15em" class="container">
     <Directory
       name="/"
       path=""

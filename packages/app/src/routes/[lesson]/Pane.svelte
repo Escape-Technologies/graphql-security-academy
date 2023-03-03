@@ -18,13 +18,14 @@
             selected = child;
           }}
         >
-          {child.name}{#if child.props?.dirty}*{/if}
+          {child.name}{#if child.context?.dirty}*{/if}
         </button>
         <button
           class="close"
           title="close"
           on:click={() => {
-            if (child.props?.dirty && !confirm('Close without saving?')) return;
+            if (child.context?.dirty && !confirm('Close without saving?'))
+              return;
             children = children.filter((c) => c !== child);
             if (selected === child) selected = undefined;
           }}
@@ -41,7 +42,7 @@
     {:else}
       <svelte:component
         this={selected.component}
-        bind:props={selected.props}
+        bind:context={selected.context}
         on:cmd
       />
     {/if}
@@ -89,7 +90,7 @@
   }
 
   .close {
-    padding: 0 0.5rem;
+    padding: 0 0.5em;
     line-height: 1;
 
     &:hover {

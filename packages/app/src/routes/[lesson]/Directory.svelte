@@ -39,7 +39,11 @@
   });
 </script>
 
-<button on:click={toggle}>{expanded ? '📂' : '📁'} {name}</button>
+<button on:click={toggle}
+  ><span class="icon">{expanded ? '📂' : '📁'}</span><span class="name"
+    >{name}</span
+  ></button
+>
 
 {#if expanded}
   <ul>
@@ -56,7 +60,8 @@
       {:else}
         <li>
           <button on:click={() => dispatch('click', `${name}${file.name}`)}>
-            📄 {file.name}
+            <span class="icon">📄</span>
+            <span class="name">{file.name}</span>
           </button>
         </li>
       {/if}
@@ -72,13 +77,18 @@
     cursor: pointer;
     text-align: left;
     // Compensate for the icon when text wraps
-    padding-left: 3.5rem;
-    text-indent: -3.5rem;
+    display: flex;
   }
 
   ul {
     margin: 0;
     list-style: none;
-    padding-inline-start: 2rem;
+    padding-inline-start: 1em;
+  }
+
+  .icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
   }
 </style>

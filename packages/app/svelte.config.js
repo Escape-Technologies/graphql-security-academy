@@ -10,6 +10,7 @@ const config = {
   kit: {
     adapter: adapter(),
     alias: {
+      $assets: './src/assets',
       $lessons: './src/lessons',
     },
   },

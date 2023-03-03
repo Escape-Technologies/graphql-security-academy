@@ -1,7 +1,16 @@
 <script lang="ts">
-  import type { PageData } from './$types.js';
+  import '$assets/markdown-content.scss';
+  import '$assets/prism.scss';
+  import { createEventDispatcher } from 'svelte';
+  import type { SvelteConstructor } from './files.js';
 
-  export let context: PageData['readme'];
+  export let context: {
+    contents: SvelteConstructor;
+  };
+
+  createEventDispatcher<{ cmd: string }>();
 </script>
 
-<svelte:component this={context.default} />
+<article class="markdown-content">
+  <svelte:component this={context.contents} on:cmd />
+</article>

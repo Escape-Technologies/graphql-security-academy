@@ -1,14 +1,14 @@
 <script lang="ts">
-  export let props: {
+  export let context: {
     contents: string;
     dirty: boolean;
   };
 </script>
 
 <textarea
-  bind:value={props.contents}
+  bind:value={context.contents}
   on:input={() => {
-    props.dirty = true;
+    context.dirty = true;
   }}
 />
 
