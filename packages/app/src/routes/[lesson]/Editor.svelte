@@ -5,6 +5,8 @@
   import type { Terminal } from 'xterm';
   import type { PageData } from './$types.js';
   import Directory from './Directory.svelte';
+  import File from './File.svelte';
+  import Pane, { type PaneChild } from './Pane.svelte';
   import { spawnShell, type Shell } from './shell.js';
   import Xterm from './Xterm.svelte';
 
@@ -47,7 +49,24 @@
   };
 
   const openFile = async (path: string) => {
-    file = { path, content: await container.fs.readFile(path, 'utf-8') };
+    const name = path === '/README.svx' ? 'README' : path;
+
+    const matching = children.find((child) => child.name === name);
+    if (matching) {
+      selected = matching;
+      return;
+    }
+
+    const child =
+      name === 'README'
+        ? { name, component: readme.default }
+        : {
+            name,
+            component: File,
+            props: { contents: await container.fs.readFile(path, 'utf-8') },
+          };
+    children = [...children, child];
+    selected = child;
   };
 
   const preview = (frame: HTMLIFrameElement) => {
@@ -56,9 +75,8 @@
     });
   };
 
-  const runCmd = async (cmd: string) => {
-    input.write(`${cmd}\n`);
-  };
+  let children: PaneChild[] = [];
+  let selected: PaneChild;
 </script>
 
 <svelte:window
@@ -76,16 +94,8 @@
       on:click={({ detail: path }) => openFile(path)}
     />
   </div>
-  <div class="container" style="display:grid;grid-template-rows:1fr 1fr">
-    <svelte:component
-      this={readme.default}
-      on:cmd={({ detail: cmd }) => runCmd(cmd)}
-    />
-    {#if file}
-      <textarea bind:value={file.content} />
-    {:else}
-      <div class="container">👈 Open a file first</div>
-    {/if}
+  <div class="container">
+    <Pane bind:children bind:selected />
   </div>
   <button on:click={save}>▶️</button>
   <iframe
@@ -115,11 +125,6 @@
       width: 100%;
       height: 100%;
     }
-  }
-
-  textarea {
-    font-family: monospace;
-    resize: none;
   }
 
   .container {

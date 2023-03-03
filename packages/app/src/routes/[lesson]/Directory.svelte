@@ -55,7 +55,7 @@
         </li>
       {:else}
         <li>
-          <button on:click={() => dispatch('click', `${name}/${file.name}`)}>
+          <button on:click={() => dispatch('click', `${name}${file.name}`)}>
             📄 {file.name}
           </button>
         </li>
