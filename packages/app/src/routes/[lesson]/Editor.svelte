@@ -6,16 +6,22 @@
   import type { PageData } from './$types.js';
   import Directory from './Directory.svelte';
   import File from './File.svelte';
-  import Pane, { type PaneChild } from './Pane.svelte';
+  import type { PaneChild } from './files.js';
+  import Pane from './Pane.svelte';
   import { spawnShell, type Shell } from './shell.js';
   import Xterm from './Xterm.svelte';
 
   export let container: WebContainer;
   export let readme: PageData['readme'];
 
-  let file: { path: string; content: string } | undefined;
   let activeTerminal: Terminal;
   let shell: Shell;
+
+  let children: PaneChild[] = [
+    { type: 'readme', name: 'README', component: readme.default },
+  ];
+  let selected = children[0];
+  let saving = false;
 
   $: input = $shell?.input.getWriter();
 
@@ -44,8 +50,18 @@
   };
 
   const save = async () => {
-    if (!file) return;
-    await container.fs.writeFile(file.path, file.content);
+    if (saving) return;
+    saving = true;
+    try {
+      for (const child of children) {
+        if (child.type !== 'file') continue;
+        await container.fs.writeFile(child.name, child.props.contents, 'utf-8');
+        child.props.dirty = false;
+      }
+      children = [...children];
+    } finally {
+      saving = false;
+    }
   };
 
   const openFile = async (path: string) => {
@@ -57,16 +73,24 @@
       return;
     }
 
-    const child =
+    const child: PaneChild =
       name === 'README'
-        ? { name, component: readme.default }
+        ? { type: 'readme', name, component: readme.default }
         : {
+            type: 'file',
             name,
             component: File,
-            props: { contents: await container.fs.readFile(path, 'utf-8') },
+            props: {
+              contents: await container.fs.readFile(path, 'utf-8'),
+              dirty: false,
+            },
           };
     children = [...children, child];
     selected = child;
+  };
+
+  const runCommand = async (cmd: string) => {
+    await input.write(`${cmd}\r\n`);
   };
 
   const preview = (frame: HTMLIFrameElement) => {
@@ -74,14 +98,17 @@
       frame.src = `${url}/graphql`;
     });
   };
-
-  let children: PaneChild[] = [];
-  let selected: PaneChild;
 </script>
 
 <svelte:window
   on:resize={() => {
     $shell.resize({ cols: activeTerminal.cols, rows: activeTerminal.rows });
+  }}
+  on:keydown={async (event) => {
+    if (event.key === 's' && (event.metaKey || event.ctrlKey)) {
+      event.preventDefault();
+      await save();
+    }
   }}
 />
 
@@ -95,9 +122,13 @@
     />
   </div>
   <div class="container">
-    <Pane bind:children bind:selected />
+    <Pane
+      bind:children
+      bind:selected
+      on:cmd={({ detail: cmd }) => runCommand(cmd)}
+    />
   </div>
-  <button on:click={save}>▶️</button>
+  <button on:click={save}>Save & run {saving ? '🔃' : '💾'}</button>
   <iframe
     use:preview
     title="Preview"

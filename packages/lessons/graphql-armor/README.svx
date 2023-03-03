@@ -2,8 +2,15 @@
 title: GraphQL Armor
 ---
 
-<script>
+<script lang="ts">
   import Task from '$lib/Task.svelte';
+  import RunCommand from '$lib/RunCommand.svelte';
+  import { createEventDispatcher } from 'svelte';
+
+  let installed = false;
+  let started = false;
+
+  const dispatch = createEventDispatcher<{cmd: string}>();
 </script>
 
 # GraphQL Armor
@@ -42,8 +49,19 @@ This attack is one of the many that GraphQL Armor can protect you from.
 
   Your first task is to perform the attack described above. You can use the GraphQL Playground to do this.
 
-  - [ ] Install dependencies with `npm install`
-  - [ ] Run the server with `npm start`
+  - <input type="checkbox" checked={installed} disabled>
+    Install dependencies with <samp>npm install<samp>
+    <RunCommand cmd="npm install" on:cmd={({detail: cmd}) => {
+      installed = true;
+      dispatch('cmd', cmd);
+    }}>▶️</RunCommand>
+  - <input type="checkbox" checked={started} disabled>
+    Run the server with <samp>npm start</samp>
+    <RunCommand cmd="npm start" on:cmd={({detail: cmd}) => {
+      started = true;
+      dispatch('cmd', cmd);
+    }}
+    >▶️</RunCommand>
   - [ ] Send a deep query to the server
 
 

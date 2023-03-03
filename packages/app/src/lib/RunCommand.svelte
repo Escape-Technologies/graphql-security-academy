@@ -7,5 +7,5 @@
 </script>
 
 <button on:click={() => dispatch('cmd', cmd)}>
-  Run <code>{cmd}</code>
+  <slot />
 </button>
