@@ -7,12 +7,8 @@ const users = [
   { name: 'Eve', friends: [0, 2, 3] },
 ];
 
-/** Our user type, as resolved in GraphQL. */
-export type User = { id: number; name: string };
-
 /** `SELECT id, name FROM users WHERE id=:id` */
-export const getUser = (id: number): User => ({ id, name: users[id].name });
+export const getUser = (id) => ({ id, name: users[id].name });
 
 /** Performs a one-to-many lookup for friends. */
-export const getFriends = (id: number): User[] =>
-  users[id].friends.map(getUser);
+export const getFriends = (id) => users[id].friends.map(getUser);

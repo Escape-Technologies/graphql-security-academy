@@ -3,12 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "tsx watch --clear-screen=false src/index.ts"
+    "start": "nodemon src/index.js"
   },
   "devDependencies": {
     "@graphql-yoga/render-graphiql": "latest",
     "graphql": "latest",
     "graphql-yoga": "latest",
-    "tsx": "latest"
+    "nodemon": "latest"
   }
 }

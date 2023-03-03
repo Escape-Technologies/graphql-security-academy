@@ -1,5 +1,5 @@
 {
-  "name": "learn",
+  "name": "root",
   "private": true,
   "scripts": {
     "build": "yarn workspaces foreach -pv --topological-dev run build",

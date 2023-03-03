@@ -2,7 +2,7 @@
 title: GraphQL Armor
 ---
 
-<script lang="ts">
+<script>
   import Task from '$lib/Task.svelte';
   import RunCommand from '$lib/RunCommand.svelte';
   import { createEventDispatcher } from 'svelte';
@@ -10,7 +10,7 @@ title: GraphQL Armor
   let installed = false;
   let started = false;
 
-  const dispatch = createEventDispatcher<{cmd: string}>();
+  const dispatch = createEventDispatcher();
 </script>
 
 # GraphQL Armor
@@ -78,7 +78,7 @@ GraphQL Armor is a collection of plugins that prevent malicious queries such as 
   Your second task is to install GraphQL Armor and protect your server from the attack.
 
   - [ ] Install GraphQL Armor with `npm install @escape.tech/graphql-armor`
-  - [ ] Add `EnvelopArmorPlugin` to the list of plugins in `index.ts`
+  - [ ] Add `EnvelopArmorPlugin` to the list of plugins in `src/index.js`
   - [ ] Resend the query to the server and see that it is now protected
 
 </Task>

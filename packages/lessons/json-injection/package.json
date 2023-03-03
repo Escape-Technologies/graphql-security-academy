@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "exploit": "tsx exploit/index.ts",
-    "start": "tsx watch --clear-screen=false src/index.ts",
-    "studio": "tsx prisma/studio.ts"
+    "exploit": "node exploit/index.js",
+    "start": "nodemon src/index.js",
+    "studio": "node prisma/studio.js"
   },
   "devDependencies": {
     "@graphql-yoga/render-graphiql": "latest",
@@ -14,10 +14,10 @@
     "graphql": "latest",
     "graphql-scalars": "latest",
     "graphql-yoga": "latest",
-    "prisma": "latest",
-    "tsx": "latest"
+    "nodemon": "latest",
+    "prisma": "latest"
   },
   "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "seed": "node prisma/seed.js"
   }
 }

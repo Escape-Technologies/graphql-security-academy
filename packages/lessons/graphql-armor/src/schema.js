@@ -1,5 +1,5 @@
 import { createSchema } from 'graphql-yoga';
-import { getFriends, getUser, User } from './users.js';
+import { getFriends, getUser } from './users.js';
 
 export const schema = createSchema({
   typeDefs: /* GraphQL */ `
@@ -15,12 +15,12 @@ export const schema = createSchema({
   `,
   resolvers: {
     Query: {
-      user: (_, { id }): User => getUser(id),
+      user: (_, { id }) => getUser(id),
     },
     User: {
-      id: (user: User) => user.id,
-      name: (user: User) => user.name,
-      friends: (user: User) => getFriends(user.id),
+      id: (user) => user.id,
+      name: (user) => user.name,
+      friends: (user) => getFriends(user.id),
     },
   },
 });
