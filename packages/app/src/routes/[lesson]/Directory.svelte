@@ -39,11 +39,10 @@
   });
 </script>
 
-<button on:click={toggle}
-  ><span class="icon">{expanded ? '📂' : '📁'}</span><span class="name"
-    >{name}</span
-  ></button
->
+<button on:click={toggle}>
+  <span class="icon">{expanded ? '📂' : '📁'}</span>
+  <span class="name">{name}</span>
+</button>
 
 {#if expanded}
   <ul>

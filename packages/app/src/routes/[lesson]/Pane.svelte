@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PaneChild } from './files.js';
+  import { paneComponents, type PaneChild } from './files.js';
 
   export let children: PaneChild[];
   export let selected: PaneChild | undefined = undefined;
@@ -18,16 +18,20 @@
             selected = child;
           }}
         >
-          {child.name}{#if child.context?.dirty}*{/if}
+          {child.name}{#if child.dirty}*{/if}
         </button>
         <button
           class="close"
           title="close"
           on:click={() => {
-            if (child.context?.dirty && !confirm('Close without saving?'))
-              return;
-            children = children.filter((c) => c !== child);
-            if (selected === child) selected = undefined;
+            if (child.dirty && !confirm('Close without saving?')) return;
+            const index = children.indexOf(child);
+            children = [
+              ...children.slice(0, index),
+              ...children.slice(index + 1),
+            ];
+            // Opens the next tab if the current one is closed
+            selected = children[Math.min(index, children.length - 1)];
           }}
         >
           ×
@@ -36,17 +40,20 @@
     {/each}
   </div>
 
-  <div class="contents">
-    {#if selected === undefined}
-      👈 Pick something
-    {:else}
+  {#each children as child}
+    <div class="contents" hidden={selected !== child}>
       <svelte:component
-        this={selected.component}
-        bind:context={selected.context}
+        this={paneComponents[child.type]}
+        bind:context={child.context}
         on:cmd
+        on:dirty={() => {
+          if (selected) selected.dirty = true;
+        }}
       />
-    {/if}
-  </div>
+    </div>
+  {:else}
+    👈 Pick something
+  {/each}
 </div>
 
 <style lang="scss">

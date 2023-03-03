@@ -2,13 +2,12 @@
   // This component is browser only thanks to `{#await}` in its parent
   import { chalk } from '$lib/chalk.js';
   import type { WebContainer } from '@webcontainer/api';
+  import { onMount } from 'svelte';
   import type { Terminal } from 'xterm';
   import type { PageData } from './$types.js';
   import Directory from './Directory.svelte';
-  import File from './File.svelte';
   import type { PaneChild } from './files.js';
   import Pane from './Pane.svelte';
-  import Readme from './Readme.svelte';
   import { spawnShell, type Shell } from './shell.js';
   import Xterm from './Xterm.svelte';
 
@@ -22,12 +21,23 @@
     {
       type: 'readme',
       name: 'README',
-      component: Readme,
       context: { contents: readme.default },
     },
   ];
   let selected = children[0];
   let saving = false;
+
+  onMount(() =>
+    container.on('server-ready', (port, url) => {
+      const child = {
+        name: 'Preview',
+        type: 'browser',
+        context: { url },
+      } satisfies PaneChild<'browser'>;
+      children = [...children, child];
+      selected = child;
+    })
+  );
 
   $: input = $shell?.input.getWriter();
 
@@ -59,19 +69,30 @@
     if (saving) return;
     saving = true;
     try {
-      for (const child of children) {
-        if (child.type !== 'file') continue;
+      for (const child of children.filter(
+        (child): child is PaneChild<'file'> => child.type === 'file'
+      )) {
         await container.fs.writeFile(
           child.name,
           child.context.contents,
           'utf-8'
         );
-        child.context.dirty = false;
+        child.dirty = false;
       }
       children = [...children];
     } finally {
       saving = false;
     }
+  };
+
+  const openBrowser = async () => {
+    const child = {
+      name: 'Browser',
+      type: 'browser',
+      context: { url: '/hello-world' },
+    } satisfies PaneChild;
+    children = [...children, child];
+    selected = child;
   };
 
   const openFile = async (path: string) => {
@@ -83,38 +104,28 @@
       return;
     }
 
-    const child: PaneChild =
+    const child =
       name === 'README'
-        ? {
+        ? ({
             type: 'readme',
             name,
-            component: Readme,
             context: {
-              dirty: false,
               contents: readme.default,
             },
-          }
-        : {
+          } satisfies PaneChild<'readme'>)
+        : ({
             type: 'file',
             name,
-            component: File,
             context: {
-              dirty: false,
               contents: await container.fs.readFile(path, 'utf-8'),
             },
-          };
+          } satisfies PaneChild<'file'>);
     children = [...children, child];
     selected = child;
   };
 
   const runCommand = async (cmd: string) => {
     await input.write(`${cmd}\r\n`);
-  };
-
-  const preview = (frame: HTMLIFrameElement) => {
-    container.on('server-ready', (port, url) => {
-      frame.src = `${url}/graphql`;
-    });
   };
 </script>
 
@@ -146,13 +157,11 @@
       on:cmd={({ detail: cmd }) => runCommand(cmd)}
     />
   </div>
-  <button on:click={save}>Save & run {saving ? '🔃' : '💾'}</button>
-  <iframe
-    use:preview
-    title="Preview"
-    src={'data:text/html;base64,' +
-      btoa('<p style="text-align: center"><em>Loading preview...</em></p>')}
-  />
+  <div style:display="flex" style:flex-direction="column">
+    <button on:click={save}>Save {saving ? '🔃' : '💾'}</button>
+    <button on:click={openBrowser}>Open 🌐</button>
+  </div>
+
   <div style:grid-column="1 / 5">
     <Xterm
       on:ready={({ detail: terminal }) => {
@@ -166,7 +175,7 @@
   main {
     height: 100vh;
     display: grid;
-    grid-template-columns: auto 1fr auto 1fr;
+    grid-template-columns: auto 1fr auto;
     grid-template-rows: 4fr 1fr;
 
     > * {

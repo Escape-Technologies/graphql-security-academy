@@ -1,20 +1,26 @@
 import type { SvelteComponent } from 'svelte';
-
-type Type =
-  | {
-      type: 'readme';
-      context: { contents: SvelteConstructor };
-    }
-  | {
-      type: 'file';
-      context: { contents: string };
-    };
+import Browser from './Browser.svelte';
+import File from './File.svelte';
+import Readme from './Readme.svelte';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type SvelteConstructor = new (args: any) => SvelteComponent;
 
-export type PaneChild = {
+export type Contexts = {
+  readme: { contents: SvelteConstructor };
+  file: { contents: string };
+  browser: { url: string };
+};
+
+export const paneComponents: Record<keyof Contexts, SvelteConstructor> = {
+  readme: Readme,
+  file: File,
+  browser: Browser,
+};
+
+export type PaneChild<T extends keyof Contexts = keyof Contexts> = {
+  type: T;
   name: string;
-  component: SvelteConstructor;
-  context?: { dirty?: boolean };
-} & Type;
+  dirty?: boolean;
+  context: Contexts[T];
+};

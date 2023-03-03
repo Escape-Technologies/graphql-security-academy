@@ -1,15 +1,15 @@
 <script lang="ts">
-  export let context: {
-    contents: string;
-    dirty: boolean;
-  };
+  import { createEventDispatcher } from 'svelte';
+  import type { Contexts } from './files.js';
+
+  export let context: Contexts['file'];
+
+  const dispatch = createEventDispatcher<{ dirty: boolean }>();
 </script>
 
 <textarea
   bind:value={context.contents}
-  on:input={() => {
-    context.dirty = true;
-  }}
+  on:input={() => dispatch('dirty', true)}
 />
 
 <style lang="scss">
