@@ -118,6 +118,8 @@
             name,
             context: {
               contents: await container.fs.readFile(path, 'utf-8'),
+              path,
+              extension: path.split('.').pop() ?? '',
             },
           } satisfies PaneChild<'file'>);
     children = [...children, child];
@@ -127,6 +129,8 @@
   const runCommand = async (cmd: string) => {
     await input.write(`${cmd}\r\n`);
   };
+
+  let close: (child: PaneChild) => void;
 </script>
 
 <svelte:window
@@ -137,6 +141,10 @@
     if (event.key === 's' && (event.metaKey || event.ctrlKey)) {
       event.preventDefault();
       await save();
+    }
+    if (event.key === 'w' && (event.metaKey || event.ctrlKey)) {
+      event.preventDefault();
+      close(selected);
     }
   }}
 />
@@ -154,6 +162,7 @@
     <Pane
       bind:children
       bind:selected
+      bind:close
       on:cmd={({ detail: cmd }) => runCommand(cmd)}
     />
   </div>

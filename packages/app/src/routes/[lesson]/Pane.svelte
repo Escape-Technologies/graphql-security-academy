@@ -6,11 +6,20 @@
 
   // Tell svelte that updates to `selected` also affect `children`
   $: children = (selected, children);
+
+  export const close = (child: PaneChild) => {
+    if (child.dirty && !confirm('Close without saving?')) return;
+    const index = children.indexOf(child);
+    children = [...children.slice(0, index), ...children.slice(index + 1)];
+    // Opens the next tab if the current one is closed
+    if (selected === child)
+      selected = children[Math.min(index, children.length - 1)];
+  };
 </script>
 
 <div class="pane">
   <div class="tabs">
-    {#each children as child}
+    {#each children as child (child)}
       <span class="tab" class:selected={selected === child}>
         <button
           class="name"
@@ -20,40 +29,29 @@
         >
           {child.name}{#if child.dirty}*{/if}
         </button>
-        <button
-          class="close"
-          title="close"
-          on:click={() => {
-            if (child.dirty && !confirm('Close without saving?')) return;
-            const index = children.indexOf(child);
-            children = [
-              ...children.slice(0, index),
-              ...children.slice(index + 1),
-            ];
-            // Opens the next tab if the current one is closed
-            selected = children[Math.min(index, children.length - 1)];
-          }}
-        >
+        <button class="close" title="close" on:click={() => close(child)}>
           ×
         </button>
       </span>
     {/each}
   </div>
 
-  {#each children as child}
+  {#each children as child (child)}
     <div class="contents" hidden={selected !== child}>
       <svelte:component
         this={paneComponents[child.type]}
         bind:context={child.context}
         on:cmd
         on:dirty={() => {
-          if (selected) selected.dirty = true;
+          child.dirty = true;
         }}
       />
     </div>
-  {:else}
-    👈 Pick something
   {/each}
+
+  <div class="contents" hidden={Boolean(selected)}>
+    <span class="icon">📔</span>
+  </div>
 </div>
 
 <style lang="scss">
@@ -107,5 +105,15 @@
 
   .contents {
     overflow: auto;
+  }
+
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10em;
+    height: 100%;
+    opacity: 0.1;
+    user-select: none;
   }
 </style>

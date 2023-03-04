@@ -12,6 +12,7 @@
   "dependencies": {
     "@webcontainer/api": "^1.0.2",
     "chalk": "^5.2.0",
+    "monaco-editor": "^0.36.1",
     "xterm": "^5.1.0",
     "xterm-addon-fit": "^0.7.0"
   },

@@ -8,7 +8,7 @@ export type SvelteConstructor = new (args: any) => SvelteComponent;
 
 export type Contexts = {
   readme: { contents: SvelteConstructor };
-  file: { contents: string };
+  file: { contents: string; path: string; extension: string };
   browser: { url: string };
 };
 

@@ -1189,6 +1189,7 @@ __metadata:
     lessons: "workspace:^"
     mdsvex: "npm:^0.10.6"
     modern-normalize: "npm:^1.1.0"
+    monaco-editor: "npm:^0.36.1"
     sass: "npm:^1.58.3"
     svelte: "npm:^3.55.1"
     svelte-check: "npm:^3.0.4"
@@ -3271,6 +3272,13 @@ __metadata:
   version: 1.1.0
   resolution: "modern-normalize@npm:1.1.0"
   checksum: 8eb28e0839e6b996aa4660364660662c1b1b0d33092c0f4f6da86a2c34da10ed5e3a7ec1a41ab548c274b3dab69608e423e442563128c7a91ae30f1bd3bb67d4
+  languageName: node
+  linkType: hard
+
+"monaco-editor@npm:^0.36.1":
+  version: 0.36.1
+  resolution: "monaco-editor@npm:0.36.1"
+  checksum: 545c6c5d2a90d80f725cf0378e48bbf3d8df20ec508a527710bb95db049aea1b2e4371d85418d449aab512bd2e959be193148d5d68341a369b2376099eca54c9
   languageName: node
   linkType: hard
 
