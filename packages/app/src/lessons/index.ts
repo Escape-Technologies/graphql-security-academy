@@ -3,7 +3,7 @@ import type {
   SvelteComponentTyped,
 } from 'svelte/internal';
 
-export type Mdsvex = {
+export type Readme = {
   metadata: {
     title: string;
   };
@@ -12,7 +12,7 @@ export type Mdsvex = {
 };
 
 export const lessons = new Map(
-  Object.entries(import.meta.glob<Mdsvex>('./*/README.svx')).map(
+  Object.entries(import.meta.glob<Readme>('./*/README.svx')).map(
     ([path, load]) => [path.slice('./'.length, -'/README.svx'.length), load]
   )
 );
