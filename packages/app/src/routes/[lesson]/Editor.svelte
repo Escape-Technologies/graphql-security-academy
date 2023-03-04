@@ -142,15 +142,11 @@
       event.preventDefault();
       await save();
     }
-    if (event.key === 'w' && (event.metaKey || event.ctrlKey)) {
-      event.preventDefault();
-      close(selected);
-    }
   }}
 />
 
 <main>
-  <div style:width="15em" class="container">
+  <div style:grid-area="directory" class="container">
     <Directory
       name="/"
       path=""
@@ -158,7 +154,7 @@
       on:click={({ detail: path }) => openFile(path)}
     />
   </div>
-  <div class="container">
+  <div class="container" style:grid-area="main">
     <Pane
       bind:children
       bind:selected
@@ -166,12 +162,13 @@
       on:cmd={({ detail: cmd }) => runCommand(cmd)}
     />
   </div>
-  <div style:display="flex" style:flex-direction="column">
+  <div style:grid-area="menu" style:display="flex">
+    🦜
     <button on:click={save}>Save {saving ? '🔃' : '💾'}</button>
     <button on:click={openBrowser}>Open 🌐</button>
   </div>
 
-  <div style:grid-column="1 / 5">
+  <div style:grid-area="terminal">
     <Xterm
       on:ready={({ detail: terminal }) => {
         onTerminalReady(terminal);
@@ -184,8 +181,12 @@
   main {
     height: 100vh;
     display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: 4fr 1fr;
+    grid-template-areas:
+      'menu menu'
+      'directory main'
+      'directory terminal';
+    grid-template-columns: 15em 1fr;
+    grid-template-rows: auto 4fr 1fr;
 
     > * {
       display: block;
