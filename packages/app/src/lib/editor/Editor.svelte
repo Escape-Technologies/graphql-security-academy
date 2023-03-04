@@ -1,21 +1,17 @@
 <script lang="ts">
   // This component is browser only thanks to `{#await}` in its parent
-  import { chalk } from '$lib/chalk.js';
   import type { WebContainer } from '@webcontainer/api';
   import { onMount } from 'svelte';
-  import type { Terminal } from 'xterm';
-  import type { PageData } from './$types.js';
+  import type { Readme } from '$lessons';
   import Directory from './Directory.svelte';
   import type { PaneChild } from './files.js';
   import Pane from './Pane.svelte';
-  import { spawnShell, type Shell } from './shell.js';
-  import Xterm from './Xterm.svelte';
+  import { ShellService } from './shell.js';
 
   export let container: WebContainer;
-  export let readme: PageData['readme'];
+  export let readme: Readme;
 
-  let activeTerminal: Terminal;
-  let shell: Shell;
+  const shellService = new ShellService(container);
 
   let children: PaneChild[] = [
     {
@@ -39,33 +35,7 @@
     })
   );
 
-  $: input = $shell?.input.getWriter();
-
-  const onTerminalReady = async (terminal: Terminal) => {
-    activeTerminal = terminal;
-    shell = await spawnShell(container, terminal);
-
-    terminal.onData((data) => {
-      input.write(data);
-    });
-
-    shell.subscribe(($shell) => {
-      terminal.write(
-        `# Welcome! Run ${chalk.yellowBright(
-          'npm install'
-        )} and ${chalk.yellowBright('npm start')} to get started.\n`
-      );
-      $shell.output.pipeTo(
-        new WritableStream({
-          write(data) {
-            terminal.write(data);
-          },
-        })
-      );
-    });
-  };
-
-  const save = async () => {
+  const saveAll = async () => {
     if (saving) return;
     saving = true;
     try {
@@ -80,6 +50,19 @@
         child.dirty = false;
       }
       children = [...children];
+    } finally {
+      saving = false;
+    }
+  };
+
+  const save = async () => {
+    if (saving) return;
+    saving = true;
+    try {
+      if (selected.type !== 'file') return;
+      const child = selected as PaneChild<'file'>;
+      await container.fs.writeFile(child.name, child.context.contents, 'utf-8');
+      selected.dirty = false;
     } finally {
       saving = false;
     }
@@ -126,21 +109,27 @@
     selected = child;
   };
 
-  const runCommand = async (cmd: string) => {
-    await input.write(`${cmd}\r\n`);
+  const runCommand = (cmd: string) => {
+    console.log(`${cmd}\r\n`);
   };
 
-  let close: (child: PaneChild) => void;
+  const x = {
+    type: 'terminal',
+    name: 'Terminal',
+    context: {
+      command: 'ls',
+      async attach(terminal) {
+        await shellService.initTerminal(terminal);
+      },
+    },
+  } satisfies PaneChild<'terminal'>;
 </script>
 
 <svelte:window
-  on:resize={() => {
-    $shell.resize({ cols: activeTerminal.cols, rows: activeTerminal.rows });
-  }}
   on:keydown={async (event) => {
     if (event.key === 's' && (event.metaKey || event.ctrlKey)) {
       event.preventDefault();
-      await save();
+      await saveAll();
     }
   }}
 />
@@ -158,22 +147,18 @@
     <Pane
       bind:children
       bind:selected
-      bind:close
       on:cmd={({ detail: cmd }) => runCommand(cmd)}
     />
   </div>
   <div style:grid-area="menu" style:display="flex">
     🦜
-    <button on:click={save}>Save {saving ? '🔃' : '💾'}</button>
+    <button on:click={save}>Save</button>
+    <button on:click={saveAll}>Save All</button>
     <button on:click={openBrowser}>Open 🌐</button>
   </div>
 
   <div style:grid-area="terminal">
-    <Xterm
-      on:ready={({ detail: terminal }) => {
-        onTerminalReady(terminal);
-      }}
-    />
+    <Pane children={[x]} selected={x} />
   </div>
 </main>
 

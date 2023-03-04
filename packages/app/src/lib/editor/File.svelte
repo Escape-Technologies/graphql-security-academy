@@ -21,6 +21,7 @@
       value: context.contents,
       language,
       minimap: { enabled: false },
+      automaticLayout: true,
     });
 
     editor.onDidChangeModelContent(() => {

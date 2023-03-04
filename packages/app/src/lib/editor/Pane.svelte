@@ -7,7 +7,7 @@
   // Tell svelte that updates to `selected` also affect `children`
   $: children = (selected, children);
 
-  export const close = (child: PaneChild) => {
+  const close = (child: PaneChild) => {
     if (child.dirty && !confirm('Close without saving?')) return;
     const index = children.indexOf(child);
     children = [...children.slice(0, index), ...children.slice(index + 1)];

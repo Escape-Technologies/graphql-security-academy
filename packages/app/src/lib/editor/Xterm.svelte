@@ -3,6 +3,9 @@
   import { Terminal } from 'xterm';
   import { FitAddon } from 'xterm-addon-fit';
   import 'xterm/css/xterm.css';
+  import type { Contexts } from './files.js';
+
+  export let context: Contexts['terminal'];
 
   let terminal: Terminal;
   let fitAddon: FitAddon;
@@ -22,6 +25,8 @@
     terminal.open(wrapper);
 
     dispatch('ready', terminal);
+
+    context.attach(terminal);
 
     return () => {
       fitAddon.dispose();
