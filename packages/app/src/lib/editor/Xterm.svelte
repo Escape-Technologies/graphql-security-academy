@@ -16,7 +16,6 @@
   onMount(() => {
     terminal = new Terminal({
       convertEol: true,
-      rows: 10,
       fontFamily: 'Consolas, Monaco, "Ubuntu Mono", monospace',
     });
     fitAddon = new FitAddon();

@@ -73,7 +73,7 @@
       name: 'Browser',
       type: 'browser',
       context: { url: '/hello-world' },
-    } satisfies PaneChild;
+    } satisfies PaneChild<'browser'>;
     children = [...children, child];
     selected = child;
   };
@@ -123,6 +123,20 @@
       },
     },
   } satisfies PaneChild<'terminal'>;
+
+  const openTerminal = () => {
+    const child = {
+      type: 'terminal',
+      name: 'Terminal',
+      context: {
+        async attach(terminal) {
+          await shellService.initTerminal(terminal);
+        },
+      },
+    } satisfies PaneChild<'terminal'>;
+    children = [...children, child];
+    selected = child;
+  };
 </script>
 
 <svelte:window
@@ -155,6 +169,7 @@
     <button on:click={save}>Save</button>
     <button on:click={saveAll}>Save All</button>
     <button on:click={openBrowser}>Open 🌐</button>
+    <button on:click={openTerminal}>Open 🎹</button>
   </div>
 
   <div style:grid-area="terminal">
