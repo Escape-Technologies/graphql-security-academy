@@ -6,9 +6,9 @@
     "start": "nodemon src/index.js"
   },
   "devDependencies": {
-    "@graphql-yoga/render-graphiql": "latest",
-    "graphql": "latest",
-    "graphql-yoga": "latest",
-    "nodemon": "latest"
+    "@graphql-yoga/render-graphiql": "^3.7.1",
+    "graphql": "^16.6.0",
+    "graphql-yoga": "^3.7.1",
+    "nodemon": "^2.0.21"
   }
 }

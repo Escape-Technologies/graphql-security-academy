@@ -408,18 +408,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/executor@npm:^0.0.14":
-  version: 0.0.14
-  resolution: "@graphql-tools/executor@npm:0.0.14"
+"@graphql-tools/executor@npm:^0.0.15":
+  version: 0.0.15
+  resolution: "@graphql-tools/executor@npm:0.0.15"
   dependencies:
     "@graphql-tools/utils": "npm:9.2.1"
-    "@graphql-typed-document-node/core": "npm:3.1.1"
+    "@graphql-typed-document-node/core": "npm:3.1.2"
     "@repeaterjs/repeater": "npm:3.0.4"
     tslib: "npm:^2.4.0"
     value-or-promise: "npm:1.0.12"
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 25c0416c8ab7931c8dc785e0ae57de1dcb6c08a2c716aff99092978839e7e14738932fe0233136044ea3c84fb86ac671ad8b8407c1143d833e2b42b54e131dab
+  checksum: 239abd763f94201e3ec8623d812b848ef2bd2934cffc935b4c8ad438d2956d7de9d6243dc7280683119c65eb17c63be2c9592bd5721a6a9bda6cc55ef97c8107
   languageName: node
   linkType: hard
 
@@ -461,16 +461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-typed-document-node/core@npm:3.1.1":
-  version: 3.1.1
-  resolution: "@graphql-typed-document-node/core@npm:3.1.1"
-  peerDependencies:
-    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 27326aef0d432a5dcb72838b52082c6186cd9af377f5cf64fb9994ca4336d0ca2dac561734dbde419d2b8f3d8937b5f3b0a8d437b165c5d81df036887bc1dd8b
-  languageName: node
-  linkType: hard
-
-"@graphql-typed-document-node/core@npm:^3.1.1":
+"@graphql-typed-document-node/core@npm:3.1.2, @graphql-typed-document-node/core@npm:^3.1.1":
   version: 3.1.2
   resolution: "@graphql-typed-document-node/core@npm:3.1.2"
   peerDependencies:
@@ -479,12 +470,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-yoga/render-graphiql@npm:latest":
-  version: 3.7.0
-  resolution: "@graphql-yoga/render-graphiql@npm:3.7.0"
+"@graphql-yoga/logger@npm:0.0.1":
+  version: 0.0.1
+  resolution: "@graphql-yoga/logger@npm:0.0.1"
+  dependencies:
+    tslib: "npm:^2.3.1"
+  checksum: 15f59bd2b6e45c2e50f04c2e3abbd196b1ad5f3c257dd9a106f164933e7c7e49a1eff6bed1178a23969bb105a9855a814a036c0a25a8ed2c43464e903fa56377
+  languageName: node
+  linkType: hard
+
+"@graphql-yoga/render-graphiql@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "@graphql-yoga/render-graphiql@npm:3.7.1"
   peerDependencies:
-    graphql-yoga: ^3.7.0
-  checksum: 40a6599a8074786e40513592b6ed254ecc65c3daf29f955083cf1785928c566bd8fd5b3d756d5b57006d4f3127cbe1424bb1f7faea59dbdd51ab32e5d2727791
+    graphql-yoga: ^3.7.1
+  checksum: 8a00d899999dfb33a9069f9918820fdb03aaa14a9b94b5be57a25d7cb2a61077a947357a1a5f4a80a80d902b54e203093ad25f952bd2ffdba3cbbced5d21ff5c
   languageName: node
   linkType: hard
 
@@ -646,7 +646,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:latest":
+"@prisma/client@npm:^4.11.0":
   version: 4.11.0
   resolution: "@prisma/client@npm:4.11.0"
   dependencies:
@@ -727,9 +727,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^1.9.3":
-  version: 1.9.3
-  resolution: "@sveltejs/kit@npm:1.9.3"
+"@sveltejs/kit@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "@sveltejs/kit@npm:1.10.0"
   dependencies:
     "@sveltejs/vite-plugin-svelte": "npm:^2.0.0"
     "@types/cookie": "npm:^0.5.1"
@@ -749,7 +749,7 @@ __metadata:
     vite: ^4.0.0
   bin:
     svelte-kit: svelte-kit.js
-  checksum: 4e0c3a14ed48cfd00f77ae5f3619a6d8fc80ff0a7dd0d836cc467e6d3bf311651c363424296d4464b5eb9bf0910e70f207100982dd2356836602ae2f8bbe969f
+  checksum: 9b3e927ce84826338178d8b97b6ffcedf6158eacc341b75a89913ce9f97cde8cb76e3b51cce4d94ad882ae50c72706b0a90ed72860456e510547bff9dbd2ba25
   languageName: node
   linkType: hard
 
@@ -1015,7 +1015,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@whatwg-node/fetch@npm:latest":
+"@whatwg-node/fetch@npm:^0.8.2":
   version: 0.8.2
   resolution: "@whatwg-node/fetch@npm:0.8.2"
   dependencies:
@@ -1058,13 +1058,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@whatwg-node/server@npm:^0.6.7":
-  version: 0.6.7
-  resolution: "@whatwg-node/server@npm:0.6.7"
+"@whatwg-node/server@npm:^0.7.1":
+  version: 0.7.2
+  resolution: "@whatwg-node/server@npm:0.7.2"
   dependencies:
-    "@whatwg-node/fetch": "npm:^0.8.1"
+    "@whatwg-node/fetch": "npm:^0.8.2"
     tslib: "npm:^2.3.1"
-  checksum: 33471cbfbfd6babd5638c960bc787cd41b7a09ad4cdc0b6fdff61c30f9ffea74930306e4f48ccaf9688f5774e43bead96b997dd2b8abead1d9f3751d9973a344
+  checksum: e52ec909c3a1c5d4c52125e4b651a51f9bfdb36fdc4512160a1b2949efc5f2b95184b1865ee0853832e7cb08267c07e93d4d52a913cbde1f32f7acbe2668cccb
   languageName: node
   linkType: hard
 
@@ -1183,7 +1183,7 @@ __metadata:
   dependencies:
     "@rollup/plugin-node-resolve": "npm:^15.0.1"
     "@sveltejs/adapter-auto": "npm:^2.0.0"
-    "@sveltejs/kit": "npm:^1.9.3"
+    "@sveltejs/kit": "npm:^1.10.0"
     "@webcontainer/api": "npm:^1.0.2"
     chalk: "npm:^5.2.0"
     lessons: "workspace:^"
@@ -2334,14 +2334,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "graphql-armor-lesson@workspace:packages/lessons/graphql-armor"
   dependencies:
-    "@graphql-yoga/render-graphiql": "npm:latest"
-    graphql: "npm:latest"
-    graphql-yoga: "npm:latest"
-    nodemon: "npm:latest"
+    "@graphql-yoga/render-graphiql": "npm:^3.7.1"
+    graphql: "npm:^16.6.0"
+    graphql-yoga: "npm:^3.7.1"
+    nodemon: "npm:^2.0.21"
   languageName: unknown
   linkType: soft
 
-"graphql-scalars@npm:latest":
+"graphql-scalars@npm:^1.20.1":
   version: 1.20.1
   resolution: "graphql-scalars@npm:1.20.1"
   dependencies:
@@ -2352,28 +2352,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-yoga@npm:latest":
-  version: 3.7.0
-  resolution: "graphql-yoga@npm:3.7.0"
+"graphql-yoga@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "graphql-yoga@npm:3.7.1"
   dependencies:
     "@envelop/core": "npm:^3.0.4"
     "@envelop/validation-cache": "npm:^5.1.2"
-    "@graphql-tools/executor": "npm:^0.0.14"
+    "@graphql-tools/executor": "npm:^0.0.15"
     "@graphql-tools/schema": "npm:^9.0.0"
     "@graphql-tools/utils": "npm:^9.2.1"
+    "@graphql-yoga/logger": "npm:0.0.1"
     "@graphql-yoga/subscription": "npm:^3.1.0"
     "@whatwg-node/fetch": "npm:^0.8.1"
-    "@whatwg-node/server": "npm:^0.6.7"
+    "@whatwg-node/server": "npm:^0.7.1"
     dset: "npm:^3.1.1"
     lru-cache: "npm:^7.14.1"
     tslib: "npm:^2.3.1"
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
-  checksum: 3bab69674f85e412176d4e27794f8598445af0a98c2af36e7e649483ef557bf88c5b5eb4288001fcc495d71ef0b3a8bb92ecfa42d88a45ef69af527608523f2f
+  checksum: 0f22f47a9a40085ce69116dce8958de01e03a38a2cd4ea4e8c1043f365b2b6a917f4f8b9835acbc4e89505fbeef9960da65e3def2749b3400ead75a2fda74b76
   languageName: node
   linkType: hard
 
-"graphql@npm:latest":
+"graphql@npm:^16.6.0":
   version: 16.6.0
   resolution: "graphql@npm:16.6.0"
   checksum: 686582916b9ca247f3562f086c34a6363155475da909e1f891f9a76a3b5273ed6c7034cd5a82e768670ac5a74d539a6f1be282253a92b49be3a489fc82e83a5b
@@ -2653,14 +2654,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "json-injection-lesson@workspace:packages/lessons/json-injection"
   dependencies:
-    "@graphql-yoga/render-graphiql": "npm:latest"
-    "@prisma/client": "npm:latest"
-    "@whatwg-node/fetch": "npm:latest"
-    graphql: "npm:latest"
-    graphql-scalars: "npm:latest"
-    graphql-yoga: "npm:latest"
-    nodemon: "npm:latest"
-    prisma: "npm:latest"
+    "@graphql-yoga/render-graphiql": "npm:^3.7.1"
+    "@prisma/client": "npm:^4.11.0"
+    "@whatwg-node/fetch": "npm:^0.8.2"
+    graphql: "npm:^16.6.0"
+    graphql-scalars: "npm:^1.20.1"
+    graphql-yoga: "npm:^3.7.1"
+    nodemon: "npm:^2.0.21"
+    prisma: "npm:^4.11.0"
   languageName: unknown
   linkType: soft
 
@@ -3360,7 +3361,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nodemon@npm:latest":
+"nodemon@npm:^2.0.21":
   version: 2.0.21
   resolution: "nodemon@npm:2.0.21"
   dependencies:
@@ -3654,7 +3655,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prisma@npm:latest":
+"prisma@npm:^4.11.0":
   version: 4.11.0
   resolution: "prisma@npm:4.11.0"
   dependencies:
