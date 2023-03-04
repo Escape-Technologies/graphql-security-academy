@@ -4,12 +4,28 @@
   export let data: PageData;
 </script>
 
-<h1>Learn GraphQL Security / APIDevSec.com / Whatever</h1>
+<main>
+  <h1>🦜 learn.escape.tech</h1>
 
-<p>Choose a lesson:</p>
+  <p>Choose a lesson:</p>
 
-<ul>
-  {#each data.lessons as { path, title }}
-    <li><a href={path}>{title}</a></li>
-  {/each}
-</ul>
+  <ul>
+    {#each data.lessons as { path, title }}
+      <li><a href={path}>{title}</a></li>
+    {/each}
+  </ul>
+
+  <p>
+    <a href="https://github.com/Escape-Technologies/learn.escape.tech">
+      View on GitHub
+    </a>
+  </p>
+</main>
+
+<style lang="scss">
+  main {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 50rem;
+  }
+</style>
