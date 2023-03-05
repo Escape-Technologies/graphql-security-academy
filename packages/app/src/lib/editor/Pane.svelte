@@ -1,6 +1,5 @@
 <script lang="ts">
   import { flip } from 'svelte/animate';
-  import { noop } from 'svelte/internal';
   import { paneComponents, type PaneChild } from './files.js';
 
   export let children: PaneChild[];
@@ -30,24 +29,33 @@
       selected = children[Math.min(index, children.length - 1)];
   };
 
-  const drop = (event: DragEvent) => {
+  /** Updates the tabs in realtime. */
+  const drag = function (this: HTMLElement, event: DragEvent) {
     if (!dragged) return;
-    // @ts-expect-error https://caniuse.com/mdn-api_mouseevent_layerx
-    const x = event.layerX as number;
-    let placeAfterIndex;
+    /** Horizontal coordinate relative to the tabs container. */
+    const x = event.pageX - this.offsetLeft;
+    /** Insert the dragged tab after this index. */
+    let placeAfterIndex: number | undefined;
     for (const [i, child] of children.entries()) {
       const tab = tabsMap.get(child);
       if (!tab) continue;
-      if (x < tab.offsetLeft + tab.offsetWidth / 2) continue;
+      // Stop when the insertion have been found
+      if (x < tab.offsetLeft + tab.offsetWidth / 2) break;
+      // Keep the last index that is before the insertion point
       placeAfterIndex = i;
     }
+    /** New `children` array. */
     const reordered = [];
+    // If the insertion point has been found before the first tab,
+    // `placeAfterIndex` is undefined and the dragged tab is inserted first
     if (placeAfterIndex === undefined) reordered.push(dragged);
     for (const [i, child] of children.entries()) {
+      // Skip the dragged tab
       if (child !== dragged) reordered.push(child);
+      // Insert the dragged tab after the insertion point
       if (i === placeAfterIndex) reordered.push(dragged);
     }
-    // Only update `children` if the order has changed
+    // Only update `children` if the order has changed to avoid visual glitches
     if (reordered.some((child, i) => child !== children[i]))
       children = reordered;
   };
@@ -57,9 +65,7 @@
   <div
     class="tabs"
     on:dragenter|preventDefault
-    on:dragover|preventDefault
-    on:drag|preventDefault={noop}
-    on:drop|preventDefault={drop}
+    on:dragover|preventDefault={drag}
   >
     {#each children as child (child)}
       <span
