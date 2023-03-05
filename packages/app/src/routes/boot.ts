@@ -1,3 +1,9 @@
+/**
+ * Prepares the browser environment for the application.
+ *
+ * @module
+ */
+
 import { WebContainer } from '@webcontainer/api';
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
@@ -12,7 +18,7 @@ if (window.top === window) {
 
   // Register Monaco workers
   // https://github.com/vitejs/vite/discussions/1791#discussioncomment-321046
-  self.MonacoEnvironment = {
+  window.MonacoEnvironment = {
     getWorker(_, label) {
       if (label === 'json') {
         return new jsonWorker();

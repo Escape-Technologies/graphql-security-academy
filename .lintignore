@@ -1,5 +1,6 @@
 # Ignore list used by linting tools
 .svelte-kit/
+.vercel/
 .yarn/
 build/
 node_modules/
