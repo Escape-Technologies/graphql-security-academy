@@ -20,11 +20,12 @@
     });
     fitAddon = new FitAddon();
     terminal.loadAddon(fitAddon);
-    fitAddon.fit();
+
+    // Open the terminal in the wrapper and fit it to the wrapper
     terminal.open(wrapper);
+    fitAddon.fit();
 
     dispatch('ready', terminal);
-
     context.attach(terminal);
 
     return () => {
@@ -41,3 +42,10 @@
 />
 
 <div bind:this={wrapper} />
+
+<style lang="scss">
+  div {
+    height: 100%;
+    background: #000;
+  }
+</style>

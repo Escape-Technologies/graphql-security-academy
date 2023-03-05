@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "build": "yarn workspaces foreach -pv --topological-dev run build",
+    "build": "yarn workspaces foreach -piv --topological-dev run build",
     "dev": "yarn workspaces foreach -piv run dev"
   },
   "devDependencies": {
