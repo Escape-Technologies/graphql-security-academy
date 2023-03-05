@@ -27,7 +27,7 @@
   },
   "packageManager": "yarn@4.0.0-rc.39",
   "volta": {
-    "node": "19.7.0",
+    "node": "18.14.2",
     "yarn": "1.22.19"
   },
   "workspaces": [
