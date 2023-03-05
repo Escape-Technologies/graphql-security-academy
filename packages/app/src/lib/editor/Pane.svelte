@@ -1,11 +1,25 @@
 <script lang="ts">
+  import { flip } from 'svelte/animate';
+  import { noop } from 'svelte/internal';
   import { paneComponents, type PaneChild } from './files.js';
 
   export let children: PaneChild[];
   export let selected: PaneChild | undefined = undefined;
 
+  let dragged: PaneChild | undefined = undefined;
+  let tabsMap = new Map<PaneChild, HTMLElement>();
+
   // Tell svelte that updates to `selected` also affect `children`
   $: children = (selected, children);
+
+  const map = (node: HTMLElement, child: PaneChild) => {
+    tabsMap.set(child, node);
+    return {
+      destroy() {
+        tabsMap.delete(child);
+      },
+    };
+  };
 
   const close = (child: PaneChild) => {
     if (child.dirty && !confirm('Close without saving?')) return;
@@ -15,12 +29,54 @@
     if (selected === child)
       selected = children[Math.min(index, children.length - 1)];
   };
+
+  const drop = (event: DragEvent) => {
+    if (!dragged) return;
+    // @ts-expect-error https://caniuse.com/mdn-api_mouseevent_layerx
+    const x = event.layerX as number;
+    let placeAfterIndex;
+    for (const [i, child] of children.entries()) {
+      const tab = tabsMap.get(child);
+      if (!tab) continue;
+      if (x < tab.offsetLeft + tab.offsetWidth / 2) continue;
+      placeAfterIndex = i;
+    }
+    const reordered = [];
+    if (placeAfterIndex === undefined) reordered.push(dragged);
+    for (const [i, child] of children.entries()) {
+      if (child !== dragged) reordered.push(child);
+      if (i === placeAfterIndex) reordered.push(dragged);
+    }
+    // Only update `children` if the order has changed
+    if (reordered.some((child, i) => child !== children[i]))
+      children = reordered;
+  };
 </script>
 
 <div class="pane">
-  <div class="tabs">
+  <div
+    class="tabs"
+    on:dragenter|preventDefault
+    on:dragover|preventDefault
+    on:drag|preventDefault={noop}
+    on:drop|preventDefault={drop}
+  >
     {#each children as child (child)}
-      <span class="tab" class:selected={selected === child}>
+      <span
+        class="tab"
+        class:selected={selected === child}
+        draggable="true"
+        on:dragstart={(event) => {
+          if (!event.dataTransfer) return;
+          event.dataTransfer.setData('text/plain', child.name);
+          event.dataTransfer.effectAllowed = 'all';
+          event.dataTransfer.dropEffect = 'move';
+          selected = child;
+          dragged = child;
+        }}
+        use:map={child}
+        animate:flip={{ duration: 200 }}
+      >
         <button
           class="name"
           on:click={() => {
@@ -62,6 +118,8 @@
   }
 
   .tabs {
+    // Makes event coordinates relative to this element
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     border-bottom: 1px solid black;
@@ -81,6 +139,7 @@
       background: #fff;
       padding-top: 0;
       border-top: 4px solid lime;
+      z-index: 1;
     }
   }
 

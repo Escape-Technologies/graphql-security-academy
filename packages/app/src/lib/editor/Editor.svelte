@@ -113,17 +113,6 @@
     console.log(`${cmd}\r\n`);
   };
 
-  const x = {
-    type: 'terminal',
-    name: 'Terminal',
-    context: {
-      command: 'ls',
-      async attach(terminal) {
-        await shellService.initTerminal(terminal);
-      },
-    },
-  } satisfies PaneChild<'terminal'>;
-
   const openTerminal = () => {
     const child = {
       type: 'terminal',
@@ -143,7 +132,7 @@
   on:keydown={async (event) => {
     if (event.key === 's' && (event.metaKey || event.ctrlKey)) {
       event.preventDefault();
-      await saveAll();
+      await save();
     }
   }}
 />
@@ -171,10 +160,6 @@
     <button on:click={openBrowser}>Open 🌐</button>
     <button on:click={openTerminal}>Open 🎹</button>
   </div>
-
-  <div style:grid-area="terminal">
-    <Pane children={[x]} selected={x} />
-  </div>
 </main>
 
 <style lang="scss">
@@ -183,10 +168,9 @@
     display: grid;
     grid-template-areas:
       'menu menu'
-      'directory main'
-      'directory terminal';
+      'directory main';
     grid-template-columns: 15em 1fr;
-    grid-template-rows: auto 4fr 1fr;
+    grid-template-rows: auto 1fr;
 
     > * {
       display: block;
