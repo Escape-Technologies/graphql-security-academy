@@ -3,15 +3,5 @@
   "framework": "sveltekit",
   "installCommand": "yarn workspaces focus app",
   "buildCommand": "yarn run --top-level build",
-  "github": { "silent": true },
-  "headers": [
-    {
-      "source": "/_app/(.*)",
-      "headers": [
-        { "key": "Cross-Origin-Embedder-Policy", "value": "require-corp" },
-        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" }
-      ]
-    }
-  ]
+  "github": { "silent": true }
 }
