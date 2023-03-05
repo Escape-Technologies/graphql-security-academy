@@ -1,0 +1,14 @@
+{
+  "name": "cors-lesson",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "graphql-yoga": "^3.7.1",
+    "nodemon": "^2.0.21"
+  }
+}

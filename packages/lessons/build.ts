@@ -71,6 +71,6 @@ const buildLessonFiles = async (dir: URL): Promise<FileSystemTree> => {
   );
 };
 
-console.time('build lessons');
+console.time('Built lessons in');
 await build();
-console.timeEnd('build lessons');
+console.timeEnd('Built lessons in');

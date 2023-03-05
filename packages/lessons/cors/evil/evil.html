@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evil Website</title>
+  </head>
+  <body>
+    <pre id="logs"></pre>
+    <script type="module">
+      const $logs = document.querySelector('#logs');
+      const url = new URL(window.location.href);
+      const site = url.searchParams.get('site');
+      if (site) {
+        $logs.textContent = 'Loading...';
+        try {
+          const { data, errors } = await fetch(site, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              query: 'mutation($name: String!){createUser(name:$name){name}}',
+              variables: { name: 'Evil >:}' },
+            }),
+          }).then((response) => response.json());
+          if (errors) {
+            $logs.textContent = JSON.stringify(errors, null, 2);
+          } else {
+            $logs.textContent = JSON.stringify(data, null, 2);
+          }
+        } catch (error) {
+          $logs.textContent = error.message;
+        }
+      } else {
+        $logs.textContent = 'No site specified';
+      }
+    </script>
+  </body>
+</html>
