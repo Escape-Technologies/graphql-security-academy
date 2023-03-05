@@ -70,19 +70,16 @@
 
 <style lang="scss">
   button {
-    appearance: none;
-    border: none;
-    background: none;
-    cursor: pointer;
-    text-align: left;
-    // Compensate for the icon when text wraps
+    all: unset;
     display: flex;
+    cursor: pointer;
+    outline: revert;
   }
 
   ul {
+    padding-inline-start: 1em;
     margin: 0;
     list-style: none;
-    padding-inline-start: 1em;
   }
 
   .icon {

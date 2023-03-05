@@ -17,7 +17,7 @@
 
 <style lang="scss">
   article {
-    user-select: text;
     cursor: auto;
+    user-select: text;
   }
 </style>

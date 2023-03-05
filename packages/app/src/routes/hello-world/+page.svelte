@@ -13,7 +13,7 @@
   }
 
   .icon {
-    line-height: 1;
     font-size: 5em;
+    line-height: 1;
   }
 </style>

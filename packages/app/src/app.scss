@@ -13,10 +13,10 @@
   --main-width: 50rem;
   --link: #3a3a99;
 
-  scrollbar-width: thin;
   line-height: 1.5;
-  user-select: none;
   cursor: default;
+  user-select: none;
+  scrollbar-width: thin;
 }
 
 ::selection {

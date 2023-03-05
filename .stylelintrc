@@ -1,0 +1,8 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-recess-order"
+  ],
+  "overrides": [{ "files": ["*.svelte"], "customSyntax": "postcss-html" }],
+  "ignoreFiles": ["**/*", "!**/*.{css,scss,svelte}"]
+}

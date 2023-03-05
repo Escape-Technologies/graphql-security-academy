@@ -53,7 +53,7 @@
         await container.fs.writeFile(
           child.name,
           child.context.contents,
-          'utf-8'
+          'utf8'
         );
         child.dirty = false;
       }
@@ -69,7 +69,7 @@
     try {
       if (selected.type !== 'file') return;
       const child = selected as PaneChild<'file'>;
-      await container.fs.writeFile(child.name, child.context.contents, 'utf-8');
+      await container.fs.writeFile(child.name, child.context.contents, 'utf8');
       selected.dirty = false;
     } finally {
       saving = false;
@@ -108,7 +108,7 @@
             type: 'file',
             name,
             context: {
-              contents: await container.fs.readFile(path, 'utf-8'),
+              contents: await container.fs.readFile(path, 'utf8'),
               path,
               extension: path.split('.').pop() ?? '',
             },
@@ -172,13 +172,11 @@
 
 <style lang="scss">
   main {
-    height: 100vh;
     display: grid;
-    grid-template-areas:
-      'menu menu'
-      'directory main';
-    grid-template-columns: 15em 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template:
+      'menu menu' auto
+      'directory main' 1fr / 15em 1fr;
+    height: 100vh;
 
     > * {
       display: block;
@@ -188,7 +186,7 @@
   }
 
   .container {
-    border: 1px solid black;
     overflow: auto;
+    border: 1px solid black;
   }
 </style>

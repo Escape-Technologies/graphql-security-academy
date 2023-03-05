@@ -3,7 +3,11 @@
   "private": true,
   "scripts": {
     "build": "yarn workspaces foreach -piv --topological-dev run build",
-    "dev": "yarn workspaces foreach -piv run dev"
+    "dev": "yarn workspaces foreach -piv run dev",
+    "lint": "yarn lint:eslint && yarn lint:prettier && yarn lint:stylelint",
+    "lint:eslint": "eslint --ignore-path .lintignore $INIT_CWD",
+    "lint:prettier": "prettier --check --ignore-unknown --ignore-path .lintignore $INIT_CWD",
+    "lint:stylelint": "stylelint --ignore-path .lintignore $INIT_CWD"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.54.0",
@@ -11,10 +15,14 @@
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-svelte": "^2.19.2",
+    "postcss-html": "^1.5.0",
     "prettier": "^2.8.4",
     "prettier-plugin-jsdoc": "^0.4.2",
     "prettier-plugin-package": "^1.3.0",
     "prettier-plugin-svelte": "^2.9.0",
+    "stylelint": "^15.2.0",
+    "stylelint-config-recess-order": "^4.0.0",
+    "stylelint-config-standard-scss": "^7.0.1",
     "svelte": "^3.55.1"
   },
   "packageManager": "yarn@4.0.0-rc.39",

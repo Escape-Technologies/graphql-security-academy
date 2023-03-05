@@ -1,0 +1,6 @@
+# Ignore list used by linting tools
+.svelte-kit/
+.yarn/
+build/
+node_modules/
+/packages/app/src/lessons/*

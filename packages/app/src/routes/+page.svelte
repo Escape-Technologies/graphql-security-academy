@@ -24,8 +24,8 @@
 
 <style lang="scss">
   main {
-    margin-inline: auto;
-    padding-inline: 1rem;
     max-width: 50rem;
+    padding-inline: 1rem;
+    margin-inline: auto;
   }
 </style>

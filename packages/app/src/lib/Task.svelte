@@ -1,9 +1,11 @@
-<div><slot /></div>
+<div>
+  <slot />
+</div>
 
 <style lang="scss">
   div {
-    background-color: lightblue;
-    margin-block: 1em;
     padding: 1em;
+    margin-block: 1em;
+    background-color: lightblue;
   }
 </style>

@@ -151,24 +151,24 @@
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    border-bottom: 1px solid black;
     background-color: #eee;
+    border-bottom: 1px solid black;
   }
 
   .tab {
     display: flex;
-    border: 1px solid black;
-    border-bottom: none;
+    min-width: 10em;
+    padding-top: 3px;
     margin-right: -1px;
     background: #eee;
-    padding-top: 3px;
-    min-width: 10em;
+    border: 1px solid black;
+    border-bottom: none;
 
     &.selected {
-      background: #fff;
-      padding-top: 0;
-      border-top: 4px solid lime;
       z-index: 1;
+      padding-top: 0;
+      background: #fff;
+      border-top: 4px solid lime;
     }
   }
 
@@ -197,11 +197,11 @@
 
   .empty {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 10em;
+    justify-content: center;
     height: 100%;
-    opacity: 0.1;
+    font-size: 10em;
     user-select: none;
+    opacity: 0.1;
   }
 </style>

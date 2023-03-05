@@ -4,7 +4,13 @@
  * @module
  */
 
-import { copyFile, mkdir, readdir, readFile, writeFile } from 'fs/promises';
+import {
+  copyFile,
+  mkdir,
+  readdir,
+  readFile,
+  writeFile,
+} from 'node:fs/promises';
 import type { FileSystemTree } from '@webcontainer/api';
 
 /** Computes a path relative to this file. */
@@ -26,8 +32,8 @@ const buildLesson = async (name: string, dir: URL) => {
   try {
     const files = await buildLessonFiles(dir);
     await mkdir(relative(`${dest}${name}`), { recursive: true });
-    await writeFile(`${dest}${name}/files.json`, JSON.stringify(files));
     await copyFile(new URL('README.svx', dir), `${dest}${name}/README.svx`);
+    await writeFile(`${dest}${name}/files.json`, JSON.stringify(files));
   } catch (error) {
     console.error(`Error building lesson ${name}: ${error}`);
   }
@@ -56,7 +62,7 @@ const buildLessonFiles = async (dir: URL): Promise<FileSystemTree> => {
           entry.name,
           {
             file: {
-              contents: await readFile(new URL(entry.name, dir), 'utf-8'),
+              contents: await readFile(new URL(entry.name, dir), 'utf8'),
             },
           },
         ];
