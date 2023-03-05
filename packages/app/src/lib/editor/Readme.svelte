@@ -14,3 +14,10 @@
 <article class="markdown-content">
   <svelte:component this={context.contents} on:cmd />
 </article>
+
+<style lang="scss">
+  article {
+    user-select: text;
+    cursor: auto;
+  }
+</style>

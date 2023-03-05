@@ -5,12 +5,34 @@
   export let children: PaneChild[];
   export let selected: PaneChild | undefined = undefined;
 
+  /** Currently dragged tab. */
   let dragged: PaneChild | undefined = undefined;
+
+  /** Maps elements of `children` to their matching tab element. */
   let tabsMap = new Map<PaneChild, HTMLElement>();
+
+  /**
+   * Contains the same elements as `children` but does not change order when
+   * `children` does. This allows keeping HTML elements while iterating over
+   * them:
+   *
+   * - `{#each children as child}` moves nodes, provoking refreshes
+   * - `{#each [...childrenSet] as child}` keeps the elements in their order, even
+   *   when `children` is reordered
+   */
+  let childrenSet = new Set(children);
 
   // Tell svelte that updates to `selected` also affect `children`
   $: children = (selected, children);
 
+  // Keep `childrenSet` in sync with `children`
+  $: {
+    for (const child of children) childrenSet.add(child);
+    for (const child of childrenSet)
+      if (!children.includes(child)) childrenSet.delete(child);
+  }
+
+  /** Keeps `tabsMap` in sync with `children`. */
   const map = (node: HTMLElement, child: PaneChild) => {
     tabsMap.set(child, node);
     return {
@@ -20,6 +42,7 @@
     };
   };
 
+  /** Closes the tab given. */
   const close = (child: PaneChild) => {
     if (child.dirty && !confirm('Close without saving?')) return;
     const index = children.indexOf(child);
@@ -29,7 +52,7 @@
       selected = children[Math.min(index, children.length - 1)];
   };
 
-  /** Updates the tabs in realtime. */
+  /** Updates the tab order in realtime. */
   const drag = function (this: HTMLElement, event: DragEvent) {
     if (!dragged) return;
     /** Horizontal coordinate relative to the tabs container. */
@@ -98,7 +121,7 @@
     {/each}
   </div>
 
-  {#each children as child (child)}
+  {#each [...childrenSet] as child (child)}
     <div class="contents" hidden={selected !== child}>
       <svelte:component
         this={paneComponents[child.type]}
@@ -112,7 +135,7 @@
   {/each}
 
   <div class="contents" hidden={Boolean(selected)}>
-    <span class="icon">📔</span>
+    <span class="empty">📔</span>
   </div>
 </div>
 
@@ -172,7 +195,7 @@
     overflow: auto;
   }
 
-  .icon {
+  .empty {
     display: flex;
     justify-content: center;
     align-items: center;
