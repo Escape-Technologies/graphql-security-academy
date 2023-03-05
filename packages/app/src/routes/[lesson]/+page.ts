@@ -10,5 +10,6 @@ export const load = (async ({ params }) => {
   const files = import(`../../lessons/${params.lesson}/files.json`) as Promise<{
     default: FileSystemTree;
   }>;
-  return { readme: load(), files };
+  const readme = await load();
+  return { readme, files, title: readme.metadata.title };
 }) satisfies PageLoad;

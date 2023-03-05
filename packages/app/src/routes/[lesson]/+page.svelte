@@ -17,10 +17,6 @@
   };
 </script>
 
-<svelte:head>
-  <title>{data.readme.metadata.title}</title>
-</svelte:head>
-
 {#await Promise.all([import('$lib/editor/Editor.svelte'), createContainer()])}
   <div class="loading">
     <h1>Loading...</h1>
