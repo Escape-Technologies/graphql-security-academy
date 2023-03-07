@@ -187,8 +187,6 @@
 
   .directory {
     grid-area: directory;
-    color: #c6ccd7;
-    background: #181a1f;
   }
 
   .container {

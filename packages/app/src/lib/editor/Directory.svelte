@@ -11,6 +11,7 @@
   export let name: string;
   export let path: string;
   export let expanded = false;
+  export let depth = 0;
 
   let files: File[] = [];
 
@@ -52,12 +53,13 @@
 </button>
 
 {#if expanded}
-  <ul>
+  <ul style:--depth={depth}>
     {#each files as file}
       {#if file.directory}
         <li>
           <svelte:self
             {container}
+            depth={depth + 1}
             name="{file.name}/"
             path={`${path}${file.name}/`}
             on:click={({ detail: path }) => dispatch('click', `${name}${path}`)}
@@ -84,8 +86,16 @@
   }
 
   ul {
-    padding-inline-start: 1em;
+    padding-inline-start: 0;
     margin: 0;
     list-style: none;
+  }
+
+  li {
+    padding-inline-start: 1em;
+
+    &:hover {
+      background: #fff3;
+    }
   }
 </style>

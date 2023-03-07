@@ -154,8 +154,7 @@
   .scroll {
     position: relative;
     overflow-x: overlay;
-    // background-color: #eee;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--dark);
   }
 
   .tabs {
@@ -168,15 +167,14 @@
     min-width: 10em;
     padding-block: 3px;
     margin-right: -1px;
-    // background: #eee;
-    // border: 1px solid black;
+    background: var(--main-4);
     border-bottom: none;
 
     &.selected {
       z-index: 1;
       padding-top: 0;
-      // background: #fff;
-      border-top: 4px solid lime;
+      background: var(--focused);
+      border-top: 4px solid var(--accent);
     }
   }
 
@@ -195,12 +193,13 @@
     line-height: 1;
 
     &:hover {
-      // background: #ccc;
+      background: var(--hovered);
     }
   }
 
   .contents {
     overflow: auto;
+    background: var(--focused);
   }
 
   .empty {

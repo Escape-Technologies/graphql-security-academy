@@ -1,9 +1,20 @@
 @import 'modern-normalize/modern-normalize.css';
+@import '@fontsource/titillium-web';
+@import '@fontsource/open-sans';
 
 :root {
+  // Theme
+  --dark: #030014;
+  --main: #050028;
+  --focused: #26223e;
+  --hovered: #464356;
+  --text: #e3e3e8;
+  --accent: #05e2b7;
+
   // Main colors
-  --bg: #21252b;
-  --color: #c6ccd7;
+  --bg: var(--main);
+  --color: var(--text);
+  --link: var(--accent);
 
   // Markdown colors
   --prism-color: #1c1b1d;
@@ -42,8 +53,22 @@
 }
 
 body {
+  font-family: 'Open Sans', system-ui, sans-serif;
   color: var(--color);
   background-color: var(--bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Titillium Web', sans-serif;
+}
+
+a {
+  color: var(--link);
 }
 
 .icon {
