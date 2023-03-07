@@ -1,6 +1,7 @@
 <script lang="ts">
   import { flip } from 'svelte/animate';
   import { paneComponents, type PaneChild } from './files.js';
+  import Icon from './icons/Icon.svelte';
 
   export let children: PaneChild[];
   export let selected: PaneChild | undefined = undefined;
@@ -56,7 +57,8 @@
   const drag = function (this: HTMLElement, event: DragEvent) {
     if (!dragged) return;
     /** Horizontal coordinate relative to the tabs container. */
-    const x = event.pageX - this.offsetLeft;
+    const x = event.pageX + this.scrollLeft - this.offsetLeft;
+    // const x = event.layer;
     /** Insert the dragged tab after this index. */
     let placeAfterIndex: number | undefined;
     for (const [i, child] of children.entries()) {
@@ -86,39 +88,42 @@
 
 <div class="pane">
   <div
-    class="tabs"
+    class="scroll"
     on:dragenter|preventDefault
     on:dragover|preventDefault={drag}
   >
-    {#each children as child (child)}
-      <span
-        class="tab"
-        class:selected={selected === child}
-        draggable="true"
-        on:dragstart={(event) => {
-          if (!event.dataTransfer) return;
-          event.dataTransfer.setData('text/plain', child.name);
-          event.dataTransfer.effectAllowed = 'all';
-          event.dataTransfer.dropEffect = 'move';
-          selected = child;
-          dragged = child;
-        }}
-        use:map={child}
-        animate:flip={{ duration: 200 }}
-      >
-        <button
-          class="name"
-          on:click={() => {
+    <div class="tabs">
+      {#each children as child (child)}
+        <span
+          class="tab"
+          class:selected={selected === child}
+          draggable="true"
+          on:dragstart={(event) => {
+            if (!event.dataTransfer) return;
+            event.dataTransfer.setData('text/plain', child.name);
+            event.dataTransfer.effectAllowed = 'all';
+            event.dataTransfer.dropEffect = 'move';
             selected = child;
+            dragged = child;
           }}
+          use:map={child}
+          animate:flip={{ duration: 200 }}
         >
-          {child.name}{#if child.dirty}*{/if}
-        </button>
-        <button class="close" title="close" on:click={() => close(child)}>
-          ×
-        </button>
-      </span>
-    {/each}
+          <button
+            class="name"
+            on:click={() => {
+              selected = child;
+            }}
+          >
+            <Icon {...child} />
+            {child.name}{#if child.dirty}*{/if}
+          </button>
+          <button class="close" title="close" on:click={() => close(child)}>
+            ×
+          </button>
+        </span>
+      {/each}
+    </div>
   </div>
 
   {#each [...childrenSet] as child (child)}
@@ -146,28 +151,31 @@
     height: 100%;
   }
 
-  .tabs {
-    // Makes event coordinates relative to this element
+  .scroll {
     position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #eee;
+    overflow-x: overlay;
+    // background-color: #eee;
     border-bottom: 1px solid black;
+  }
+
+  .tabs {
+    display: flex;
   }
 
   .tab {
     display: flex;
+    flex-shrink: 0;
     min-width: 10em;
-    padding-top: 3px;
+    padding-block: 3px;
     margin-right: -1px;
-    background: #eee;
-    border: 1px solid black;
+    // background: #eee;
+    // border: 1px solid black;
     border-bottom: none;
 
     &.selected {
       z-index: 1;
       padding-top: 0;
-      background: #fff;
+      // background: #fff;
       border-top: 4px solid lime;
     }
   }
@@ -187,7 +195,7 @@
     line-height: 1;
 
     &:hover {
-      background: #ccc;
+      // background: #ccc;
     }
   }
 

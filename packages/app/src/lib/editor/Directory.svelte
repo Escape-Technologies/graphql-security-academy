@@ -1,6 +1,9 @@
 <script lang="ts">
   import type { WebContainer } from '@webcontainer/api';
   import { createEventDispatcher, onMount } from 'svelte';
+  import Folder from '~icons/ri/folder-fill';
+  import FolderOpen from '~icons/ri/folder-open-fill';
+  import FileIcon from './icons/FileIcon.svelte';
 
   type File = { name: string; directory: boolean };
 
@@ -40,8 +43,12 @@
 </script>
 
 <button on:click={toggle}>
-  <span class="icon">{expanded ? '📂' : '📁'}</span>
-  <span class="name">{name}</span>
+  {#if expanded}
+    <FolderOpen />
+  {:else}
+    <Folder />
+  {/if}
+  <span>{name}</span>
 </button>
 
 {#if expanded}
@@ -59,8 +66,8 @@
       {:else}
         <li>
           <button on:click={() => dispatch('click', `${name}${file.name}`)}>
-            <span class="icon">📄</span>
-            <span class="name">{file.name}</span>
+            <FileIcon name={file.name} />
+            <span>{file.name}</span>
           </button>
         </li>
       {/if}
@@ -80,11 +87,5 @@
     padding-inline-start: 1em;
     margin: 0;
     list-style: none;
-  }
-
-  .icon {
-    display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
   }
 </style>

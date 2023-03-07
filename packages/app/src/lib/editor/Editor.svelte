@@ -146,7 +146,7 @@
 />
 
 <main>
-  <div style:grid-area="directory" class="container">
+  <div class="directory container">
     <Directory
       name="/"
       path=""
@@ -183,6 +183,12 @@
       width: 100%;
       height: 100%;
     }
+  }
+
+  .directory {
+    grid-area: directory;
+    color: #c6ccd7;
+    background: #181a1f;
   }
 
   .container {
