@@ -157,6 +157,9 @@
         class="drag-overlay"
         on:dragenter|preventDefault
         on:dragover|preventDefault={dragSplit}
+        on:dragleave|preventDefault={() => {
+          split = undefined;
+        }}
         transition:fade={{ duration: 100 }}
       >
         <div data-split={split} />
@@ -249,6 +252,7 @@
     [data-split] {
       position: absolute;
       inset: 0;
+      pointer-events: none;
       background-color: var(--hovered);
       transition: transform 0.1s;
     }
