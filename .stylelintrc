@@ -3,6 +3,17 @@
     "stylelint-config-standard-scss",
     "stylelint-config-recess-order"
   ],
-  "overrides": [{ "files": ["*.svelte"], "customSyntax": "postcss-html" }],
+  "overrides": [
+    {
+      "files": ["*.svelte"],
+      "customSyntax": "postcss-html",
+      "rules": {
+        "selector-pseudo-class-no-unknown": [
+          true,
+          { "ignorePseudoClasses": ["global"] }
+        ]
+      }
+    }
+  ],
   "ignoreFiles": ["**/*", "!**/*.{css,scss,svelte}"]
 }
