@@ -80,22 +80,27 @@
 <style lang="scss">
   button {
     all: unset;
+    position: relative;
+    z-index: 0;
     display: flex;
     cursor: pointer;
     outline: revert;
+
+    &::before {
+      position: absolute;
+      inset: 0 -100vw;
+      z-index: -1;
+      content: '';
+    }
+
+    &:hover::before {
+      background: var(--hovered);
+    }
   }
 
   ul {
-    padding-inline-start: 0;
+    padding-inline-start: 1rem;
     margin: 0;
     list-style: none;
-  }
-
-  li {
-    padding-inline-start: 1em;
-
-    &:hover {
-      background: #fff3;
-    }
   }
 </style>
