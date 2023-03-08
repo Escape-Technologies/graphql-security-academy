@@ -138,6 +138,19 @@
     }
     $dragged = undefined;
   };
+
+  // Automatically close the split if one of the two panes is empty
+  $: if (splitDirection !== undefined) {
+    if (splitA.children.length === 0) {
+      splitDirection = undefined;
+      children = splitB.children;
+      selected = splitB.selected;
+    } else if (splitB.children.length === 0) {
+      splitDirection = undefined;
+      children = splitA.children;
+      selected = splitA.selected;
+    }
+  }
 </script>
 
 <svelte:window
