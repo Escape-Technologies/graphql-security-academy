@@ -6,7 +6,6 @@
 <script lang="ts">
   import { flip } from 'svelte/animate';
   import { writable } from 'svelte/store';
-  import { fade } from 'svelte/transition';
   import { paneComponents, type PaneChild } from './files.js';
   import Icon from './icons/Icon.svelte';
 
@@ -108,6 +107,12 @@
   };
 </script>
 
+<svelte:window
+  on:drop={() => {
+    split = undefined;
+  }}
+/>
+
 <div class="pane">
   <div
     class="scroll"
@@ -160,7 +165,6 @@
         on:dragleave|preventDefault={() => {
           split = undefined;
         }}
-        transition:fade={{ duration: 100 }}
       >
         <div data-split={split} />
       </div>
@@ -249,12 +253,19 @@
     z-index: 1;
     overflow: hidden;
 
-    [data-split] {
+    > div {
       position: absolute;
       inset: 0;
       pointer-events: none;
       background-color: var(--hovered);
-      transition: transform 0.1s;
+      opacity: 0;
+      transition: transform 0.1s, opacity 0.1s;
+      transition-delay: 0.1s, 0s;
+    }
+
+    [data-split] {
+      opacity: 1;
+      transition-delay: 0s, 0.1s;
     }
 
     [data-split='up'] {
