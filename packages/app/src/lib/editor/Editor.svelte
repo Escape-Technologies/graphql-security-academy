@@ -190,7 +190,7 @@
   }
 
   .container {
-    overflow: auto;
+    overflow: hidden;
     border: 1px solid black;
   }
 </style>

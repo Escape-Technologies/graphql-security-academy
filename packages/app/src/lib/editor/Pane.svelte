@@ -26,8 +26,8 @@
    */
   let childrenSet = new Set(children);
 
-  /** Splitting direction */
-  let split: 'left' | 'right' | 'up' | 'down' | undefined;
+  /** Splitting overlay direction. */
+  let overlayDirection: 'left' | 'right' | 'up' | 'down' | undefined;
 
   // Tell svelte that updates to `selected` also affect `children`
   $: children = (selected, children);
@@ -64,7 +64,6 @@
     if (!$dragged) return;
     /** Horizontal coordinate relative to the tabs container. */
     const rect = this.getBoundingClientRect();
-    console.log(rect);
     const x = event.pageX - rect.left + this.scrollLeft;
     // const x = event.layer;
     /** Insert the dragged tab after this index. */
@@ -98,102 +97,153 @@
     const rect = this.getBoundingClientRect();
     const x = (event.pageX - rect.left + this.scrollLeft) / rect.width - 0.5;
     const y = (event.pageY - rect.top + this.scrollTop) / rect.height - 0.5;
-    split = 'up';
+    overlayDirection = 'up';
     if (Math.abs(x) > Math.abs(y))
-      if (x > 0) split = 'right';
-      else split = 'left';
-    else if (y > 0) split = 'down';
-    this.dataset.split = split;
+      if (x > 0) overlayDirection = 'right';
+      else overlayDirection = 'left';
+    else if (y > 0) overlayDirection = 'down';
+    this.dataset.split = overlayDirection;
+  };
+
+  type Split = { children: PaneChild[]; selected: PaneChild | undefined };
+  let splitA: Split = { children: [], selected: undefined };
+  let splitB: Split = { children: [], selected: undefined };
+  let splitDirection: 'horizontal' | 'vertical' | undefined;
+  const split = function (this: HTMLElement) {
+    if (!overlayDirection || !$dragged) return;
+    if (overlayDirection === 'up') {
+      splitDirection = 'vertical';
+      splitA.children = [$dragged];
+      splitA.selected = $dragged;
+      splitB.children = children.filter((child) => child !== $dragged);
+      splitB.selected = splitB.children[0];
+    } else if (overlayDirection === 'down') {
+      splitDirection = 'vertical';
+      splitA.children = children.filter((child) => child !== $dragged);
+      splitA.selected = splitA.children[0];
+      splitB.children = [$dragged];
+      splitB.selected = $dragged;
+    } else if (overlayDirection === 'left') {
+      splitDirection = 'horizontal';
+      splitA.children = [$dragged];
+      splitA.selected = $dragged;
+      splitB.children = children.filter((child) => child !== $dragged);
+      splitB.selected = splitB.children[0];
+    } else if (overlayDirection === 'right') {
+      splitDirection = 'horizontal';
+      splitA.children = children.filter((child) => child !== $dragged);
+      splitA.selected = splitA.children[0];
+      splitB.children = [$dragged];
+      splitB.selected = $dragged;
+    }
+    $dragged = undefined;
   };
 </script>
 
 <svelte:window
   on:drop={() => {
-    split = undefined;
+    overlayDirection = undefined;
   }}
 />
 
-<div class="pane">
-  <div
-    class="scroll"
-    on:dragenter|preventDefault
-    on:dragover|preventDefault={dragTab}
-  >
-    <div class="tabs">
-      {#each children as child (child)}
-        <span
-          class="tab"
-          class:selected={selected === child}
-          draggable="true"
-          on:dragstart={(event) => {
-            if (!event.dataTransfer) return;
-            event.dataTransfer.setData('text/plain', child.name);
-            event.dataTransfer.effectAllowed = 'all';
-            event.dataTransfer.dropEffect = 'move';
-            selected = child;
-            $dragged = child;
-          }}
-          on:dragend={() => {
-            $dragged = undefined;
-          }}
-          use:map={child}
-          animate:flip={{ duration: 200 }}
-        >
-          <button
-            class="name"
-            on:click={() => {
+{#if splitDirection === undefined}
+  <div class="pane">
+    <div
+      class="scroll"
+      on:dragenter|preventDefault
+      on:dragover|preventDefault={dragTab}
+    >
+      <div class="tabs">
+        {#each children as child (child)}
+          <span
+            class="tab"
+            class:selected={selected === child}
+            draggable="true"
+            on:dragstart={(event) => {
+              if (!event.dataTransfer) return;
+              event.dataTransfer.setData('text/plain', child.name);
+              event.dataTransfer.effectAllowed = 'all';
+              event.dataTransfer.dropEffect = 'move';
               selected = child;
+              $dragged = child;
             }}
+            on:dragend={() => {
+              $dragged = undefined;
+            }}
+            use:map={child}
+            animate:flip={{ duration: 200 }}
           >
-            <Icon {...child} />
-            {child.name}{#if child.dirty}*{/if}
-          </button>
-          <button class="close" title="close" on:click={() => close(child)}>
-            ×
-          </button>
-        </span>
-      {/each}
-    </div>
-  </div>
-
-  <div class="wrapper">
-    {#if $dragged}
-      <div
-        class="drag-overlay"
-        on:dragenter|preventDefault
-        on:dragover|preventDefault={dragSplit}
-        on:dragleave|preventDefault={() => {
-          split = undefined;
-        }}
-      >
-        <div data-split={split} />
+            <button
+              class="name"
+              on:click={() => {
+                selected = child;
+              }}
+            >
+              <Icon {...child} />
+              {child.name}{#if child.dirty}*{/if}
+            </button>
+            <button class="close" title="close" on:click={() => close(child)}>
+              ×
+            </button>
+          </span>
+        {/each}
       </div>
-    {/if}
+    </div>
 
-    {#each [...childrenSet] as child (child)}
-      <div class="contents" hidden={selected !== child}>
-        <svelte:component
-          this={paneComponents[child.type]}
-          bind:context={child.context}
-          on:cmd
-          on:dirty={() => {
-            child.dirty = true;
+    <div class="wrapper">
+      {#if $dragged}
+        <div
+          class="drag-overlay"
+          on:dragenter|preventDefault
+          on:dragover|preventDefault={dragSplit}
+          on:dragleave|preventDefault={() => {
+            overlayDirection = undefined;
           }}
-        />
-      </div>
-    {/each}
+          on:drop|preventDefault={split}
+        >
+          <div data-split={overlayDirection} />
+        </div>
+      {/if}
 
-    <div class="contents" hidden={Boolean(selected)}>
-      <span class="empty">📔</span>
+      {#each [...childrenSet] as child (child)}
+        <div class="contents" hidden={selected !== child}>
+          <div class="contents-scroll">
+            <svelte:component
+              this={paneComponents[child.type]}
+              bind:context={child.context}
+              on:cmd
+              on:dirty={() => {
+                child.dirty = true;
+              }}
+            />
+          </div>
+        </div>
+      {/each}
+
+      <div class="contents" hidden={Boolean(selected)}>
+        <span class="empty">📔</span>
+      </div>
     </div>
   </div>
-</div>
+{:else}
+  <div class="parent {splitDirection}">
+    <svelte:self
+      bind:children={splitA.children}
+      bind:selected={splitA.selected}
+    />
+    <svelte:self
+      bind:children={splitB.children}
+      bind:selected={splitB.selected}
+    />
+  </div>
+{/if}
 
 <style lang="scss">
   .pane {
     display: grid;
     grid-template-rows: auto 1fr;
     height: 100%;
+    overflow: hidden;
   }
 
   .scroll {
@@ -244,7 +294,7 @@
 
   .wrapper {
     position: relative;
-    overflow-y: auto;
+    overflow: hidden;
   }
 
   .drag-overlay {
@@ -287,8 +337,13 @@
 
   .contents {
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background: var(--focused);
+  }
+
+  .contents-scroll {
+    height: 100%;
+    overflow: auto;
   }
 
   .empty {
@@ -299,5 +354,19 @@
     font-size: 10em;
     user-select: none;
     opacity: 0.1;
+  }
+
+  .parent {
+    display: grid;
+    height: 100%;
+    overflow: hidden;
+
+    &.horizontal {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &.vertical {
+      grid-template-rows: 1fr 1fr;
+    }
   }
 </style>
