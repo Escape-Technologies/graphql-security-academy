@@ -4,7 +4,7 @@
   import type { Readme } from '$lessons';
   import type { WebContainer } from '@webcontainer/api';
   import { onMount } from 'svelte';
-  import Directory from './Directory.svelte';
+  import Editor from './Explorer.svelte';
   import type { PaneChild } from './files.js';
   import Pane from './Pane.svelte';
   import { ShellService } from './shell.js';
@@ -147,7 +147,7 @@
 
 <main>
   <div class="directory container">
-    <Directory
+    <Editor
       name="/"
       path=""
       {container}

@@ -3,14 +3,14 @@
 
   export let context: Contexts['browser'];
   let value = context.url;
-
-  const submit = () => {
-    context.url = value;
-  };
 </script>
 
 <div>
-  <form on:submit|preventDefault={submit}>
+  <form
+    on:submit|preventDefault={() => {
+      context.url = value;
+    }}
+  >
     <input type="text" bind:value />
     <button type="submit">Go</button>
   </form>
