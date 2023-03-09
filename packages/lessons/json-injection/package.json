@@ -8,12 +8,12 @@
     "studio": "node prisma/studio.js"
   },
   "devDependencies": {
-    "@graphql-yoga/render-graphiql": "^3.7.1",
+    "@graphql-yoga/render-graphiql": "^3.7.2",
     "@prisma/client": "^4.11.0",
     "@whatwg-node/fetch": "^0.8.2",
     "graphql": "^16.6.0",
     "graphql-scalars": "^1.20.1",
-    "graphql-yoga": "^3.7.1",
+    "graphql-yoga": "^3.7.2",
     "nodemon": "^2.0.21",
     "prisma": "^4.11.0"
   },
