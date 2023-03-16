@@ -9,7 +9,7 @@
   "devDependencies": {
     "@webcontainer/api": "^1.0.2",
     "chokidar-cli": "^3.0.0",
-    "tsx": "^3.12.3"
+    "tsx": "^3.12.5"
   },
   "volta": {
     "extends": "../../package.json"
