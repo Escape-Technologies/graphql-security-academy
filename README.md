@@ -11,7 +11,7 @@ This project is made of two separate parts:
 - [app](./packages/app/) is a Svelte IDE that runs in the browser.
 - [lessons](./packages/lessons/) contains all the tutorials.
 
-A lesson is a regular npm package that contains at least a `package.json` file and a `README.svx` file.
+A lesson is a regular npm package that contains at least a `package.json` file and a `README.md` (Svelte-enhanced markdown) file.
 
 ```bash
 # Clone the repository

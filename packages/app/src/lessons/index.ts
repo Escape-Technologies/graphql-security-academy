@@ -12,7 +12,7 @@ export type Readme = {
 };
 
 export const lessons = new Map(
-  Object.entries(import.meta.glob<Readme>('./*/README.svx')).map(
-    ([path, load]) => [path.slice('./'.length, -'/README.svx'.length), load]
+  Object.entries(import.meta.glob<Readme>('./*/README.md')).map(
+    ([path, load]) => [path.slice('./'.length, -'/README.md'.length), load]
   )
 );

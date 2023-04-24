@@ -32,7 +32,7 @@ const buildLesson = async (name: string, dir: URL) => {
   try {
     const files = await buildLessonFiles(dir);
     await mkdir(relative(`${dest}${name}`), { recursive: true });
-    await copyFile(new URL('README.svx', dir), `${dest}${name}/README.svx`);
+    await copyFile(new URL('README.md', dir), `${dest}${name}/README.md`);
     await writeFile(`${dest}${name}/files.json`, JSON.stringify(files));
   } catch (error) {
     console.error(`Error building lesson ${name}: ${error}`);

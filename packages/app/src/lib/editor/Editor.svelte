@@ -17,7 +17,7 @@
   let children: PaneChild[] = [
     {
       type: 'readme',
-      name: 'README',
+      name: 'README.md',
       context: { contents: readme.default },
     },
   ];
@@ -87,7 +87,7 @@
   };
 
   const openFile = async (path: string) => {
-    const name = path === '/README.svx' ? 'README' : path;
+    const name = path.slice(1);
 
     const matching = children.find((child) => child.name === name);
     if (matching) {
@@ -96,7 +96,7 @@
     }
 
     const child =
-      name === 'README'
+      name === 'README.md'
         ? ({
             type: 'readme',
             name,

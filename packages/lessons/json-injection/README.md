@@ -18,7 +18,7 @@ This lesson does not currently work in the browser for security reasons. You can
 - Install dependencies with `yarn install`
 - Continue from here with `yarn start`, `yarn exploit`, etc.
 
-*More details on [prisma#17710](https://github.com/prisma/prisma/issues/17710)*
+_More details on [prisma#17710](https://github.com/prisma/prisma/issues/17710)_
 
 ## The vulnerability
 
@@ -61,8 +61,8 @@ query {
 
 <Task>
 
-  - Start the API with `npm install` and `npm start`. <RunCommand cmd="npm install && npm start" on:cmd>▶️</RunCommand>
-  - Run the exploit in `exploit/index.ts` with `npm run exploit`. <RunCommand cmd="npm run exploit" on:cmd>▶️</RunCommand>
+- Start the API with `npm install` and `npm start`. <RunCommand cmd="npm install && npm start" on:cmd>▶️</RunCommand>
+- Run the exploit in `exploit/index.ts` with `npm run exploit`. <RunCommand cmd="npm run exploit" on:cmd>▶️</RunCommand>
 
 </Task>
 
@@ -109,8 +109,8 @@ Query: {
 
 <Task>
 
-  - Install zod with `npm install zod`. <RunCommand cmd="npm install zod" on:cmd>▶️</RunCommand>
-  - Write a zod schema that allows searching with `email`, `firstName` and `lastName` fields, but not others.
+- Install zod with `npm install zod`. <RunCommand cmd="npm install zod" on:cmd>▶️</RunCommand>
+- Write a zod schema that allows searching with `email`, `firstName` and `lastName` fields, but not others.
 
 </Task>
 

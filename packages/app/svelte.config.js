@@ -4,8 +4,8 @@ import { mdsvex } from 'mdsvex';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  extensions: ['.svelte', '.svx'],
-  preprocess: [vitePreprocess(), mdsvex()],
+  extensions: ['.md', '.svelte'],
+  preprocess: [mdsvex({ extension: '.md' }), vitePreprocess()],
 
   kit: {
     adapter: adapter(),
