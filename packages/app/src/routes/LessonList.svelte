@@ -28,7 +28,7 @@
     grid-template:
       'icon title points'
       'icon description points'
-      'icon tags tags'
+      'icon tags points'
       / auto 1fr auto;
     row-gap: 0.25rem;
     column-gap: 1rem;

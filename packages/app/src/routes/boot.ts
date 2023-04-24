@@ -14,7 +14,7 @@ import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker'
 // Only perform these actions if we're not in an iframe
 if (window.top === window) {
   // Boot a new WebContainer on page load
-  window.webcontainer = WebContainer.boot();
+  window.webcontainer = WebContainer.boot({ workdirName: 'app' });
 
   // Register Monaco workers
   // https://github.com/vitejs/vite/discussions/1791#discussioncomment-321046
