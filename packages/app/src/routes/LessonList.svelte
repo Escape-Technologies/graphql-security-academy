@@ -9,8 +9,10 @@
     <article>
       <div class="icon">⚡</div>
       <div class="points">{points}<br />points</div>
-      <h3><a href={path}>{title}</a></h3>
-      <p>{description}</p>
+      <div class="description">
+        <h3><a href={path}>{title}</a></h3>
+        <p>{description}</p>
+      </div>
       <div class="tags">
         <span class="tag">{category}</span>
         {#if owasp}
@@ -22,27 +24,33 @@
 </div>
 
 <style lang="scss">
+  @use 'sass:math';
+
   article {
     position: relative;
     display: grid;
     grid-template:
-      'icon title points'
       'icon description points'
-      'icon tags points'
+      'icon description points'
+      'tags tags points'
       / auto 1fr auto;
-    row-gap: 0.25rem;
-    column-gap: 1rem;
+    gap: 0.75rem;
     padding: 1rem;
     margin-top: -0.125rem;
+    background-color: var(--main);
     border: 0.125rem solid var(--dark);
+    transition: all 0.1s ease-out;
 
-    > * {
-      margin: 0;
+    &:hover {
+      z-index: 1;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 1rem var(--dark);
+      transform: scale(#{math.div(51, 50)});
     }
+  }
 
-    h3 {
-      line-height: 1;
-    }
+  h3 {
+    line-height: 1;
   }
 
   h3 a {
@@ -52,12 +60,14 @@
     &::before {
       position: absolute;
       inset: 0;
+      z-index: 1;
       content: '';
     }
   }
 
   .list {
     padding-top: 0.125rem;
+    margin-block: 1rem;
 
     article:first-of-type {
       border-top-left-radius: 0.5rem;
@@ -90,13 +100,27 @@
 
     &::first-line {
       font-size: 2em;
+      font-weight: bold;
       line-height: 1;
+    }
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    grid-area: description;
+    gap: 0.25rem;
+    line-height: 1.25;
+
+    > * {
+      margin: 0;
     }
   }
 
   .tags {
     display: flex;
-    gap: 0.5em;
+    grid-area: tags;
+    gap: 0.75em;
   }
 
   .tag {
