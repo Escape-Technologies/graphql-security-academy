@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Readme } from '$lessons';
+  import { categoryMap } from '$lib/categories.js';
   import { slide } from 'svelte/transition';
 
   export let lessons: Array<{ path: string } & Readme['metadata']>;
@@ -8,16 +9,28 @@
 <div class="list">
   {#each lessons as { path, title, description, category, points, owasp } (path)}
     <article transition:slide|local={{ duration: 200 }}>
-      <div class="icon">⚡</div>
+      <div
+        class="icon"
+        style:--from={categoryMap.get(category)?.bg}
+        style:--to={categoryMap.get(category)?.color}
+      >
+        {categoryMap.get(category)?.icon}
+      </div>
       <div class="points">{points}<br />points</div>
       <div class="description">
-        <h3><a href={path}>{title}</a></h3>
+        <h3>
+          <span class="category" style:color={categoryMap.get(category)?.color}>
+            {category}
+          </span>
+          <a href={path}>{title}</a>
+        </h3>
         <p>{description}</p>
-      </div>
-      <div class="tags">
-        <span class="tag">{category}</span>
         {#if owasp}
-          <span class="tag">OWASP <span>{owasp}</span></span>
+          <!-- Placeholder to double the gap -->
+          <div />
+          <div class="tags">
+            <span class="tag">OWASP <span>{owasp}</span></span>
+          </div>
         {/if}
       </div>
     </article>
@@ -30,11 +43,7 @@
   article {
     position: relative;
     display: grid;
-    grid-template:
-      'icon description points'
-      'icon description points'
-      'tags tags points'
-      / auto 1fr auto;
+    grid-template: 'icon description points' / auto 1fr auto;
     gap: 0.75rem;
     padding: 1rem;
     margin-top: -0.125rem;
@@ -46,7 +55,7 @@
       z-index: 1;
       border-radius: 0.25rem;
       box-shadow: 0 0 1rem var(--dark);
-      transform: scale(#{math.div(51, 50)});
+      transform: scale(#{math.div(51rem, 50rem)});
     }
   }
 
@@ -86,7 +95,7 @@
     width: 4rem;
     height: 4rem;
     font-size: 2rem;
-    background: linear-gradient(108deg, rgb(173 255 173), rgb(195 249 249));
+    background: linear-gradient(165deg, var(--from), var(--to));
     border-radius: 0.25rem;
   }
 
@@ -110,7 +119,14 @@
     line-height: 1.25;
 
     h3 {
+      display: flex;
+      gap: 0.5rem;
+      align-items: baseline;
       line-height: 1;
+    }
+
+    p {
+      text-align: justify;
     }
 
     > * {
@@ -118,10 +134,17 @@
     }
   }
 
+  .category {
+    grid-area: category;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
   .tags {
     display: flex;
-    grid-area: tags;
     gap: 0.75em;
+    font-size: 0.8em;
   }
 
   .tag {

@@ -1,6 +1,9 @@
 <script lang="ts">
   import Filters from './Filters.svelte';
   import LessonList from './LessonList.svelte';
+  import SimpleIconsGithub from '~icons/simple-icons/github';
+  import SimpleIconsTwitter from '~icons/simple-icons/twitter';
+  import SimpleIconsLinkedin from '~icons/simple-icons/linkedin';
 
   export let data;
 
@@ -41,9 +44,16 @@
 </main>
 
 <footer>
-  <p>
+  <p>© {new Date().getFullYear()} — Escape Technologies</p>
+  <p class="icons">
+    <a href="https://twitter.com/escapetechHQ">
+      <SimpleIconsTwitter aria-label="Open on Twitter" />
+    </a>
+    <a href="https://www.linkedin.com/company/escapetech/">
+      <SimpleIconsLinkedin aria-label="Open on LinkedIn" />
+    </a>
     <a href="https://github.com/Escape-Technologies/learn.escape.tech">
-      View on GitHub
+      <SimpleIconsGithub aria-label="Open on GitHub" />
     </a>
   </p>
 </footer>
@@ -68,6 +78,18 @@
     }
   }
 
+  footer {
+    text-align: center;
+
+    a {
+      color: inherit;
+
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+
   .page-header {
     padding: 1rem;
     background: var(--main);
@@ -78,5 +100,11 @@
       padding-inline: 1rem;
       margin: 0 auto;
     }
+  }
+
+  .icons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
   }
 </style>
