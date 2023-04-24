@@ -1,12 +1,13 @@
 <script lang="ts">
   import type { Readme } from '$lessons';
+  import { slide } from 'svelte/transition';
 
   export let lessons: Array<{ path: string } & Readme['metadata']>;
 </script>
 
 <div class="list">
   {#each lessons as { path, title, description, category, points, owasp } (path)}
-    <article>
+    <article transition:slide|local={{ duration: 200 }}>
       <div class="icon">⚡</div>
       <div class="points">{points}<br />points</div>
       <div class="description">
@@ -43,14 +44,10 @@
 
     &:hover {
       z-index: 1;
-      border-radius: 0.5rem;
+      border-radius: 0.25rem;
       box-shadow: 0 0 1rem var(--dark);
       transform: scale(#{math.div(51, 50)});
     }
-  }
-
-  h3 {
-    line-height: 1;
   }
 
   h3 a {
@@ -70,13 +67,13 @@
     margin-block: 1rem;
 
     article:first-of-type {
-      border-top-left-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
     }
 
     article:last-of-type {
-      border-bottom-right-radius: 0.5rem;
-      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
     }
   }
 
@@ -111,6 +108,10 @@
     grid-area: description;
     gap: 0.25rem;
     line-height: 1.25;
+
+    h3 {
+      line-height: 1;
+    }
 
     > * {
       margin: 0;

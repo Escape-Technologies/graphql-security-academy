@@ -1,11 +1,16 @@
 <script lang="ts">
-  import type { PageData } from './$types';
+  import Filters from './Filters.svelte';
   import LessonList from './LessonList.svelte';
 
-  export let data: PageData;
+  export let data;
+
+  let filter: string | undefined;
 
   $: introduction = data.lessons.filter(({ introduction }) => introduction);
-  $: advanced = data.lessons.filter(({ introduction }) => !introduction);
+  $: advanced = data.lessons.filter(
+    ({ introduction, category }) =>
+      !introduction && (!filter || category === filter)
+  );
 </script>
 
 <header class="page-header">
@@ -30,7 +35,7 @@
         prevented.
       </p>
     </header>
-    <div>Authorization DoS Configuration Injection</div>
+    <Filters bind:filter />
     <LessonList lessons={advanced} />
   </section>
 </main>
