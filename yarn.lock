@@ -968,6 +968,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^18.16.0":
+  version: 18.16.0
+  resolution: "@types/node@npm:18.16.0"
+  checksum: e2a407946adcc00c72f05cad85e57b14e8ae615eedcf834daa39186bf7ff136c802519504c391cc8f3b6935726e6ada1ef1dd1546d5c88d0051185f6dc41dd07
+  languageName: node
+  linkType: hard
+
 "@types/normalize-package-data@npm:^2.4.0":
   version: 2.4.1
   resolution: "@types/normalize-package-data@npm:2.4.1"
@@ -3463,6 +3470,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "lessons@workspace:packages/lessons"
   dependencies:
+    "@types/node": "npm:^18.16.0"
     "@webcontainer/api": "npm:^1.1.3"
     chokidar-cli: "npm:^3.0.0"
     tsx: "npm:^3.12.6"

@@ -1,8 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import type { PageData } from './$types.js';
 
-  export let data: PageData;
+  export let data;
 
   const createContainer = async () => {
     onMount(() => async () => {

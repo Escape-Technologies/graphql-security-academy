@@ -4,7 +4,7 @@
 
 :root {
   // Theme
-  --dark: #030014;
+  --dark: #eee;
   --main: #fff;
   --focused: #35314c10;
   --hovered: #6c678f40;
@@ -27,7 +27,6 @@
   --prism-string: #4e7e06;
   --prism-comment: #355454;
 
-  overflow: hidden;
   line-height: 1.5;
   cursor: default;
   scrollbar-width: thin;

@@ -1,9 +1,8 @@
 import { lessons } from '$lessons';
 import { error } from '@sveltejs/kit';
 import type { FileSystemTree } from '@webcontainer/api';
-import type { PageLoad } from './$types';
 
-export const load = (async ({ params }) => {
+export const load = async ({ params }) => {
   const load = lessons.get(params.lesson);
   if (!load) throw error(404, `Lesson ${params.lesson} found`);
   // https://github.com/sveltejs/kit/issues/9296
@@ -12,4 +11,4 @@ export const load = (async ({ params }) => {
   }>;
   const readme = await load();
   return { readme, files, title: readme.metadata.title };
-}) satisfies PageLoad;
+};

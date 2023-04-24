@@ -1,5 +1,9 @@
 ---
-title: JSON Injection
+icon:
+title: 'JSON Injection through Custom Scalars'
+description: 'Allowing arbitrary JSON input objects can lead to injections, learn how to prevent them.'
+category: 'Injection'
+points: 20
 ---
 
 <script>

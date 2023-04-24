@@ -1,5 +1,10 @@
 ---
-title: GraphQL Armor
+title: 'Unrestricted Resource Consumption'
+description: 'Learn how to block expensive queries with GraphQL Armor, preventing denial-of-service (DoS) attacks.'
+category: 'DoS'
+points: 10
+owasp: 'API4:2023'
+introduction: true
 ---
 
 <script>
@@ -23,7 +28,7 @@ This tutorial will show you how to install GraphQL Armor and what it can do for 
 
 GraphQL engines ship without complexity limits by default, allowing you to ship complex applications rapidly, but also enabling attackers to perform expensive queries. Cycles in the graph can lead to arbitrarily deep queries, which cause degraded performance or even denial of service.
 
-This tutorial contains a *very* simple social network with users and friends. Because users have friends and friends have friends, it is possible to construct a query that will cause the server to run out of memory:
+This tutorial contains a _very_ simple social network with users and friends. Because users have friends and friends have friends, it is possible to construct a query that will cause the server to run out of memory:
 
 ```graphql
 query {
@@ -47,25 +52,24 @@ This attack is one of the many that GraphQL Armor can protect you from.
 
 <Task>
 
-  Your first task is to perform the attack described above. You can use the GraphQL Playground to do this.
+Your first task is to perform the attack described above. You can use the GraphQL Playground to do this.
 
-  - <input type="checkbox" checked={installed} disabled>
-    Install dependencies with <samp>npm install<samp>
-    <RunCommand cmd="npm install" on:cmd={({detail: cmd}) => {
-      installed = true;
-      dispatch('cmd', cmd);
-    }}>▶️</RunCommand>
-  - <input type="checkbox" checked={started} disabled>
-    Run the server with <samp>npm start</samp>
-    <RunCommand cmd="npm start" on:cmd={({detail: cmd}) => {
-      started = true;
-      dispatch('cmd', cmd);
-    }}
-    >▶️</RunCommand>
-  - [ ] Send a deep query to the server
+- <input type="checkbox" checked={installed} disabled>
+  Install dependencies with <samp>npm install<samp>
+  <RunCommand cmd="npm install" on:cmd={({detail: cmd}) => {
+    installed = true;
+    dispatch('cmd', cmd);
+  }}>▶️</RunCommand>
+- <input type="checkbox" checked={started} disabled>
+  Run the server with <samp>npm start</samp>
+  <RunCommand cmd="npm start" on:cmd={({detail: cmd}) => {
+    started = true;
+    dispatch('cmd', cmd);
+  }}
+  >▶️</RunCommand>
+- [ ] Send a deep query to the server
 
-
-  Note: the server is running directly inside your browser, don't make it crash!
+Note: the server is running directly inside your browser, don't make it crash!
 
 </Task>
 
@@ -75,11 +79,11 @@ GraphQL Armor is a collection of plugins that prevent malicious queries such as 
 
 <Task>
 
-  Your second task is to install GraphQL Armor and protect your server from the attack.
+Your second task is to install GraphQL Armor and protect your server from the attack.
 
-  - [ ] Install GraphQL Armor with `npm install @escape.tech/graphql-armor`
-  - [ ] Add `EnvelopArmorPlugin` to the list of plugins in `src/index.js`
-  - [ ] Resend the query to the server and see that it is now protected
+- [ ] Install GraphQL Armor with `npm install @escape.tech/graphql-armor`
+- [ ] Add `EnvelopArmorPlugin` to the list of plugins in `src/index.js`
+- [ ] Resend the query to the server and see that it is now protected
 
 </Task>
 
