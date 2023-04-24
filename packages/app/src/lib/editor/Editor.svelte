@@ -177,6 +177,7 @@
       'menu menu' auto
       'directory main' 1fr / 15em 1fr;
     height: 100vh;
+    user-select: none;
 
     > * {
       display: block;

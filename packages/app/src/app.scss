@@ -5,10 +5,10 @@
 :root {
   // Theme
   --dark: #030014;
-  --main: #050028;
-  --focused: #35314c80;
-  --hovered: #6c678f80;
-  --text: #e3e3e8;
+  --main: #fff;
+  --focused: #35314c10;
+  --hovered: #6c678f40;
+  --text: #333;
   --accent: #05e2b7;
 
   // Main colors
@@ -30,7 +30,6 @@
   overflow: hidden;
   line-height: 1.5;
   cursor: default;
-  user-select: none;
   scrollbar-width: thin;
 }
 
