@@ -15,5 +15,5 @@ app.get('/', (req, res) => {
 app.all('/graphql', yoga);
 
 app.listen(4000, () => {
-  console.log('Server ready on port 4000');
+  console.info('Server ready on port 4000');
 });

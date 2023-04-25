@@ -22,7 +22,7 @@
     "@iconify-json/ri": "^1.1.8",
     "@iconify-json/simple-icons": "^1.1.50",
     "@sveltejs/adapter-vercel": "^2.4.2",
-    "@sveltejs/kit": "^1.15.7",
+    "@sveltejs/kit": "^1.15.8",
     "lessons": "workspace:^",
     "mdsvex": "^0.10.6",
     "modern-normalize": "^1.1.0",
