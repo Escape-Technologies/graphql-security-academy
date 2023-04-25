@@ -5,6 +5,10 @@ code {
   background: var(--prism-bg);
 }
 
+a code {
+  color: inherit;
+}
+
 pre {
   padding: 1em;
   overflow: auto;

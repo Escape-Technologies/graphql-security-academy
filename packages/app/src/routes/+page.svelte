@@ -11,7 +11,9 @@
 
   let filter: string | undefined;
 
-  $: introduction = data.lessons.filter(({ introduction }) => introduction);
+  $: introduction = data.lessons
+    .filter(({ introduction }) => introduction)
+    .sort((a, z) => a.owasp?.localeCompare(z.owasp ?? '') ?? 1);
   $: advanced = data.lessons.filter(
     ({ introduction, category }) =>
       !introduction && (!filter || category === filter)
