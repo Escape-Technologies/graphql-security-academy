@@ -2,5 +2,7 @@
   "cssvar.files": ["packages/app/src/app.scss"],
   "cssvar.postcssSyntax": {
     "postcss-html": ["svelte"]
-  }
+  },
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  "typescript.preferences.importModuleSpecifierEnding": "js"
 }
