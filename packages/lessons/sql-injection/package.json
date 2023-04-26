@@ -1,0 +1,18 @@
+{
+  "name": "sql-injection-lesson",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "devDependencies": {
+    "@apollo/server": "^4.7.0",
+    "@graphql-yoga/render-graphiql": "^3.9.1",
+    "argon2-browser": "^1.18.0",
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "nodemon": "^2.0.22",
+    "sqlite3": "^5.1.6"
+  }
+}

@@ -17,6 +17,8 @@
 
 <style lang="scss">
   article {
+    height: 100%;
+    overflow: auto;
     cursor: auto;
     user-select: text;
   }

@@ -4,5 +4,6 @@
     "postcss-html": ["svelte"]
   },
   "javascript.preferences.importModuleSpecifierEnding": "js",
+  "js/ts.implicitProjectConfig.checkJs": true,
   "typescript.preferences.importModuleSpecifierEnding": "js"
 }
