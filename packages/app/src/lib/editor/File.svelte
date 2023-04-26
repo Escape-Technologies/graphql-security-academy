@@ -7,6 +7,7 @@
 
   const supportedLanguages = new Map([
     ['env', 'ini'],
+    ['html', 'html'],
     ['js', 'javascript'],
     ['json', 'json'],
     ['sql', 'sql'],
