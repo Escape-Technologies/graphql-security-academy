@@ -1,6 +1,5 @@
 <script lang="ts">
   // This component is browser only thanks to `{#await}` in its parent
-  import { beforeNavigate } from '$app/navigation';
   import type { Readme } from '$lessons';
   import type { WebContainer } from '@webcontainer/api';
   import { onMount } from 'svelte';
@@ -11,6 +10,9 @@
 
   export let container: WebContainer;
   export let readme: Readme;
+  export let dirty = false;
+
+  $: dirty = children.some(({ type }) => type !== 'readme');
 
   const shellService = new ShellService(container);
 
@@ -35,13 +37,6 @@
       selected = child;
     })
   );
-
-  // Show a confirmation dialog before leaving the page
-  beforeNavigate((navigation) => {
-    if (children.every(({ type }) => type === 'readme')) return;
-    if (navigation.willUnload || !confirm('Are you sure you want to leave?'))
-      navigation.cancel();
-  });
 
   const saveAll = async () => {
     if (saving) return;
