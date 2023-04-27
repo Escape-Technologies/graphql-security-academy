@@ -1,7 +1,0 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "sveltekit",
-  "installCommand": "yarn workspaces focus app",
-  "buildCommand": "yarn run --top-level build",
-  "github": { "silent": true }
-}
