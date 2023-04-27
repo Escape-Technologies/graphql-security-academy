@@ -21,8 +21,8 @@ const config = {
       $lessons: './src/lessons',
     },
     paths: {
-      base: '/learn'
-    }
+      base: '/learn',
+    },
   },
 };
 
