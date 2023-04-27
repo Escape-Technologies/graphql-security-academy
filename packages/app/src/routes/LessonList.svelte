@@ -4,6 +4,7 @@
   import { getCompleted } from '$lib/progress.js';
   import { onMount } from 'svelte';
   import { slide } from 'svelte/transition';
+  import RiCheckLine from '~icons/ri/check-line';
 
   let completed = new Map<string, Date>();
 
@@ -25,9 +26,9 @@
         {categoryMap.get(category)?.icon}
       </div>
       <div class="points">
-        {points}<br />points
+        <strong>{points}</strong> points
         {#if completed.has(path)}
-          <span class="stamp">✔</span>
+          <div class="stamp" transition:slide|local><RiCheckLine /> Done</div>
         {/if}
       </div>
       <div class="description">
@@ -114,33 +115,28 @@
 
   .points {
     position: relative;
+    display: flex;
+    flex-direction: column;
     grid-area: points;
+    gap: 0.25rem;
+    align-items: center;
     align-self: center;
     text-align: center;
 
-    &::first-line {
+    strong {
+      display: block;
+      margin-inline: 1.5rem;
       font-size: 2em;
       font-weight: bold;
-      line-height: 1;
+      line-height: 0.8;
     }
 
     .stamp {
-      position: absolute;
-      right: -1.5rem;
-      bottom: -1rem;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 3rem;
-      height: 3rem;
-      font-size: 2rem;
-      color: #fff;
-      text-shadow: 0 0 0.5rem #0008;
-      background: linear-gradient(165deg, #35d170, #128435);
-      border-radius: 50%;
-      box-shadow: inset -0.5rem -0.5rem 0.5rem #128435;
-      transform: rotate(20deg);
+      padding: 0.25em 0.75em 0.25em 0.5em;
+      font-size: 0.8em;
+      color: #5b9b78;
+      background: #cff2cf;
+      border-radius: 99px; // Round ends
     }
   }
 
@@ -150,27 +146,27 @@
 
   @keyframes wiggle {
     0% {
-      transform: rotate(20deg) scale(1);
+      transform: rotate(0deg) scale(1);
     }
 
     10% {
-      transform: rotate(0deg) scale(1.1);
+      transform: rotate(5deg) scale(1.1);
     }
 
     20% {
-      transform: rotate(40deg) scale(1.1);
+      transform: rotate(-5deg) scale(1.1);
     }
 
     50% {
-      transform: rotate(0deg) scale(1.1);
+      transform: rotate(5deg) scale(1.1);
     }
 
     70% {
-      transform: rotate(40deg) scale(1.1);
+      transform: rotate(-5deg) scale(1.1);
     }
 
     100% {
-      transform: rotate(20deg) scale(1);
+      transform: rotate(0deg) scale(1);
     }
   }
 
