@@ -46,7 +46,7 @@ Note: the server is running directly inside your browser, don't make it crash!
 
 This attack is one of the many that GraphQL Armor can protect you from.
 
-Your second task is to install GraphQL Armor and protect your server from the attack: install GraphQL Armor with `npm install @escape.tech/graphql-armor`.
+Your goal is to install GraphQL Armor and protect your server from the attack: install GraphQL Armor with `npm install @escape.tech/graphql-armor`.
 
 Having GraphQL Armor to work is as simple as two lines of code:
 

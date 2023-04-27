@@ -2010,6 +2010,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"broken-authentication-lesson@workspace:packages/lessons/broken-authentication":
+  version: 0.0.0-use.local
+  resolution: "broken-authentication-lesson@workspace:packages/lessons/broken-authentication"
+  dependencies:
+    "@apollo/server": "npm:^4.7.0"
+    "@graphql-yoga/render-graphiql": "npm:^3.9.1"
+    argon2-browser: "npm:^1.18.0"
+    body-parser: "npm:^1.20.2"
+    express: "npm:^4.18.2"
+    graphql: "npm:^16.6.0"
+    nodemon: "npm:^2.0.22"
+  languageName: unknown
+  linkType: soft
+
 "broken-object-level-authorization-lesson@workspace:packages/lessons/broken-object-level-authorization":
   version: 0.0.0-use.local
   resolution: "broken-object-level-authorization-lesson@workspace:packages/lessons/broken-object-level-authorization"
@@ -3564,19 +3578,6 @@ __metadata:
   checksum: c67a8e522758dd907770a78ad750e6dfdcce327b0696fdd82f4b7acb8bb22b0574c88f806afb3c6597a536fa9016e6e3486071535fd0e9226b8505c67cf2fb01
   languageName: node
   linkType: hard
-
-"graphql-armor-lesson@workspace:packages/lessons/unrestricted-resource-consumption":
-  version: 0.0.0-use.local
-  resolution: "graphql-armor-lesson@workspace:packages/lessons/unrestricted-resource-consumption"
-  dependencies:
-    "@apollo/server": "npm:^4.7.0"
-    "@graphql-yoga/render-graphiql": "npm:^3.9.1"
-    body-parser: "npm:^1.20.2"
-    express: "npm:^4.18.2"
-    graphql: "npm:^16.6.0"
-    nodemon: "npm:^2.0.22"
-  languageName: unknown
-  linkType: soft
 
 "graphql-scalars@npm:^1.21.3":
   version: 1.21.3
@@ -7039,6 +7040,19 @@ __metadata:
   checksum: 069733b50ae97d7680d568779dfa95485fd5f6dfcf2c652d2800fcb335894d8009899ef9e7334dc035393acc9ab7e8cdf4a0324750901b41122178f8c804be4e
   languageName: node
   linkType: hard
+
+"unrestricted-resource-consumption-lesson@workspace:packages/lessons/unrestricted-resource-consumption":
+  version: 0.0.0-use.local
+  resolution: "unrestricted-resource-consumption-lesson@workspace:packages/lessons/unrestricted-resource-consumption"
+  dependencies:
+    "@apollo/server": "npm:^4.7.0"
+    "@graphql-yoga/render-graphiql": "npm:^3.9.1"
+    body-parser: "npm:^1.20.2"
+    express: "npm:^4.18.2"
+    graphql: "npm:^16.6.0"
+    nodemon: "npm:^2.0.22"
+  languageName: unknown
+  linkType: soft
 
 "uri-js@npm:^4.2.2":
   version: 4.4.1
