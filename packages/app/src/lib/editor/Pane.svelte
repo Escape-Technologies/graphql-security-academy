@@ -248,7 +248,6 @@
             <svelte:component
               this={paneComponents[child.type]}
               bind:context={child.context}
-              on:cmd
               on:dirty={() => {
                 child.dirty = true;
               }}

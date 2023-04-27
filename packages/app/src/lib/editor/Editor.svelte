@@ -1,15 +1,14 @@
 <script lang="ts">
   // This component is browser only thanks to `{#await}` in its parent
-  import type { Readme } from '$lessons';
   import type { WebContainer } from '@webcontainer/api';
   import { onMount } from 'svelte';
   import Editor from './Explorer.svelte';
-  import type { PaneChild } from './files.js';
   import Pane from './Pane.svelte';
+  import type { PaneChild, SvelteConstructor } from './files.js';
   import { ShellService } from './shell.js';
 
   export let container: WebContainer;
-  export let readme: Readme;
+  export let readme: SvelteConstructor;
   export let dirty = false;
 
   $: dirty = children.some(({ type }) => type !== 'readme');
@@ -20,7 +19,7 @@
     {
       type: 'readme',
       name: 'README.md',
-      context: { contents: readme.default },
+      context: { contents: readme },
     },
   ];
   let selected = children[0];
@@ -96,7 +95,7 @@
             type: 'readme',
             name,
             context: {
-              contents: readme.default,
+              contents: readme,
             },
           } satisfies PaneChild<'readme'>)
         : ({
@@ -110,10 +109,6 @@
           } satisfies PaneChild<'file'>);
     children = [...children, child];
     selected = child;
-  };
-
-  const runCommand = (cmd: string) => {
-    console.log(`${cmd}\r\n`);
   };
 
   const openTerminal = () => {
@@ -150,11 +145,7 @@
     />
   </div>
   <div class="container" style:grid-area="main">
-    <Pane
-      bind:children
-      bind:selected
-      on:cmd={({ detail: cmd }) => runCommand(cmd)}
-    />
+    <Pane bind:children bind:selected />
   </div>
   <div style:grid-area="menu" style:display="flex">
     <a href="/" style:text-decoration="none">🦜</a>

@@ -1,0 +1,96 @@
+<script lang="ts">
+  import { getCompleted } from '$lib/progress.js';
+  import { onMount } from 'svelte';
+  import { tweened } from 'svelte/motion';
+  import Logo from '../assets/logo.svg?url';
+  import type { PageData } from './$types.js';
+
+  export let lessons: PageData['lessons'];
+
+  let ghost: HTMLElement;
+  let mounted = false;
+  onMount(() => {
+    const { width } = ghost.getBoundingClientRect();
+    ghost.parentElement?.style.setProperty('--ghost-width', `${width}px`);
+    mounted = true;
+  });
+
+  const points = tweened(0, { duration: 500 });
+  onMount(() => {
+    const completed = getCompleted();
+    $points = lessons.reduce(
+      (points, lesson) =>
+        completed.has(lesson.path) ? points + lesson.points : points,
+      0
+    );
+  });
+</script>
+
+<div class="page-header">
+  <header>
+    <h1 class:mounted>
+      <img src={Logo} alt="" />
+      <span>
+        <a class="ghost" bind:this={ghost} href="https://escape.tech">
+          escape.tech/
+        </a>learn
+      </span>
+    </h1>
+    <div class="points"><strong>{Math.ceil($points)}</strong> points</div>
+  </header>
+</div>
+
+<style lang="scss">
+  header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 50rem;
+    padding-inline: 1rem;
+    margin: 0 auto;
+  }
+
+  h1 {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0;
+  }
+
+  h1.mounted {
+    > span {
+      transition: transform 0.1s ease-out;
+      transform: translateX(calc(-1 * var(--ghost-width)));
+    }
+
+    &:hover > span {
+      transform: translateX(0);
+    }
+  }
+
+  .ghost {
+    position: absolute;
+    display: inline-block;
+    color: inherit;
+    text-decoration: inherit;
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
+
+    h1:hover & {
+      opacity: 1;
+    }
+
+    h1.mounted & {
+      position: static;
+    }
+  }
+
+  .page-header {
+    padding: 1rem;
+    background: var(--main);
+    box-shadow: 0 0 0.5rem var(--dark);
+  }
+
+  .points strong {
+    font-size: 2em;
+  }
+</style>

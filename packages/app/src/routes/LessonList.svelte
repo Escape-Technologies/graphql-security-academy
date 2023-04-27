@@ -1,7 +1,15 @@
 <script lang="ts">
   import type { Readme } from '$lessons';
   import { categoryMap } from '$lib/categories.js';
+  import { getCompleted } from '$lib/progress.js';
+  import { onMount } from 'svelte';
   import { slide } from 'svelte/transition';
+
+  let completed = new Map<string, Date>();
+
+  onMount(() => {
+    completed = getCompleted();
+  });
 
   export let lessons: Array<{ path: string } & Readme['metadata']>;
 </script>
@@ -16,7 +24,12 @@
       >
         {categoryMap.get(category)?.icon}
       </div>
-      <div class="points">{points}<br />points</div>
+      <div class="points">
+        {points}<br />points
+        {#if completed.has(path)}
+          <span class="stamp">✔</span>
+        {/if}
+      </div>
       <div class="description">
         <h3>
           <span class="category" style:color={categoryMap.get(category)?.color}>
@@ -100,6 +113,7 @@
   }
 
   .points {
+    position: relative;
     grid-area: points;
     align-self: center;
     text-align: center;
@@ -108,6 +122,38 @@
       font-size: 2em;
       font-weight: bold;
       line-height: 1;
+    }
+
+    .stamp {
+      position: absolute;
+      right: -1.5rem;
+      bottom: -1rem;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      font-size: 2rem;
+      color: #fff;
+      text-shadow: 0 0 0.5rem #0008;
+      background: linear-gradient(165deg, #35d170, #128435);
+      border-radius: 50%;
+      box-shadow: inset -0.5rem -0.5rem 0.5rem #128435;
+      transform: rotate(20deg);
+      animation: stamp 0.3s ease-in;
+    }
+  }
+
+  @keyframes stamp {
+    0% {
+      opacity: 0;
+      transform: rotate(50deg) scale(1.5);
+    }
+
+    80% {
+      // Add a little bounce at the end
+      transform: rotate(20deg) scale(0.95);
     }
   }
 

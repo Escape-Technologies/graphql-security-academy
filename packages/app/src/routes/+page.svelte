@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import SimpleIconsGithub from '~icons/simple-icons/github';
   import SimpleIconsLinkedin from '~icons/simple-icons/linkedin';
   import SimpleIconsTwitter from '~icons/simple-icons/twitter';
-  import Logo from '../assets/logo.svg?url';
   import Filters from './Filters.svelte';
+  import Header from './Header.svelte';
   import LessonList from './LessonList.svelte';
 
   export let data;
@@ -18,26 +17,9 @@
     ({ introduction, category }) =>
       !introduction && (!filter || category === filter)
   );
-
-  let ghost: HTMLElement;
-  let mounted = false;
-  onMount(() => {
-    const { width } = ghost.getBoundingClientRect();
-    ghost.parentElement?.style.setProperty('--ghost-width', `${width}px`);
-    mounted = true;
-  });
 </script>
 
-<header class="page-header">
-  <h1 class:mounted>
-    <img src={Logo} alt="" />
-    <span>
-      <a class="ghost" bind:this={ghost} href="https://escape.tech">
-        escape.tech/
-      </a>learn
-    </span>
-  </h1>
-</header>
+<Header lessons={data.lessons} />
 
 <main>
   <section>
@@ -106,49 +88,6 @@
       &:hover {
         color: var(--accent);
       }
-    }
-  }
-
-  .page-header {
-    padding: 1rem;
-    background: var(--main);
-    box-shadow: 0 0 0.5rem var(--dark);
-  }
-
-  h1 {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    max-width: 50rem;
-    padding-inline: 1rem;
-    margin: 0 auto;
-  }
-
-  h1.mounted {
-    > span {
-      transition: transform 0.1s ease-out;
-      transform: translateX(calc(-1 * var(--ghost-width)));
-    }
-
-    &:hover > span {
-      transform: translateX(0);
-    }
-  }
-
-  .ghost {
-    position: absolute;
-    display: inline-block;
-    color: inherit;
-    text-decoration: inherit;
-    opacity: 0;
-    transition: opacity 0.1s ease-out;
-
-    h1:hover & {
-      opacity: 1;
-    }
-
-    h1.mounted & {
-      position: static;
     }
   }
 

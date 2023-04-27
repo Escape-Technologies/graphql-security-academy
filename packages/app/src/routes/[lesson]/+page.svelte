@@ -1,16 +1,20 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { beforeNavigate } from '$app/navigation';
-  import { onMount } from 'svelte';
+  import {
+    onMount,
+    type ComponentConstructorOptions,
+    type ComponentProps,
+  } from 'svelte';
+  import Readme from './Readme.svelte';
 
   export let data;
 
-  const loadEditor = async () => {
-    if (browser) return import('$lib/editor/Editor.svelte');
-    // The editor cannot be loaded on the server
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return Promise.resolve() as any;
-  };
+  const editor = browser
+    ? async () => import('$lib/editor/Editor.svelte')
+    : // The editor cannot be loaded on the server
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      async () => Promise.resolve() as any;
 
   const createContainer = async () => {
     onMount(() => async () => {
@@ -24,6 +28,16 @@
     return container;
   };
 
+  $: readme = browser
+    ? class extends Readme {
+        constructor(
+          options: ComponentConstructorOptions<ComponentProps<Readme>>
+        ) {
+          super({ ...options, props: data });
+        }
+      }
+    : class {};
+
   // Show a confirmation dialog before leaving the page
   let dirty = false;
   beforeNavigate((navigation) => {
@@ -33,17 +47,12 @@
   });
 </script>
 
-{#await Promise.all([loadEditor(), createContainer()])}
+{#await Promise.all([editor(), createContainer()])}
   <div class="loading">
     <h1>Loading...</h1>
   </div>
 {:then [editor, container]}
-  <svelte:component
-    this={editor.default}
-    {container}
-    readme={data.readme}
-    bind:dirty
-  />
+  <svelte:component this={editor.default} {container} {readme} bind:dirty />
 {:catch error}
   <pre>{error}</pre>
 {/await}
