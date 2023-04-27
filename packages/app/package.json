@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build && node post-build.js",
+    "build": "vite build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "dev": "vite dev",
     "preview": "vite preview"
@@ -22,7 +22,7 @@
   "devDependencies": {
     "@iconify-json/ri": "^1.1.8",
     "@iconify-json/simple-icons": "^1.1.50",
-    "@sveltejs/adapter-vercel": "^2.4.2",
+    "@sveltejs/adapter-node": "^1.2.4",
     "@sveltejs/kit": "^1.15.9",
     "lessons": "workspace:^",
     "mdsvex": "^0.10.6",

@@ -1,9 +1,18 @@
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+.svelte-kit/
+.vercel/
+build/
+node_modules/
+
+# Specific to lessons
+*.db
+*.db-journal
+
+# Specific to docker
 Dockerfile
-README.md
-
-node_modules
-
-.eslint*
-.prettier*
-
-build
