@@ -3565,13 +3565,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-armor-lesson@workspace:packages/lessons/graphql-armor":
+"graphql-armor-lesson@workspace:packages/lessons/unrestricted-resource-consumption":
   version: 0.0.0-use.local
-  resolution: "graphql-armor-lesson@workspace:packages/lessons/graphql-armor"
+  resolution: "graphql-armor-lesson@workspace:packages/lessons/unrestricted-resource-consumption"
   dependencies:
+    "@apollo/server": "npm:^4.7.0"
     "@graphql-yoga/render-graphiql": "npm:^3.9.1"
+    body-parser: "npm:^1.20.2"
+    express: "npm:^4.18.2"
     graphql: "npm:^16.6.0"
-    graphql-yoga: "npm:^3.9.1"
     nodemon: "npm:^2.0.22"
   languageName: unknown
   linkType: soft
