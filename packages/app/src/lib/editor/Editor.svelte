@@ -1,5 +1,6 @@
 <script lang="ts">
   // This component is browser only thanks to `{#await}` in its parent
+  import { base } from '$app/paths';
   import type { WebContainer } from '@webcontainer/api';
   import { onMount } from 'svelte';
   import Editor from './Explorer.svelte';
@@ -148,7 +149,7 @@
     <Pane bind:children bind:selected />
   </div>
   <div style:grid-area="menu" style:display="flex">
-    <a href="/" style:text-decoration="none">🦜</a>
+    <a href="{base}/" style:text-decoration="none">🦜</a>
     <button on:click={save}>Save</button>
     <button on:click={saveAll}>Save All</button>
     <button on:click={openBrowser}>Open 🌐</button>

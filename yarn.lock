@@ -5693,7 +5693,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root@workspace:."
   dependencies:
-    "@sveltejs/adapter-node": "npm:^1.2.4"
     "@typescript-eslint/eslint-plugin": "npm:^5.59.1"
     "@typescript-eslint/parser": "npm:^5.59.1"
     eslint: "npm:^8.39.0"
