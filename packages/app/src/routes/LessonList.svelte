@@ -141,19 +141,36 @@
       border-radius: 50%;
       box-shadow: inset -0.5rem -0.5rem 0.5rem #128435;
       transform: rotate(20deg);
-      animation: stamp 0.3s ease-in;
     }
   }
 
-  @keyframes stamp {
+  article:hover .stamp {
+    animation: wiggle 0.5s ease-in-out;
+  }
+
+  @keyframes wiggle {
     0% {
-      opacity: 0;
-      transform: rotate(50deg) scale(1.5);
+      transform: rotate(20deg) scale(1);
     }
 
-    80% {
-      // Add a little bounce at the end
-      transform: rotate(20deg) scale(0.95);
+    10% {
+      transform: rotate(0deg) scale(1.1);
+    }
+
+    20% {
+      transform: rotate(40deg) scale(1.1);
+    }
+
+    50% {
+      transform: rotate(0deg) scale(1.1);
+    }
+
+    70% {
+      transform: rotate(40deg) scale(1.1);
+    }
+
+    100% {
+      transform: rotate(20deg) scale(1);
     }
   }
 
