@@ -17,8 +17,8 @@ Using `JSON` as a GraphQL input object can lead to vulnerabilities. This tutoria
 
 This lesson does not currently work in the browser for security reasons. You can run it locally with the following steps:
 
-- Clone the repository: `git clone https://github.com/Escape-Technologies/learn.escape.tech.git`
-- Run `cd learn.escape.tech/packages/lessons/json-injection`
+- Clone the repository: `git clone https://github.com/Escape-Technologies/learn.git`
+- Run `cd learn/packages/lessons/json-injection`
 - Install dependencies with `yarn install`
 - Continue from here with `yarn start`, `yarn exploit`, etc.
 

@@ -1,4 +1,4 @@
-# learn.escape.tech
+# learn by Escape.tech
 
 Learn GraphQL security directly in your browser.
 
@@ -15,8 +15,8 @@ A lesson is a regular npm package that contains at least a `package.json` file a
 
 ```bash
 # Clone the repository
-git clone https://github.com/Escape-Technologies/learn.escape.tech.git
-cd learn.escape.tech
+git clone https://github.com/Escape-Technologies/learn.git
+cd learn
 
 # Install the dependencies
 yarn install
