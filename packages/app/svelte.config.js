@@ -9,6 +9,7 @@ const config = {
   preprocess: [
     mdsvex({
       extension: '.md',
+      // @ts-expect-error The types are broken
       rehypePlugins: [[rehypeExternalLinks, { target: '_blank' }]],
     }),
     vitePreprocess(),
