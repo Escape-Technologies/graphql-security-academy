@@ -20,6 +20,9 @@ const config = {
       $assets: './src/assets',
       $lessons: './src/lessons',
     },
+    paths: {
+      base: '/learn'
+    }
   },
 };
 
