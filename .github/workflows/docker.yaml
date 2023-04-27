@@ -33,3 +33,13 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           platforms: linux/amd64
           tags: escapetech/learn:latest
+
+  k8s-deploy:
+    needs: docker-push
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/kubectl-alpine@v2
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      - name: Rollout learn deployment
+        run: kubectl -n ${{ secrets.LEARN_NS }} rollout restart deployment.apps/${{ secrets.LEARN_DEPS }}
