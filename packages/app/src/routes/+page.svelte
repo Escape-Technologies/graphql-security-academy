@@ -53,7 +53,7 @@
     <a href="https://www.linkedin.com/company/escapetech/">
       <SimpleIconsLinkedin aria-label="Open on LinkedIn" />
     </a>
-    <a href="https://github.com/Escape-Technologies/learn.escape.tech">
+    <a href="https://github.com/Escape-Technologies/learn">
       <SimpleIconsGithub aria-label="Open on GitHub" />
     </a>
   </p>
