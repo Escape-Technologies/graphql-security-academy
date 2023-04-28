@@ -20,6 +20,8 @@
 </script>
 
 <article class="markdown-content">
+  <h1>{readme.metadata.title}</h1>
+
   <svelte:component this={readme.default} />
 
   <footer>

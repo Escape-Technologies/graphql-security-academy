@@ -6,8 +6,6 @@ points: 15
 owasp: 'API2:2023'
 ---
 
-# Broken Authentication
-
 Because the authentication mechanisms are exposed and complex, they are a target of choice for attackers. This lesson will show you how lesser-known GraphQL features can be used against your application.
 
 Start the GraphQL server with `npm install` and `npm start` to get started.

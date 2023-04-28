@@ -6,13 +6,6 @@ category: 'Injection'
 points: 20
 ---
 
-<script>
-  import Task from '$lib/Task.svelte';
-  import RunCommand from '$lib/RunCommand.svelte';
-</script>
-
-# JSON Injection with Prisma
-
 Using `JSON` as a GraphQL input object can lead to vulnerabilities. This tutorial will show how one can exploit a `JSON` input object to **perform arbitrary SQL queries** with [Prisma](https://www.prisma.io) ORM, and **how to prevent it.**
 
 This lesson does not currently work in the browser for security reasons. You can run it locally with the following steps:
@@ -63,12 +56,8 @@ query {
 }
 ```
 
-<Task>
-
-- Start the API with `npm install` and `npm start`. <RunCommand cmd="npm install && npm start" on:cmd>▶️</RunCommand>
-- Run the exploit in `exploit/index.ts` with `npm run exploit`. <RunCommand cmd="npm run exploit" on:cmd>▶️</RunCommand>
-
-</Task>
+- Start the API with `npm install` and `npm start`.
+- Run the exploit in `exploit/index.ts` with `npm run exploit`.
 
 ## How to prevent it
 
@@ -111,11 +100,7 @@ Query: {
 }
 ```
 
-<Task>
-
-- Install zod with `npm install zod`. <RunCommand cmd="npm install zod" on:cmd>▶️</RunCommand>
-- Write a zod schema that allows searching with `email`, `firstName` and `lastName` fields, but not others.
-
-</Task>
+- Install zod with `npm install zod`.
+- Use the zod schema that allows searching with `email`, `firstName` and `lastName` fields, but not others.
 
 You can now try to run the exploit again. It should not work anymore since Zod strips all unknown fields like `apiKey`.
