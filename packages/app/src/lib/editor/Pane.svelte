@@ -301,6 +301,7 @@
 
   .tabs {
     display: flex;
+    background: var(--inactive);
   }
 
   .tab {
@@ -309,7 +310,6 @@
     min-width: 10em;
     padding-block: 3px;
     margin-right: -1px;
-    background: var(--main-4);
     border-bottom: none;
 
     &.selected {
