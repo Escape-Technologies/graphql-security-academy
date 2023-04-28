@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon src/index.js"
   },
-  "devDependencies": {
+  "dependencies": {
     "@apollo/server": "^4.7.0",
     "@graphql-yoga/render-graphiql": "^3.9.1",
     "argon2-browser": "^1.18.0",

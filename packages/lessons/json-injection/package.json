@@ -7,7 +7,7 @@
     "start": "nodemon src/index.js",
     "studio": "node prisma/studio.js"
   },
-  "devDependencies": {
+  "dependencies": {
     "@graphql-yoga/render-graphiql": "^3.9.1",
     "@prisma/client": "^4.13.0",
     "@whatwg-node/fetch": "^0.8.8",
