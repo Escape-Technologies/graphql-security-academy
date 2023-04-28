@@ -8,11 +8,9 @@ export const Query = {
     if (!user) throw new GraphQLError('User not found');
     return user;
   },
-  post: (_, args, context) => {
+  post: (_, args) => {
     const post = getPost(args.id);
     if (!post) throw new GraphQLError('Post not found');
-    if (!post.published && post.authorId !== context.user?.id)
-      throw new GraphQLError('Unauthorized');
     return post;
   },
   me: (_, args, context) => context.user,
