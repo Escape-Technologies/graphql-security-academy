@@ -75,7 +75,7 @@
     const child = {
       name: 'Browser',
       type: 'browser',
-      context: { url: '/hello-world' },
+      context: { url: `${base}/hello-world` },
     } satisfies PaneChild<'browser'>;
     children = [...children, child];
     selected = child;
