@@ -4,7 +4,7 @@
   import type { WebContainer } from '@webcontainer/api';
   import { onMount } from 'svelte';
   import Editor from './Explorer.svelte';
-  import Pane from './Pane.svelte';
+  import Pane, { open } from './Pane.svelte';
   import type { PaneChild, SvelteConstructor } from './files.js';
   import { ShellService } from './shell.js';
 
@@ -28,13 +28,11 @@
 
   onMount(() =>
     container.on('server-ready', (port, url) => {
-      const child = {
+      $open({
         name: 'Preview',
         type: 'browser',
         context: { url },
-      } satisfies PaneChild<'browser'>;
-      children = [...children, child];
-      selected = child;
+      } satisfies PaneChild<'browser'>);
     })
   );
 
@@ -71,14 +69,12 @@
     }
   };
 
-  const openBrowser = async () => {
-    const child = {
+  const openBrowser = () => {
+    $open({
       name: 'Browser',
       type: 'browser',
       context: { url: `${base}/hello-world` },
-    } satisfies PaneChild<'browser'>;
-    children = [...children, child];
-    selected = child;
+    } satisfies PaneChild<'browser'>);
   };
 
   const openFile = async (path: string) => {
@@ -90,7 +86,7 @@
       return;
     }
 
-    const child =
+    $open(
       name === 'README.md'
         ? ({
             type: 'readme',
@@ -107,13 +103,12 @@
               path,
               extension: path.split('.').pop() ?? '',
             },
-          } satisfies PaneChild<'file'>);
-    children = [...children, child];
-    selected = child;
+          } satisfies PaneChild<'file'>)
+    );
   };
 
   const openTerminal = () => {
-    const child = {
+    $open({
       type: 'terminal',
       name: 'Terminal',
       context: {
@@ -121,9 +116,7 @@
           await shellService.initTerminal(terminal);
         },
       },
-    } satisfies PaneChild<'terminal'>;
-    children = [...children, child];
-    selected = child;
+    } satisfies PaneChild<'terminal'>);
   };
 </script>
 
@@ -146,7 +139,7 @@
     />
   </div>
   <div class="container" style:grid-area="main">
-    <Pane bind:children bind:selected />
+    <Pane bind:children bind:selected activeOnMount />
   </div>
   <div style:grid-area="menu" style:display="flex">
     <a href="{base}/" style:text-decoration="none">🦜</a>

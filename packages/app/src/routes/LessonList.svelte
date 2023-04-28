@@ -72,8 +72,8 @@
     /* stylelint-disable-next-line media-feature-range-notation */
     @media (min-width: 30rem) {
       grid-template:
-        'icon title points'
-        'icon description points'
+        'icon title points' auto
+        'icon description points' 1fr
         / auto 1fr auto;
       row-gap: 0;
     }

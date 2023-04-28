@@ -1,16 +1,26 @@
 <script lang="ts" context="module">
   /** Currently dragged tab. */
-  let dragged = writable<PaneChild | undefined>();
+  const dragged = writable<PaneChild | undefined>();
+
+  /** A function to open in the active pane. */
+  export const open = writable<(child: PaneChild) => void>();
 </script>
 
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { flip } from 'svelte/animate';
   import { writable } from 'svelte/store';
+  import Split, { type SplitContext } from './Split.svelte';
   import { paneComponents, type PaneChild } from './files.js';
   import Icon from './icons/Icon.svelte';
 
   export let children: PaneChild[];
   export let selected: PaneChild | undefined = undefined;
+  export let activeOnMount = false;
+
+  onMount(() => {
+    if (activeOnMount) markActive();
+  });
 
   /** Maps elements of `children` to their matching tab element. */
   let tabsMap = new Map<PaneChild, HTMLElement>();
@@ -62,6 +72,7 @@
   /** Updates the tab order in realtime. */
   const dragTab = function (this: HTMLElement, event: DragEvent) {
     if (!$dragged) return;
+    markActive();
     /** Horizontal coordinate relative to the tabs container. */
     const rect = this.getBoundingClientRect();
     const x = event.pageX - rect.left + this.scrollLeft;
@@ -105,14 +116,18 @@
     this.dataset.split = overlayDirection;
   };
 
-  type Split = { children: PaneChild[]; selected: PaneChild | undefined };
-  let splitA: Split = { children: [], selected: undefined };
-  let splitB: Split = { children: [], selected: undefined };
+  const markActive = () => {
+    $open = (child) => {
+      children = [...children, child];
+      selected = child;
+    };
+  };
+
+  let splitA: SplitContext = { children: [], selected: undefined };
+  let splitB: SplitContext = { children: [], selected: undefined };
   let splitDirection: 'horizontal' | 'vertical' | undefined;
   const split = function (this: HTMLElement) {
     if (!overlayDirection || !$dragged) return;
-    // Reset the ratio if the panels were collapsed and split again
-    splitRatio = 0.5;
     if (overlayDirection === 'up') {
       splitDirection = 'vertical';
       splitA.children = [$dragged];
@@ -153,38 +168,17 @@
       selected = splitA.selected;
     }
   }
-
-  let splitRatio = 0.5;
-  let resizing = false;
-  let parent: HTMLElement;
-  const resize = (event: MouseEvent) => {
-    if (!resizing) return;
-    const rect = parent.getBoundingClientRect();
-    if (splitDirection === 'horizontal') {
-      const dx = event.x - rect.x;
-      splitRatio = dx / rect.width;
-    } else if (splitDirection === 'vertical') {
-      const dy = event.y - rect.y;
-      splitRatio = dy / rect.height;
-    }
-
-    // Prevent the panels from being too small
-    splitRatio = Math.max(0.1, Math.min(0.9, splitRatio));
-  };
 </script>
 
 <svelte:window
   on:drop={() => {
     overlayDirection = undefined;
   }}
-  on:mousemove={resize}
-  on:mouseup={() => {
-    resizing = false;
-  }}
 />
 
 {#if splitDirection === undefined}
-  <div class="pane">
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <div class="pane" on:click={markActive}>
     <div
       class="scroll"
       on:dragenter|preventDefault
@@ -262,27 +256,14 @@
     </div>
   </div>
 {:else}
-  <div
-    class="parent {splitDirection}"
-    bind:this={parent}
-    style:--split-a="{splitRatio}fr"
-    style:--split-b="{1 - splitRatio}fr"
-  >
-    <svelte:self
-      bind:children={splitA.children}
-      bind:selected={splitA.selected}
-    />
-    <div
-      class="divider"
-      on:mousedown={() => {
-        resizing = true;
-      }}
-    />
-    <svelte:self
-      bind:children={splitB.children}
-      bind:selected={splitB.selected}
-    />
-  </div>
+  <Split
+    {splitDirection}
+    bind:splitA
+    bind:splitB
+    activeOnMount={overlayDirection === 'up' || overlayDirection === 'left'
+      ? 'A'
+      : 'B'}
+  />
 {/if}
 
 <style lang="scss">
@@ -401,43 +382,5 @@
     font-size: 10em;
     user-select: none;
     opacity: 0.1;
-  }
-
-  .parent {
-    display: grid;
-    height: 100%;
-    overflow: hidden;
-
-    &.horizontal {
-      grid-template-columns: var(--split-a) 1px var(--split-b);
-    }
-
-    &.vertical {
-      grid-template-rows: var(--split-a) 1px var(--split-b);
-    }
-  }
-
-  .divider {
-    position: relative;
-    z-index: 1;
-
-    .vertical > & {
-      cursor: row-resize;
-    }
-
-    .horizontal > & {
-      cursor: col-resize;
-    }
-
-    &::before {
-      position: absolute;
-      inset: -2px;
-      content: '';
-      transition: background-color 0.1s;
-    }
-
-    &:hover::before {
-      background-color: var(--hovered);
-    }
   }
 </style>
