@@ -31,13 +31,13 @@
           <div class="stamp" transition:slide|local><RiCheckLine /> Done</div>
         {/if}
       </div>
+      <h3>
+        <span class="category" style:color={categoryMap.get(category)?.color}>
+          {category}
+        </span>&nbsp;
+        <a href={path}>{title}</a>
+      </h3>
       <div class="description">
-        <h3>
-          <span class="category" style:color={categoryMap.get(category)?.color}>
-            {category}
-          </span>
-          <a href={path}>{title}</a>
-        </h3>
         <p>{description}</p>
         {#if owasp}
           <!-- Placeholder to double the gap -->
@@ -57,19 +57,42 @@
   article {
     position: relative;
     display: grid;
-    grid-template: 'icon description points' / auto 1fr auto;
-    gap: 0.75rem;
+    grid-template:
+      'icon title title'
+      'description description points'
+      / auto 1fr auto;
+    row-gap: 0.5rem;
+    column-gap: 0.75rem;
     padding: 1rem;
     margin-top: -0.125rem;
     background-color: var(--main);
     border: 0.125rem solid var(--dark);
     transition: all 0.1s ease-out;
 
+    /* stylelint-disable-next-line media-feature-range-notation */
+    @media (min-width: 30rem) {
+      grid-template:
+        'icon title points' auto
+        'icon description points' 1fr
+        / auto 1fr auto;
+      row-gap: 0;
+    }
+
     &:hover {
       z-index: 1;
       border-radius: 0.25rem;
       box-shadow: 0 0 1rem var(--dark);
       transform: scale(#{math.div(51rem, 50rem)});
+    }
+
+    h3 {
+      grid-area: title;
+      margin: 0;
+      line-height: 1.25;
+
+      > * {
+        vertical-align: bottom;
+      }
     }
   }
 
@@ -125,7 +148,7 @@
 
     strong {
       display: block;
-      margin-inline: 1.5rem;
+      margin-inline: 1rem;
       font-size: 2em;
       font-weight: bold;
       line-height: 0.8;
@@ -176,13 +199,6 @@
     grid-area: description;
     gap: 0.25rem;
     line-height: 1.25;
-
-    h3 {
-      display: flex;
-      gap: 0.5rem;
-      align-items: baseline;
-      line-height: 1;
-    }
 
     p {
       text-align: justify;
