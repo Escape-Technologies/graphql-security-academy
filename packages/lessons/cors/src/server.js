@@ -1,8 +1,8 @@
-import { createSchema } from 'graphql-yoga';
+import { ApolloServer } from '@apollo/server';
 
 const users = [{ name: 'Alice' }, { name: 'Bob' }];
 
-export const schema = createSchema({
+export const server = new ApolloServer({
   typeDefs: /* GraphQL */ `
     type Query {
       users: [User]

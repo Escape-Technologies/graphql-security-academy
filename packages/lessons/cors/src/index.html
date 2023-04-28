@@ -4,9 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Super forum</title>
-    <style></style>
   </head>
-  <body>
+  <body style="font-family: system-ui, sans-serif">
     <h1>Super forum</h1>
     <p>Users: <button type="button" id="refresh">Refresh</button></p>
     <ul id="users"></ul>
@@ -15,18 +14,19 @@
       <input type="text" id="name" />
       <button type="submit">Submit</button>
     </form>
-    <a href="http://localhost:5000/?site=http://localhost:4000/graphql">
-      Go to Evil Website
-    </a>
+    <p>Server origin: <code id="origin"></code></p>
     <script type="module">
-      const $refresh = document.querySelector('#refresh');
       const $users = document.querySelector('#users');
       const $name = document.querySelector('#name');
 
       const refresh = async () => {
-        const { data } = await fetch('/graphql?query={users{name}}').then(
-          (response) => response.json()
-        );
+        const { data } = await fetch('/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query: '{users{name}}' }),
+        }).then((response) => response.json());
         while ($users.firstChild) $users.removeChild($users.firstChild);
         for (const user of data.users) {
           const $li = document.createElement('li');
@@ -37,22 +37,25 @@
       document.querySelector('#refresh').addEventListener('click', refresh);
       refresh();
 
-      const submit = async (event) => {
-        event.preventDefault();
-        await fetch('/graphql', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            query: 'mutation($name: String!){createUser(name:$name){name}}',
-            variables: { name: $name.value },
-          }),
+      document
+        .querySelector('form')
+        .addEventListener('submit', async (event) => {
+          event.preventDefault();
+          await fetch('/graphql', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              query: 'mutation($name: String!){createUser(name:$name){name}}',
+              variables: { name: $name.value },
+            }),
+          });
+          await refresh();
+          $name.value = '';
         });
-        await refresh();
-        $name.value = '';
-      };
-      document.querySelector('form').addEventListener('submit', submit);
+
+      document.querySelector('#origin').textContent = location.origin;
     </script>
   </body>
 </html>
