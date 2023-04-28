@@ -36,6 +36,6 @@ app.post(
 );
 ```
 
-This header tells all browsers to block requests coming from any website other than the right one. The evil website have a different _origin_ (which is the combination of HTTP scheme, hostname and port) than the vulnerable server, so the browser will block the request.
+This header tells all browsers to block requests coming from any website other than the right one. The evil website has a different origin (which is the combination of HTTP scheme, hostname and port) than the vulnerable server, so the browser will block the request.
 
 The vulnerable server should restart automatically. Try to perform the attack again from the evil website: the request fails with a network error. **Our server is now safe from CSRF attacks!**
