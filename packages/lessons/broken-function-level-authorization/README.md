@@ -1,8 +1,8 @@
 ---
 title: 'Broken Function-Level Authorization'
-description: 'Learn how to properly setup authorization for GraphQL resolvers.'
+description: 'Learn how to properly setup authorization for GraphQL mutations.'
 category: 'Authorization'
-points: 20
+points: 25
 owasp: 'API5:2023'
 ---
 
