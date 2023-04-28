@@ -61,8 +61,8 @@
       'icon title title'
       'description description points'
       / auto 1fr auto;
-    row-gap: 0.5rem;
-    column-gap: 0.75rem;
+    gap: 0.75rem;
+    align-items: center;
     padding: 1rem;
     margin-top: -0.125rem;
     background-color: var(--main);
@@ -72,8 +72,8 @@
     /* stylelint-disable-next-line media-feature-range-notation */
     @media (min-width: 30rem) {
       grid-template:
-        'icon title points' auto
-        'icon description points' 1fr
+        'icon title points'
+        'icon description points'
         / auto 1fr auto;
       row-gap: 0;
     }
@@ -91,7 +91,7 @@
       line-height: 1.25;
 
       > * {
-        vertical-align: bottom;
+        vertical-align: baseline;
       }
     }
   }
@@ -143,7 +143,6 @@
     grid-area: points;
     gap: 0.25rem;
     align-items: center;
-    align-self: center;
     text-align: center;
 
     strong {
