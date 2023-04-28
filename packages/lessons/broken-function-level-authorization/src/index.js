@@ -18,14 +18,16 @@ const server = new ApolloServer({
       id: ID!
       authorId: ID!
       title: String!
-      published: Boolean!
     }
 
     type Query {
       users: [User!]!
-      user(id: ID!): User!
-      post(id: ID!): Post!
       me: User
+    }
+
+    type Mutation {
+      createPost(title: String!): Post!
+      deletePost(id: ID!): Boolean!
     }
   `,
   resolvers,
