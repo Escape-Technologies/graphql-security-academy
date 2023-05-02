@@ -104,13 +104,13 @@
   }
 
   .beta {
-    font-size: 0.5em;
-    background: #07c9ac;
     padding: 0 0.25em;
-    border-radius: 0.25em;
-    color: #fff;
-    font-weight: bold;
-    vertical-align: middle;
     font-family: 'Open Sans', sans-serif;
+    font-size: 0.5em;
+    font-weight: bold;
+    color: #fff;
+    vertical-align: middle;
+    background: #07c9ac;
+    border-radius: 0.25em;
   }
 </style>
