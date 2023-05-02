@@ -16,6 +16,7 @@ export type Readme = {
     points: number;
     owasp?: string;
     introduction?: boolean;
+    todo?: boolean;
   };
   default: ReturnType<typeof create_ssr_component> &
     (new (...args: unknown[]) => SvelteComponentTyped);

@@ -16,8 +16,8 @@
 </script>
 
 <div class="list">
-  {#each lessons as { path, title, description, category, points, owasp } (path)}
-    <article transition:slide|local={{ duration: 200 }}>
+  {#each lessons as { path, title, description, category, points, owasp, todo } (path)}
+    <article transition:slide|local={{ duration: 200 }} class:todo>
       <div
         class="icon"
         style:--from={categoryMap.get(category)?.bg}
@@ -35,15 +35,24 @@
         <span class="category" style:color={categoryMap.get(category)?.color}>
           {category}
         </span>&nbsp;
-        <a href={path}>{title}</a>
+        {#if todo}
+          <span>{title}</span>
+        {:else}
+          <a href={path}>{title}</a>
+        {/if}
       </h3>
       <div class="description">
         <p>{description}</p>
-        {#if owasp}
+        {#if owasp || todo}
           <!-- Placeholder to double the gap -->
           <div />
           <div class="tags">
-            <span class="tag">OWASP <span>{owasp}</span></span>
+            {#if todo}
+              <span class="coming-soon">Coming soon</span>
+            {/if}
+            {#if owasp}
+              <span class="tag">OWASP <span>{owasp}</span></span>
+            {/if}
           </div>
         {/if}
       </div>
@@ -78,7 +87,7 @@
       row-gap: 0;
     }
 
-    &:hover {
+    &:not(.todo):hover {
       z-index: 1;
       border-radius: 0.25rem;
       box-shadow: 0 0 1rem var(--dark);
@@ -211,13 +220,12 @@
   .category {
     grid-area: category;
     font-size: 0.8em;
-    font-weight: bold;
     text-transform: uppercase;
   }
 
   .tags {
     display: flex;
-    gap: 0.75em;
+    gap: 0.5rem;
     font-size: 0.8em;
   }
 
@@ -237,5 +245,20 @@
       border-block: 0.125em solid var(--dark);
       border-radius: 0 0.25em 0.25em 0;
     }
+  }
+
+  .todo {
+    color: #666;
+    pointer-events: none;
+    background: #f8f8f8;
+    opacity: 0.9;
+  }
+
+  .coming-soon {
+    padding: 0.125em 0.25em;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(165deg, #727486, #5b5669);
+    border-radius: 0.25em;
   }
 </style>
