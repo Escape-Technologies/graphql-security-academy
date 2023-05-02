@@ -34,6 +34,7 @@
         <a class="ghost" bind:this={ghost} href="https://escape.tech">
           escape.tech/
         </a>learn
+        <span class="beta">Beta</span>
       </span>
     </h1>
     <div class="points"><strong>{Math.ceil($points)}</strong> points</div>
@@ -56,31 +57,39 @@
     margin: 0;
   }
 
-  h1.mounted {
-    > span {
+  /* stylelint-disable-next-line media-feature-range-notation */
+  @media (min-width: 30rem) {
+    h1.mounted > span {
       transition: transform 0.1s ease-out;
       transform: translateX(calc(-1 * var(--ghost-width)));
     }
 
-    &:hover > span {
-      transform: translateX(0);
+    .page-header:hover h1.mounted {
+      .ghost {
+        opacity: 1;
+      }
+
+      > span {
+        transform: translateX(0);
+      }
     }
   }
 
   .ghost {
     position: absolute;
-    display: inline-block;
+    display: none;
     color: inherit;
     text-decoration: inherit;
     opacity: 0;
     transition: opacity 0.1s ease-out;
 
-    h1:hover & {
-      opacity: 1;
-    }
-
     h1.mounted & {
       position: static;
+    }
+
+    /* stylelint-disable-next-line media-feature-range-notation */
+    @media (min-width: 30rem) {
+      display: inline-block;
     }
   }
 
@@ -92,5 +101,16 @@
 
   .points strong {
     font-size: 2em;
+  }
+
+  .beta {
+    font-size: 0.5em;
+    background: #07c9ac;
+    padding: 0 0.25em;
+    border-radius: 0.25em;
+    color: #fff;
+    font-weight: bold;
+    vertical-align: middle;
+    font-family: 'Open Sans', sans-serif;
   }
 </style>
