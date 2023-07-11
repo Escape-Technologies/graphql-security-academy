@@ -44,13 +44,9 @@
     >
       Loading...
     </div>
-    <div class="loading" style="grid-area: directory" aria-hidden="true">
-      Loading...
-    </div>
+    <div class="loading" style="grid-area: directory" aria-hidden="true" />
     <div class="container">
-      <div style="height: 100%; overflow: auto">
-        <Readme />
-      </div>
+      <Readme />
     </div>
   </main>
 {:then [Editor, container]}
@@ -76,7 +72,7 @@
   }
 
   .container {
-    overflow: hidden;
+    overflow: auto;
     border: 1px solid black;
   }
 

@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as monaco from 'monaco-editor';
   import { createEventDispatcher } from 'svelte';
+  import type { Action } from 'svelte/action';
   import type { Contexts } from './index.js';
 
   export let context: Contexts['file'];
@@ -17,7 +18,7 @@
 
   const dispatch = createEventDispatcher<{ dirty: boolean }>();
 
-  const editor = (node: HTMLElement) => {
+  const editor: Action = (node) => {
     const editor = monaco.editor.create(node, {
       value: context.contents,
       language,

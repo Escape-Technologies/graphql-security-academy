@@ -8,11 +8,12 @@
 
 <script lang="ts">
   import { onMount } from 'svelte';
+  import type { Action } from 'svelte/action';
   import { flip } from 'svelte/animate';
   import { writable } from 'svelte/store';
   import Split, { type SplitContext } from './Split.svelte';
-  import { paneComponents, type PaneChild } from './panes/index.js';
   import Icon from './icons/Icon.svelte';
+  import { paneComponents, type PaneChild } from './panes/index.js';
 
   export let children: PaneChild[];
   export let selected: PaneChild | undefined = undefined;
@@ -50,7 +51,7 @@
   }
 
   /** Keeps `tabsMap` in sync with `children`. */
-  const map = (node: HTMLElement, child: PaneChild) => {
+  const map: Action<HTMLElement, PaneChild> = (node, child) => {
     tabsMap.set(child, node);
     return {
       destroy() {

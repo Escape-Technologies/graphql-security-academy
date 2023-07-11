@@ -1872,7 +1872,7 @@ __metadata:
     rehype-external-links: "npm:^2.1.0"
     sass: "npm:^1.63.6"
     svelte: "npm:^4.0.5"
-    svelte-check: "npm:^3.4.5"
+    svelte-check: "npm:^3.4.6"
     tslib: "npm:^2.6.0"
     typescript: "npm:^5.1.6"
     unplugin-icons: "npm:^0.16.3"
@@ -6061,11 +6061,11 @@ __metadata:
   linkType: hard
 
 "semver@npm:^6.0.0":
-  version: 6.3.0
-  resolution: "semver@npm:6.3.0"
+  version: 6.3.1
+  resolution: "semver@npm:6.3.1"
   bin:
-    semver: ./bin/semver.js
-  checksum: 1f4959e15bcfbaf727e964a4920f9260141bb8805b399793160da4e7de128e42a7d1f79c1b7d5cd21a6073fba0d55feb9966f5fef3e5ccb8e1d7ead3d7527458
+    semver: bin/semver.js
+  checksum: e3d79b609071caa78bcb6ce2ad81c7966a46a7431d9d58b8800cfa9cb6a63699b3899a0e4bcce36167a284578212d9ae6942b6929ba4aa5015c079a67751d42d
   languageName: node
   linkType: hard
 
@@ -6673,9 +6673,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-check@npm:^3.4.5":
-  version: 3.4.5
-  resolution: "svelte-check@npm:3.4.5"
+"svelte-check@npm:^3.4.6":
+  version: 3.4.6
+  resolution: "svelte-check@npm:3.4.6"
   dependencies:
     "@jridgewell/trace-mapping": "npm:^0.3.17"
     chokidar: "npm:^3.4.1"
@@ -6683,13 +6683,13 @@ __metadata:
     import-fresh: "npm:^3.2.1"
     picocolors: "npm:^1.0.0"
     sade: "npm:^1.7.4"
-    svelte-preprocess: "npm:^5.0.3"
+    svelte-preprocess: "npm:^5.0.4"
     typescript: "npm:^5.0.3"
   peerDependencies:
     svelte: ^3.55.0 || ^4.0.0-next.0 || ^4.0.0
   bin:
     svelte-check: bin/svelte-check
-  checksum: 7f6ebacc0a3251a9e6cbcdc5aa47e2198d08117bcf87ddebdfd7e761e942c90b4a1d057d453e1e79296045963dc0e6607aa9ec913f4c34b70d5509b30f000645
+  checksum: 7f537831af8f2c47859ca72f4a929d24c58f2946f949f7c9721351be97ff9d0674c57db003e3ad3883fdd85761b7950c5c11513c2a917c91091f155e2d026350
   languageName: node
   linkType: hard
 
@@ -6720,9 +6720,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-preprocess@npm:^5.0.3":
-  version: 5.0.3
-  resolution: "svelte-preprocess@npm:5.0.3"
+"svelte-preprocess@npm:^5.0.4":
+  version: 5.0.4
+  resolution: "svelte-preprocess@npm:5.0.4"
   dependencies:
     "@types/pug": "npm:^2.0.6"
     detect-indent: "npm:^6.1.0"
@@ -6739,7 +6739,7 @@ __metadata:
     sass: ^1.26.8
     stylus: ^0.55.0
     sugarss: ^2.0.0 || ^3.0.0 || ^4.0.0
-    svelte: ^3.23.0
+    svelte: ^3.23.0 || ^4.0.0-next.0 || ^4.0.0
     typescript: ">=3.9.5 || ^4.0.0 || ^5.0.0"
   peerDependenciesMeta:
     "@babel/core":
@@ -6762,7 +6762,7 @@ __metadata:
       optional: true
     typescript:
       optional: true
-  checksum: ec4fd22320eba631d7abc2641f542ec7e10f8a1862eb522fb5e12651c1f541d048c64191d770841a48793b8051b5bf6b09307505d66d6bb9786ba6807918057d
+  checksum: 1ed64b96a91327a47992df0b82df708b5cda92e1da211edbedaf411e633a0be5a8425d19f996abc8dcef52dadd26b5474924dd9eeb30a7b409bf60c33b689d6c
   languageName: node
   linkType: hard
 
