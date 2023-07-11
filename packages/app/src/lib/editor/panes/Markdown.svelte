@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { SvelteConstructor } from './files.js';
+  import type { ComponentType } from 'svelte';
 
   export let context: {
-    contents: SvelteConstructor;
+    contents: ComponentType;
   };
 </script>
 

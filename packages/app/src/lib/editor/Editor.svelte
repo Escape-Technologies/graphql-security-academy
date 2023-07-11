@@ -2,25 +2,25 @@
   // This component is browser only thanks to `{#await}` in its parent
   import { base } from '$app/paths';
   import type { WebContainer } from '@webcontainer/api';
-  import { onMount } from 'svelte';
+  import { onMount, type ComponentType } from 'svelte';
   import Editor from './Explorer.svelte';
   import Pane, { open } from './Pane.svelte';
-  import type { PaneChild, SvelteConstructor } from './files.js';
+  import type { PaneChild } from './panes/index.js';
   import { ShellService } from './shell.js';
 
   export let container: WebContainer;
-  export let readme: SvelteConstructor;
+  export let Readme: ComponentType;
   export let dirty = false;
 
-  $: dirty = children.some(({ type }) => type !== 'readme');
+  $: dirty = children.some(({ type }) => type !== 'markdown');
 
   const shellService = new ShellService(container);
 
   let children: PaneChild[] = [
     {
-      type: 'readme',
+      type: 'markdown',
       name: 'README.md',
-      context: { contents: readme },
+      context: { contents: Readme },
     },
   ];
   let selected = children[0];
@@ -89,12 +89,12 @@
     $open(
       name === 'README.md'
         ? ({
-            type: 'readme',
+            type: 'markdown',
             name,
             context: {
-              contents: readme,
+              contents: Readme,
             },
-          } satisfies PaneChild<'readme'>)
+          } satisfies PaneChild<'markdown'>)
         : ({
             type: 'file',
             name,

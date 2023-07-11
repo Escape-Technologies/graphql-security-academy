@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Contexts } from './files.js';
+  import type { Contexts } from './index.js';
 
   export let context: Contexts['browser'];
   let value = context.url;

@@ -1,6 +1,6 @@
-import type { SvelteComponent } from 'svelte';
+import type { ComponentType } from 'svelte';
 
-export type Readme = {
+export interface Lesson {
   /**
    * Readmes frontmatter.
    *
@@ -15,11 +15,11 @@ export type Readme = {
     introduction?: boolean;
     todo?: boolean;
   };
-  default: new (...args: unknown[]) => SvelteComponent;
-};
+  default: ComponentType;
+}
 
 export const lessons = new Map(
-  Object.entries(import.meta.glob<Readme>('./*/README.md')).map(
+  Object.entries(import.meta.glob<Lesson>('./*/README.md')).map(
     ([path, load]) => [path.slice('./'.length, -'/README.md'.length), load]
   )
 );

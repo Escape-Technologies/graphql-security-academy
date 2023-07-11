@@ -3,7 +3,7 @@
   import { Terminal } from 'xterm';
   import { FitAddon } from 'xterm-addon-fit';
   import 'xterm/css/xterm.css';
-  import type { Contexts } from './files.js';
+  import type { Contexts } from './index.js';
 
   export let context: Contexts['terminal'];
 

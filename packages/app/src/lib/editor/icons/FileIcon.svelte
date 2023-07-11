@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { SvelteComponentTyped } from 'svelte';
+  import type { ComponentType, SvelteComponent } from 'svelte';
   import type { SVGAttributes } from 'svelte/elements';
   import Book from '~icons/ri/book-open-fill';
   import Database from '~icons/ri/database-2-fill';
@@ -25,7 +25,7 @@
   ] satisfies Array<{
     t: 'matches' | 'startsWith' | 'endsWith';
     v: string;
-    i: new (args: never) => SvelteComponentTyped<SVGAttributes<EventTarget>>;
+    i: ComponentType<SvelteComponent<SVGAttributes<EventTarget>>>;
     l?: boolean;
     c?: string;
   }>;

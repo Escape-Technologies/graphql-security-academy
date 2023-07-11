@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Readme } from '$lessons';
+  import type { Lesson } from '$lessons';
   import { categoryMap } from '$lib/categories.js';
   import { getCompleted } from '$lib/progress.js';
   import { onMount } from 'svelte';
@@ -12,7 +12,7 @@
     completed = getCompleted();
   });
 
-  export let lessons: Array<{ path: string } & Readme['metadata']>;
+  export let lessons: Array<{ path: string } & Lesson['metadata']>;
 </script>
 
 <div class="list">

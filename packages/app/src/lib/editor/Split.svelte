@@ -1,10 +1,10 @@
 <script context="module" lang="ts">
-  import type { PaneChild } from './files.js';
+  import type { PaneChild } from './panes/index.js';
 
-  export type SplitContext = {
+  export interface SplitContext {
     children: PaneChild[];
     selected: PaneChild | undefined;
-  };
+  }
 </script>
 
 <script lang="ts">

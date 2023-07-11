@@ -5,7 +5,10 @@
   import FolderOpen from '~icons/ri/folder-open-fill';
   import FileIcon from './icons/FileIcon.svelte';
 
-  type File = { name: string; directory: boolean };
+  interface File {
+    name: string;
+    directory: boolean;
+  }
 
   export let container: WebContainer;
   export let name: string;

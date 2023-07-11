@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Contexts } from '../files.js';
+  import type { Contexts } from '../panes/index.js';
   import FileIcon from './FileIcon.svelte';
   import Browser from '~icons/ri/earth-fill';
   import Readme from '~icons/ri/book-open-fill';
@@ -13,7 +13,7 @@
   <FileIcon {name} />
 {:else if type === 'browser'}
   <Browser />
-{:else if type === 'readme'}
+{:else if type === 'markdown'}
   <Readme />
 {:else if type === 'terminal'}
   <Terminal />

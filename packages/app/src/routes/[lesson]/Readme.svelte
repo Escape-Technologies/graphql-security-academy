@@ -2,7 +2,6 @@
   import { page } from '$app/stores';
   import '$assets/markdown-content.scss';
   import '$assets/prism.scss';
-  import type { Readme } from '$lessons';
   import {
     deleteCompleted,
     getCompleted,
@@ -10,8 +9,9 @@
   } from '$lib/progress.js';
   import party from 'party-js';
   import { onMount } from 'svelte';
+  import type { PageData } from './$types.js';
 
-  export let readme: Readme;
+  $: ({ readme } = $page.data as PageData);
 
   let completed = false;
   onMount(() => {

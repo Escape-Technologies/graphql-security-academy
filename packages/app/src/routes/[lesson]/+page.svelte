@@ -1,20 +1,10 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { beforeNavigate } from '$app/navigation';
-  import {
-    onMount,
-    type ComponentConstructorOptions,
-    type ComponentProps,
-  } from 'svelte';
+  import { onMount } from 'svelte';
   import Readme from './Readme.svelte';
 
   export let data;
-
-  const editor = browser
-    ? async () => import('$lib/editor/Editor.svelte')
-    : // The editor cannot be loaded on the server
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      async () => Promise.resolve() as any;
 
   const createContainer = async () => {
     onMount(() => async () => {
@@ -28,15 +18,13 @@
     return container;
   };
 
-  $: readme = browser
-    ? class extends Readme {
-        constructor(
-          options: ComponentConstructorOptions<ComponentProps<Readme>>
-        ) {
-          super({ ...options, props: data });
-        }
-      }
-    : class {};
+  const load = async () =>
+    browser
+      ? Promise.all([
+          import('$lib/editor/Editor.svelte').then((module) => module.default),
+          createContainer(),
+        ])
+      : (null as never);
 
   // Show a confirmation dialog before leaving the page
   let dirty = false;
@@ -47,21 +35,55 @@
   });
 </script>
 
-{#await Promise.all([editor(), createContainer()])}
-  <div class="loading">
-    <h1>Loading...</h1>
-  </div>
-{:then [editor, container]}
-  <svelte:component this={editor.default} {container} {readme} bind:dirty />
+{#await load()}
+  <main>
+    <div
+      class="loading"
+      style="grid-area: menu; padding-block: 1em"
+      aria-hidden="true"
+    >
+      Loading...
+    </div>
+    <div class="loading" style="grid-area: directory" aria-hidden="true">
+      Loading...
+    </div>
+    <div class="container">
+      <div style="height: 100%; overflow: auto">
+        <Readme />
+      </div>
+    </div>
+  </main>
+{:then [Editor, container]}
+  <svelte:component this={Editor} {Readme} {container} bind:dirty />
 {:catch error}
   <pre>{error}</pre>
 {/await}
 
 <style lang="scss">
+  main {
+    display: grid;
+    grid-template:
+      'menu menu' auto
+      'directory main' 1fr / 15em 1fr;
+    height: 100vh;
+    overflow: hidden;
+
+    > * {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .container {
+    overflow: hidden;
+    border: 1px solid black;
+  }
+
   .loading {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    background: var(--dark);
   }
 </style>

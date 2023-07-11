@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as monaco from 'monaco-editor';
   import { createEventDispatcher } from 'svelte';
-  import type { Contexts } from './files.js';
+  import type { Contexts } from './index.js';
 
   export let context: Contexts['file'];
 

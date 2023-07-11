@@ -11,7 +11,7 @@
   import { flip } from 'svelte/animate';
   import { writable } from 'svelte/store';
   import Split, { type SplitContext } from './Split.svelte';
-  import { paneComponents, type PaneChild } from './files.js';
+  import { paneComponents, type PaneChild } from './panes/index.js';
   import Icon from './icons/Icon.svelte';
 
   export let children: PaneChild[];
