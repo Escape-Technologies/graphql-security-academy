@@ -177,7 +177,7 @@
 />
 
 {#if splitDirection === undefined}
-  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
   <div class="pane" on:click={markActive}>
     <div
       class="scroll"

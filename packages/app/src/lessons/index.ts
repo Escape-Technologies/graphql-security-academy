@@ -1,7 +1,4 @@
-import type {
-  create_ssr_component,
-  SvelteComponentTyped,
-} from 'svelte/internal';
+import type { SvelteComponent } from 'svelte';
 
 export type Readme = {
   /**
@@ -18,8 +15,7 @@ export type Readme = {
     introduction?: boolean;
     todo?: boolean;
   };
-  default: ReturnType<typeof create_ssr_component> &
-    (new (...args: unknown[]) => SvelteComponentTyped);
+  default: new (...args: unknown[]) => SvelteComponent;
 };
 
 export const lessons = new Map(

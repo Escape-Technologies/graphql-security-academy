@@ -52,6 +52,7 @@
     bind:selected={splitA.selected}
     activeOnMount={activeOnMount === 'A'}
   />
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div
     class="divider"
     on:mousedown={() => {

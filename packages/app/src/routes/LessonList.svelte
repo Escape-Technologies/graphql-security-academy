@@ -17,7 +17,7 @@
 
 <div class="list">
   {#each lessons as { path, title, description, category, points, owasp, todo } (path)}
-    <article transition:slide|local={{ duration: 200 }} class:todo>
+    <article transition:slide={{ duration: 200 }} class:todo>
       <div
         class="icon"
         style:--from={categoryMap.get(category)?.bg}
@@ -28,7 +28,7 @@
       <div class="points">
         <strong>{points}</strong> points
         {#if completed.has(path)}
-          <div class="stamp" transition:slide|local><RiCheckLine /> Done</div>
+          <div class="stamp" transition:slide><RiCheckLine /> Done</div>
         {/if}
       </div>
       <h3>
