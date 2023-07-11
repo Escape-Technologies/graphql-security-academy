@@ -245,6 +245,8 @@
               bind:context={child.context}
               on:dirty={() => {
                 child.dirty = true;
+                // Update the tab list
+                children = children;
               }}
             />
           </div>

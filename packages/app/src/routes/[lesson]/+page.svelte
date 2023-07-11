@@ -39,7 +39,7 @@
   <main>
     <div
       class="loading"
-      style="grid-area: menu; padding-block: 1em"
+      style="grid-area: menu; padding-block: 1.5em"
       aria-hidden="true"
     >
       Loading...

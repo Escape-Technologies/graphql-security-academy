@@ -130,6 +130,13 @@
 />
 
 <main>
+  <div class="menu">
+    <a href="{base}/" style:text-decoration="none">🦜</a>
+    <button on:click={save}>Save</button>
+    <button on:click={saveAll}>Save All</button>
+    <button on:click={openBrowser}>New browser</button>
+    <button on:click={openTerminal}>New terminal</button>
+  </div>
   <div class="directory container">
     <Editor
       name="/"
@@ -140,13 +147,6 @@
   </div>
   <div class="container" style:grid-area="main">
     <Pane bind:children bind:selected activeOnMount />
-  </div>
-  <div style:grid-area="menu" style:display="flex">
-    <a href="{base}/" style:text-decoration="none">🦜</a>
-    <button on:click={save}>Save</button>
-    <button on:click={saveAll}>Save All</button>
-    <button on:click={openBrowser}>Open 🌐</button>
-    <button on:click={openTerminal}>Open 🎹</button>
   </div>
 </main>
 
@@ -174,5 +174,35 @@
   .container {
     overflow: hidden;
     border: 1px solid black;
+  }
+
+  .menu {
+    display: flex;
+    grid-area: menu;
+    gap: 0.25em;
+    padding: 0.25em;
+
+    button {
+      padding: 0.25em 0.5em;
+    }
+
+    a {
+      padding: 0.25em;
+    }
+
+    button,
+    a {
+      font-family: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      border-radius: 0.25em;
+      transition: background 0.2s ease-in-out;
+
+      &:hover,
+      &:focus {
+        background: var(--hovered);
+      }
+    }
   }
 </style>
