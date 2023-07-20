@@ -4,6 +4,7 @@ description: 'Learn how to setup the Access-Control-Allow-Origin header to prote
 category: 'Configuration'
 points: 20
 owasp: 'API7:2023'
+authors: [escape]
 ---
 
 Modern browsers all feature new security mechanisms offering developers ways to protect their users from online threats. A common threat is cross-site request forgery (CSRF), which is an attack that tricks a user into performing an action they didn't intend to do. In this lesson, you'll learn how to setup the `Access-Control-Allow-Origin` header to protect your users from CSRF attacks.

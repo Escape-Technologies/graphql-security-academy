@@ -5,6 +5,7 @@ category: 'Configuration'
 points: 10
 owasp: 'API7:2023'
 introduction: true
+authors: [escape]
 ---
 
 Apollo Server has its debug mode enabled by default. This is useful for development, but **it can be a security risk in production.** In this lesson, you'll learn how to disable debug mode in production.

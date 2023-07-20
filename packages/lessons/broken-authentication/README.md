@@ -4,6 +4,7 @@ description: 'Learn how to block a kind of brute-force attack on a GraphQL authe
 category: 'Authorization'
 points: 15
 owasp: 'API2:2023'
+authors: [escape]
 ---
 
 Because the authentication mechanisms are exposed and complex, they are a target of choice for attackers. This lesson will show you how lesser-known GraphQL features can be used against your application.

@@ -21,6 +21,7 @@ const dest = '../app/src/lessons/';
 const build = async () => {
   const entries = await readdir(relative('.'), { withFileTypes: true });
   const dirs = entries.filter((entry) => entry.isDirectory());
+  await copyFile(relative('authors.json'), `${dest}authors.json`);
   return Promise.all(
     dirs.map((dir) => buildLesson(dir.name, relative(`${dir.name}/`)))
   );

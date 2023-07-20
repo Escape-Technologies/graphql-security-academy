@@ -4,6 +4,7 @@ description: 'Learn how to properly setup authorization for GraphQL mutations.'
 category: 'Authorization'
 points: 25
 owasp: 'API5:2023'
+authors: [escape]
 ---
 
 This lesson is about properly setting up function-level authorization in GraphQL with Apollo. The server code is given, with authentication developed following [Apollo's recommandations](https://www.apollographql.com/docs/apollo-server/security/authentication/). Small oversights have made **the authorization mechanism vulnerable**. Our goal is to exploit it and then fix it.

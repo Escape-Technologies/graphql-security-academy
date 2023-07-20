@@ -4,6 +4,7 @@ description: 'Allowing arbitrary JSON input objects can lead to injections, lear
 category: 'Injection'
 points: 20
 owasp: 'API8:2019'
+authors: [escape]
 ---
 
 Using `JSON` as a GraphQL input object can lead to vulnerabilities. This tutorial will show how one can exploit a `JSON` input object to **perform arbitrary SQL queries** with [Prisma](https://www.prisma.io) ORM, and **how to prevent it.**

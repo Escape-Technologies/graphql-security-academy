@@ -1,4 +1,5 @@
 import type { ComponentType } from 'svelte';
+import authorMap from './authors.json';
 
 export interface Lesson {
   /**
@@ -14,6 +15,7 @@ export interface Lesson {
     owasp?: string;
     introduction?: boolean;
     todo?: boolean;
+    authors?: string[];
   };
   default: ComponentType;
 }
@@ -23,3 +25,14 @@ export const lessons = new Map(
     ([path, load]) => [path.slice('./'.length, -'/README.md'.length), load]
   )
 );
+
+const map = new Map(Object.entries(authorMap));
+export const getAuthorsDetails = (authors: string[] = []) =>
+  authors
+    .map((author) => map.get(author))
+    .filter((author): author is { name: string; github: string } => {
+      if (author) return true;
+      console.warn(`Author ${author} not found`);
+      return false;
+    })
+    .slice(0, 3);

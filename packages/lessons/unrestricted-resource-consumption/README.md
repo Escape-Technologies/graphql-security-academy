@@ -5,6 +5,7 @@ category: 'DoS'
 points: 10
 owasp: 'API4:2023'
 introduction: true
+authors: [escape]
 ---
 
 GraphQL engines ship without complexity limits by default, allowing you to ship complex applications rapidly, but also enabling attackers to perform expensive queries. Cycles in the graph can lead to arbitrarily deep queries, which cause degraded performance or even denial of service.

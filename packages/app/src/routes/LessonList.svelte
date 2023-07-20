@@ -1,5 +1,6 @@
 <script lang="ts">
-  import type { Lesson } from '$lessons';
+  import { base } from '$app/paths';
+  import { getAuthorsDetails, type Lesson } from '$lessons';
   import { categoryMap } from '$lib/categories.js';
   import { getCompleted } from '$lib/progress.js';
   import { onMount } from 'svelte';
@@ -16,7 +17,7 @@
 </script>
 
 <div class="list">
-  {#each lessons as { path, title, description, category, points, owasp, todo } (path)}
+  {#each lessons as { path, title, description, category, points, owasp, todo, authors } (path)}
     <article transition:slide={{ duration: 200 }} class:todo>
       <div
         class="icon"
@@ -52,6 +53,17 @@
             {/if}
             {#if owasp}
               <span class="tag">OWASP <span>{owasp}</span></span>
+            {/if}
+            {#if authors?.length}
+              <ul class="authors">
+                <li>Written by:</li>
+                {#each getAuthorsDetails(authors) as { name, github }}
+                  <li>
+                    <img src="{base}/github-image/{github}" alt="" />
+                    {name}
+                  </li>
+                {/each}
+              </ul>
             {/if}
           </div>
         {/if}
@@ -221,6 +233,27 @@
     grid-area: category;
     font-size: 0.8em;
     text-transform: uppercase;
+  }
+
+  .authors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+
+      img {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 50%;
+      }
+    }
   }
 
   .tags {
