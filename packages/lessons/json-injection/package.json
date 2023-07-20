@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "@graphql-yoga/render-graphiql": "^4.0.3",
-    "@prisma/client": "^4.16.2",
-    "@whatwg-node/fetch": "^0.9.8",
+    "@prisma/client": "^5.0.0",
+    "@whatwg-node/fetch": "^0.9.9",
     "graphql": "^16.7.1",
     "graphql-scalars": "^1.22.2",
     "graphql-yoga": "^4.0.3",
     "nodemon": "^3.0.1",
-    "prisma": "^4.16.2"
+    "prisma": "^5.0.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
