@@ -3,6 +3,7 @@
   import { base } from '$app/paths';
   import type { WebContainer } from '@webcontainer/api';
   import { onMount, type ComponentType } from 'svelte';
+  import logo from '$assets/logo.svg?url';
   import Editor from './Explorer.svelte';
   import Pane, { open } from './Pane.svelte';
   import type { PaneChild } from './panes/index.js';
@@ -131,7 +132,9 @@
 
 <main>
   <div class="menu">
-    <a href="{base}/" style:text-decoration="none">🦜</a>
+    <a href="{base}/" style:text-decoration="none">
+      <img src={logo} alt="Home" />
+    </a>
     <button on:click={save}>Save</button>
     <button on:click={saveAll}>Save All</button>
     <button on:click={openBrowser}>New browser</button>
@@ -165,6 +168,12 @@
       width: 100%;
       height: 100%;
     }
+  }
+
+  img {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: bottom;
   }
 
   .directory {

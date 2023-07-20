@@ -5,7 +5,7 @@
 
 <svelte:head>
   <title>
-    {$page.data.title ? `${$page.data.title} – ` : ''}escape.tech/learn
+    {$page.data.title ? `${$page.data.title} – ` : ''}Escape Academy (beta)
   </title>
 </svelte:head>
 
