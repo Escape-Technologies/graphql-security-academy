@@ -82,7 +82,12 @@ h3 {
 }
 
 a {
-  color: var(--link);
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    color: var(--link);
+  }
 }
 
 .icon {

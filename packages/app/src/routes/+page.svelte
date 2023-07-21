@@ -1,7 +1,7 @@
 <script lang="ts">
-  import SimpleIconsGithub from '~icons/simple-icons/github';
-  import SimpleIconsLinkedin from '~icons/simple-icons/linkedin';
-  import SimpleIconsTwitter from '~icons/simple-icons/twitter';
+  import Github from '~icons/simple-icons/github';
+  import Linkedin from '~icons/simple-icons/linkedin';
+  import Twitter from '~icons/simple-icons/twitter';
   import Filters from './Filters.svelte';
   import Header from './Header.svelte';
   import LessonList from './LessonList.svelte';
@@ -24,6 +24,23 @@
 <Header lessons={data.lessons} />
 
 <main>
+  <section>
+    <h2>Welcome!</h2>
+    <p>
+      Escape Academy is a collection of interactive challenges that will teach
+      you how to secure your GraphQL applications. All these lessons work
+      entirely in your browser: no need to install anything, and once downloaded
+      you can use them offline.
+    </p>
+    <p>
+      The Academy is entirely
+      <a href="https://github.com/Escape-Technologies/learn">
+        free and open-source!
+      </a>
+      You can support the project by leaving a star on GitHub, reporting bugs or
+      even creating new lessons. <strong>We welcome all contributions!</strong>
+    </p>
+  </section>
   <section>
     <header>
       <h2>Introduction</h2>
@@ -50,13 +67,13 @@
   <p>© {new Date().getFullYear()} — Escape Technologies</p>
   <p class="icons">
     <a href="https://twitter.com/escapetechHQ">
-      <SimpleIconsTwitter aria-label="Open on Twitter" />
+      <Twitter aria-label="Open on Twitter" />
     </a>
     <a href="https://www.linkedin.com/company/escapetech/">
-      <SimpleIconsLinkedin aria-label="Open on LinkedIn" />
+      <Linkedin aria-label="Open on LinkedIn" />
     </a>
     <a href="https://github.com/Escape-Technologies/learn">
-      <SimpleIconsGithub aria-label="Open on GitHub" />
+      <Github aria-label="Open on GitHub" />
     </a>
   </p>
 </footer>
