@@ -5,7 +5,7 @@ category: 'Injection'
 points: 10
 owasp: 'API8:2019'
 introduction: true
-authors: [escape]
+authors: ['escape']
 ---
 
 A SQL injection is a common attack vector that allows an attacker to execute arbitrary SQL queries on a database. This can be used to steal data, modify data, or even execute arbitrary code on the database server. This lesson focuses on a privilege escalation attack leveraging a SQL injection.

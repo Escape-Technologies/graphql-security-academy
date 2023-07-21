@@ -1,10 +1,10 @@
 ---
-title: 'Broken Object Property Level Authorization'
+title: 'Field-Level Authorization'
 description: 'Learn how to properly setup authorization for GraphQL resolvers.'
 category: 'Authorization'
 points: 20
 owasp: 'API4:2023'
-authors: [escape]
+authors: ['escape']
 ---
 
 This lesson is about properly setting up object property level authorization in GraphQL with Apollo. The server code is given, with authentication developed following [Apollo's recommandations](https://www.apollographql.com/docs/apollo-server/security/authentication/). Our goal is to protect sensitive data from leaking to unauthorized users.
