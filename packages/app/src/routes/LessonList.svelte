@@ -28,7 +28,9 @@
         {categoryMap.get(category)?.icon}
       </div>
       <div class="points">
-        {#if completed.has(path)}
+        {#if todo}
+          <span class="coming-soon">Coming soon</span>
+        {:else if completed.has(path)}
           <div class="stamp" transition:slide><RiCheckLine /> Done</div>
         {:else}
           <div class="stamp-todo" transition:slide>
@@ -52,9 +54,6 @@
           <!-- Placeholder to double the gap -->
           <div />
           <div class="tags">
-            {#if todo}
-              <span class="coming-soon">Coming soon</span>
-            {/if}
             {#if owasp}
               <span class="tag">OWASP <span>{owasp}</span></span>
             {/if}
@@ -299,7 +298,8 @@
   }
 
   .coming-soon {
-    padding: 0.125em 0.25em;
+    padding: 0.12em 0.3em;
+    font-size: 0.8em; /* new property, adjust as needed */
     font-weight: bold;
     color: #fff;
     background: linear-gradient(165deg, #727486, #5b5669);
