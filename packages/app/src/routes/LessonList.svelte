@@ -135,6 +135,7 @@
     h3 {
       grid-area: title;
       margin: 0;
+      margin-top: -8px;
       line-height: 1.25;
 
       > * {
