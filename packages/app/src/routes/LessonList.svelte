@@ -58,16 +58,15 @@
               <span class="tag">OWASP <span>{owasp}</span></span>
             {/if}
             <span>
-              Difficulty:
               {difficulty === 'easy'
-                ? '🟢Easy'
+                ? '🟢 Easy'
                 : difficulty === 'medium'
-                ? '🟡Medium'
-                : '🔴Hard'}
+                ? '🟡 Medium'
+                : '🔴 Hard'}
             </span>
             {#if authors?.length}
               <ul class="authors">
-                <li>Written by:</li>
+                <li>Author:</li>
                 {#each getAuthorsDetails(authors) as { name, github }}
                   <li>
                     <img src="{base}/github-image/{github}" alt="" />
