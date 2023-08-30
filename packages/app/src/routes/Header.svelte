@@ -61,7 +61,7 @@
 
   .beta {
     padding: 0 0.25em;
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 0.8em;
     font-weight: bold;
     color: #fff;

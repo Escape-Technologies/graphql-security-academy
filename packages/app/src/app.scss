@@ -11,7 +11,7 @@
   --text: #333;
   --accent: #05e2b7;
   --secondary-accent: #6762d5;
-  --weak-color: #d1d7da;
+  --weak-color: #babbbb;
 
   // Main colors
   --bg: var(--main);
@@ -63,7 +63,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
   color: var(--color);
   background-color: var(--bg);
 }
@@ -74,7 +74,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
 }
 
 h1 {
