@@ -32,7 +32,7 @@
           <div class="stamp" transition:slide><RiCheckLine /> Done</div>
         {:else}
           <div class="stamp-todo" transition:slide>
-            <RiCheckboxBlankCircleLine /> Todo
+            <RiCheckboxBlankCircleLine /> Start
           </div>
         {/if}
       </div>

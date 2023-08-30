@@ -25,13 +25,21 @@
 
 <main>
   <section>
-    <h2>Welcome!</h2>
+    <h1>Welcome to GraphQL Security Academy 👋</h1>
     <p>
-      Escape Academy is a collection of interactive challenges that will teach
-      you how to secure your GraphQL applications. All these lessons work
-      entirely in your browser: no need to install anything, and once downloaded
-      you can use them offline.
+      If you're a developer or a security engineer interested in fortifying GraphQL applications,
+      you've come to the right place. Here, we offer hands-on lessons that walk you through
+      various vulnerabilities and security best practices specific to GraphQL.
     </p>
+    <p>
+      Each lesson is built around a WebContainer containing a real-world GraphQL application,
+      so you'll not only understand <em>why</em> a vulnerability is risky, but also
+      <em>how</em> to exploit it and, most importantly, <em>how</em> to fix it.
+    </p>
+    <p>
+      Feel free to jump in and start learning. Secure coding awaits!
+    </p>
+    <p>🔒 Happy Learning! 🔒</p>
     <p>
       The Academy is entirely
       <a href="https://github.com/Escape-Technologies/academy">
@@ -53,6 +61,7 @@
   </section>
 
   <section>
+    <h1>Lessons</h1>
     <Filters bind:filter />
     <LessonList lessons={advanced} />
   </section>
