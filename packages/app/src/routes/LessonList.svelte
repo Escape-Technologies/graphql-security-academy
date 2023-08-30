@@ -6,6 +6,7 @@
   import { onMount } from 'svelte';
   import { slide } from 'svelte/transition';
   import RiCheckLine from '~icons/ri/check-line';
+  import RiCheckboxBlankCircleLine from '~icons/ri/checkbox-blank-circle-line';
 
   let completed = new Map<string, Date>();
 
@@ -17,7 +18,7 @@
 </script>
 
 <div class="list">
-  {#each lessons as { path, title, description, category, points, owasp, todo, authors } (path)}
+  {#each lessons as { path, title, description, category, difficulty, owasp, todo, authors } (path)}
     <article transition:slide={{ duration: 200 }} class:todo>
       <div
         class="icon"
@@ -27,9 +28,12 @@
         {categoryMap.get(category)?.icon}
       </div>
       <div class="points">
-        <strong>{points}</strong> points
         {#if completed.has(path)}
           <div class="stamp" transition:slide><RiCheckLine /> Done</div>
+        {:else}
+          <div class="todo" transition:slide>
+            <RiCheckboxBlankCircleLine /> Todo
+          </div>
         {/if}
       </div>
       <h3>
@@ -54,6 +58,14 @@
             {#if owasp}
               <span class="tag">OWASP <span>{owasp}</span></span>
             {/if}
+            <span>
+              Difficulty:
+              {difficulty === 'easy'
+                ? '🟢Easy'
+                : difficulty === 'medium'
+                ? '🟡Medium'
+                : '🔴Hard'}
+            </span>
             {#if authors?.length}
               <ul class="authors">
                 <li>Written by:</li>
@@ -164,14 +176,16 @@
     grid-area: points;
     gap: 0.25rem;
     align-items: center;
+    min-width: 6em;
     text-align: center;
 
-    strong {
-      display: block;
-      margin-inline: 1rem;
-      font-size: 2em;
-      font-weight: bold;
-      line-height: 0.8;
+    .stamp,
+    .todo {
+      padding: 0.25em 0.75em 0.25em 0.5em;
+      font-size: 0.8em;
+      color: #838383;
+      background: #f2f2f2;
+      border-radius: 99px; // Round ends
     }
 
     .stamp {

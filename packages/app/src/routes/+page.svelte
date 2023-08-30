@@ -5,20 +5,19 @@
   import Filters from './Filters.svelte';
   import Header from './Header.svelte';
   import LessonList from './LessonList.svelte';
+  import SimpleIconsGithub from '~icons/simple-icons/github';
 
   export let data;
 
   let filter: string | undefined;
 
-  $: introduction = data.lessons
-    .filter(({ introduction }) => introduction)
-    .sort((a, z) => a.owasp?.localeCompare(z.owasp ?? '') ?? 1);
   $: advanced = data.lessons
-    .filter(
-      ({ introduction, category }) =>
-        !introduction && (!filter || category === filter)
-    )
-    .sort((a, z) => a.points - z.points);
+    .filter(({ category }) => !filter || category === filter)
+    .sort(
+      (a, z) =>
+        ['easy', 'medium', 'hard'].indexOf(a.difficulty) -
+        ['easy', 'medium', 'hard'].indexOf(z.difficulty)
+    );
 </script>
 
 <Header lessons={data.lessons} />
@@ -40,24 +39,31 @@
       You can support the project by leaving a star on GitHub, reporting bugs or
       even creating new lessons. <strong>We welcome all contributions!</strong>
     </p>
+    <p>
+      <button>
+        <SimpleIconsGithub /> Star on GitHub {#await data.github.stars then stars}
+          ({stars})
+        {/await}
+      </button>
+    </p>
   </section>
-  <section>
-    <header>
+  <!-- <section> -->
+  <!-- <header>
       <h2>Introduction</h2>
       <p>These lessons cover common security concerns with simple solutions.</p>
-    </header>
-    <LessonList lessons={introduction} />
-  </section>
+    </header> -->
+  <!-- <LessonList lessons={introduction} /> -->
+  <!-- </section> -->
 
   <section>
-    <header>
-      <h2>Advanced topics</h2>
-      <p>
+    <!-- <header> -->
+    <!-- <h2>Advanced topics</h2> -->
+    <!-- <p>
         These lessons cover more specific security concerns, exploiting
         lesser-known GraphQL features and requiring careful considerations to be
         prevented.
-      </p>
-    </header>
+      </p> -->
+    <!-- </header> -->
     <Filters bind:filter />
     <LessonList lessons={advanced} />
   </section>

@@ -11,8 +11,7 @@
   onMount(() => {
     const completed = getCompleted();
     $points = lessons.reduce(
-      (points, lesson) =>
-        completed.has(lesson.path) ? points + lesson.points : points,
+      (points, lesson) => (completed.has(lesson.path) ? points + 1 : points),
       0
     );
   });
@@ -24,7 +23,9 @@
     <h1>Escape Academy</h1>
     <span class="beta">Beta</span>
     <div style="flex: 1" />
-    <div class="points"><strong>{Math.ceil($points)}</strong> points</div>
+    <div class="points">
+      <strong>{Math.ceil($points)}</strong>/{lessons.length}
+    </div>
   </header>
 </div>
 

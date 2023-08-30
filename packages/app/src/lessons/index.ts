@@ -11,7 +11,7 @@ export interface Lesson {
     title: string;
     description: string;
     category: 'Authorization' | 'DoS' | 'Configuration' | 'Injection';
-    points: number;
+    difficulty: 'easy' | 'medium' | 'hard';
     owasp?: string;
     introduction?: boolean;
     todo?: boolean;

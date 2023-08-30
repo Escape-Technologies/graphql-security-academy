@@ -2,7 +2,7 @@
 title: 'Limiting Query Complexity'
 description: 'Learn how to block expensive queries with GraphQL Armor, preventing denial-of-service (DoS) attacks.'
 category: 'DoS'
-points: 10
+difficulty: 'easy'
 owasp: 'API4:2023'
 introduction: true
 authors: ['escape']

@@ -2,7 +2,7 @@
 title: 'SQL Injection'
 description: 'While less common nowadays, SQL injections are still a threat. Learn how to exploit and prevent them.'
 category: 'Injection'
-points: 10
+difficulty: 'easy'
 owasp: 'API8:2019'
 introduction: true
 authors: ['escape']

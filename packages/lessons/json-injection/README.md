@@ -2,7 +2,7 @@
 title: 'Validating JSON Inputs'
 description: 'Allowing arbitrary JSON input objects can lead to injections, learn how to prevent them.'
 category: 'Injection'
-points: 20
+difficulty: 'medium'
 owasp: 'API8:2019'
 authors: ['escape']
 ---

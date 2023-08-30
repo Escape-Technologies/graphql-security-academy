@@ -2,7 +2,7 @@
 title: 'Field-Level Authorization'
 description: 'Learn how to properly setup authorization for GraphQL resolvers.'
 category: 'Authorization'
-points: 20
+difficulty: 'medium'
 owasp: 'API4:2023'
 authors: ['escape']
 ---
