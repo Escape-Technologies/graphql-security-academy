@@ -42,7 +42,7 @@
     {/if}
     <p>
       <a
-        href="https://github.com/Escape-Technologies/academy/tree/main/packages/lessons/{$page
+        href="https://github.com/Escape-Technologies/graphql-security-academy/tree/main/packages/lessons/{$page
           .params.lesson}/"
       >
         <Github /> Improve this lesson on GitHub

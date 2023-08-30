@@ -38,20 +38,22 @@
     <h1>Welcome on Board 👋</h1>
     <p>
       The GraphQL Security Academy offers hands-on lessons that walk you through
-      various vulnerabilities and security best practices specific to GraphQL directly in your browser.
+      various vulnerabilities and security best practices specific to GraphQL
+      directly in your browser.
     </p>
     <p>
-      Each lesson is built around a WebContainer containing a live GraphQL application,
-      so you'll not only understand <em>why</em> a vulnerability is risky, but also
+      Each lesson is built around a WebContainer containing a live GraphQL
+      application, so you'll not only understand <em>why</em> a vulnerability is
+      risky, but also
       <em>how</em> to exploit it and, most importantly, <em>how</em> to fix it.
     </p>
     <p>
       The Academy is entirely
-      <a href="https://github.com/Escape-Technologies/academy">
+      <a href="https://github.com/Escape-Technologies/graphql-security-academy">
         free and open-source!
       </a>
-      You can support the project by leaving a star, reporting bugs or
-      even creating new lessons. <strong>We welcome all contributions!</strong>
+      You can support the project by leaving a star, reporting bugs or even creating
+      new lessons. <strong>We welcome all contributions!</strong>
     </p>
     <p>
       <button>
@@ -63,11 +65,8 @@
         <Discord /> Join Escape Community
       </button>
     </p>
-    <p>
-      Feel free to jump in and start your first lesson. Happy Learning! 🔒
-    </p>
+    <p>Feel free to jump in and start your first lesson. Happy Learning! 🔒</p>
   </section>
-
 
   <section>
     <h1>Lessons</h1>
@@ -91,7 +90,7 @@
     <a href="https://www.linkedin.com/company/escapetech/">
       <Linkedin aria-label="Open on LinkedIn" />
     </a>
-    <a href="https://github.com/Escape-Technologies/academy">
+    <a href="https://github.com/Escape-Technologies/graphql-security-academy">
       <Github aria-label="Open on GitHub" />
     </a>
     <a href="https://discord.escape.tech">

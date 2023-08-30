@@ -4,9 +4,7 @@
 
 GraphQL Security Academy provides hands-on, interactive lessons that teach various vulnerabilities and best practices in GraphQL security directly in your browser. Each lesson features a WebContainer with a live GraphQL application, demonstrating not just the risks but also how to exploit and fix them.
 
-
 > 💡 The GraphQL Security Academy is accessible for free on https://escape.tech/academy
-
 
 ## Why Use GraphQL Security Academy?
 
@@ -20,10 +18,9 @@ GraphQL Security Academy provides hands-on, interactive lessons that teach vario
 - 🌐 Browser-Based Learning: No downloads, no installs. Start learning immediately right within your browser.
 - 🛠 Hands-On Experience: Apply what you've learned in real-world GraphQL app scenarios.
 
-
 ## How to Contribute
 
-We're thrilled that you're interested in contributing to the GraphQL Security Academy! Contributions are essential for keeping this project informative, up-to-date, and most importantly, beneficial for everyone interested in GraphQL security. 
+We're thrilled that you're interested in contributing to the GraphQL Security Academy! Contributions are essential for keeping this project informative, up-to-date, and most importantly, beneficial for everyone interested in GraphQL security.
 
 This project consists of two main components:
 
@@ -40,7 +37,7 @@ If you're eager to contribute, here's how you can get started:
 
 ```bash
 # Clone the GitHub repository
-git clone https://github.com/Escape-Technologies/academy.git
+git clone https://github.com/Escape-Technologies/graphql-security-academy.git
 cd academy
 # Use yarn to install all necessary dependencies
 yarn install
@@ -50,8 +47,8 @@ yarn dev
 
 Now, you should have a local instance of GraphQL Security Academy running. Feel free to make changes and test them out.
 
-
 ### Contribution Ideas
+
 - Writing new lessons or updating existing ones.
 - Enhancing the UI/UX of the `app` component.
 - Reporting bugs and suggesting new features.

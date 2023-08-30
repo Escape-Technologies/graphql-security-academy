@@ -10,7 +10,9 @@ export const load = ({ fetch }) => ({
     })
   ),
   github: {
-    stars: fetch('https://api.github.com/repos/Escape-Technologies/academy')
+    stars: fetch(
+      'https://api.github.com/repos/Escape-Technologies/graphql-security-academy'
+    )
       .then((response) => response.json())
       .then((data) => data.stargazers_count),
   },
