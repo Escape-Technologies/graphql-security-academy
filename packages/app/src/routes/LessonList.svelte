@@ -62,12 +62,18 @@
                 <div class="value">{owasp}</div>
               </div>
             {/if}
-            <span>
-              {difficulty === 'Easy'
-                ? '🟢 Easy'
+            <span
+              class="difficulty {difficulty === 'Easy'
+                ? 'easy'
                 : difficulty === 'Medium'
-                ? '🟡 Medium'
-                : '🔴 Hard'}
+                ? 'medium'
+                : 'hard'}"
+            >
+              {difficulty === 'Easy'
+                ? 'Easy'
+                : difficulty === 'Medium'
+                ? 'Medium'
+                : 'Hard'}
             </span>
             {#if authors?.length}
               <ul class="authors">
@@ -192,6 +198,26 @@
   .badge .value {
     padding: 0.25rem 0.5rem;
     background-color: white;
+    border-radius: 0 5px 5px 0;
+  }
+
+  .difficulty {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    border-radius: 5px;
+  }
+
+  .difficulty.easy {
+    background-color: #a7daff;
+  }
+
+  .difficulty.medium {
+    background-color: #fde7a0;
+  }
+
+  .difficulty.hard {
+    background-color: #fdaf9d;
   }
 
   .points {
@@ -275,7 +301,8 @@
 
   .title {
     font-size: 1em;
-    font-weight: 400;
+    font-weight: 600;
+    color: #313048;
   }
 
   .authors {
