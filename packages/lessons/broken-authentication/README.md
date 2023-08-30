@@ -1,6 +1,6 @@
 ---
-title: 'Preventing Mutation Brute-Force'
-description: 'Learn how to block a kind of brute-force attack on a GraphQL authentication mutation.'
+title: 'Prevent Mutation Brute-Force Attacks'
+description: 'Understand how to mitigate brute-force attacks targeting GraphQL authentication mutations for enhanced security.'
 category: 'Access Control'
 difficulty: 'easy'
 owasp: 'API2:2023'

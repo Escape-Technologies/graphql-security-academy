@@ -1,6 +1,6 @@
 ---
-title: 'Unsafe Consumption of APIs'
-description: 'Third-party actors can also be sources of injections, especially if they return user-provided data.'
+title: 'Secure Third-Party API Interactions'
+description: 'Learn to safeguard against injection risks when interacting with APIs that return user-provided data.'
 category: 'Injection'
 difficulty: 'hard'
 owasp: 'API10:2023'

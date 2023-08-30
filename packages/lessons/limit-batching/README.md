@@ -1,6 +1,6 @@
 ---
-title: 'Limit Query Batching'
-description: 'Learn how to limit query batching to prevent DoS attacks.'
+title: 'Limit Query Batching to Safeguard Resources'
+description: 'Explore strategies to cap query batching, thereby minimizing the risk of resource depletion and enhancing API stability.'
 category: 'Complexity'
 difficulty: 'hard'
 todo: true

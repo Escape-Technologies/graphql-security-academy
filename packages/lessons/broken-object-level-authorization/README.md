@@ -1,6 +1,6 @@
 ---
-title: 'Object-Level Authorization'
-description: 'Learn how to properly setup object-level authorization in GraphQL.'
+title: 'Implement Object-Level Authorization'
+description: 'Master the essentials of object-level authorization for secure data access and improved application security.'
 category: 'Access Control'
 difficulty: 'easy'
 owasp: 'API1:2023'

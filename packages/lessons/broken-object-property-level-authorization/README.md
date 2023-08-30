@@ -1,6 +1,6 @@
 ---
-title: 'Field-Level Authorization'
-description: 'Learn how to properly setup authorization for GraphQL resolvers.'
+title: 'Implement Field-Level Authorization'
+description: 'Master the essentials of setting up field-level authorization in GraphQL resolvers for fine-grained access control.'
 category: 'Access Control'
 difficulty: 'medium'
 owasp: 'API4:2023'

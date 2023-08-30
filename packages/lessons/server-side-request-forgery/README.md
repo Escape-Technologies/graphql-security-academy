@@ -1,6 +1,6 @@
 ---
-title: 'Server Side Request Forgery'
-description: 'Learn what Server Side Request Forgery (SSRF) is and how to prevent it.'
+title: 'Mitigate Server Side Request Forgery'
+description: 'Grasp the fundamentals of Server Side Request Forgery (SSRF) and the measures to effectively prevent this vulnerability.'
 category: 'Injection'
 difficulty: 'easy'
 owasp: 'API6:2023'

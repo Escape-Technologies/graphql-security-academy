@@ -1,6 +1,6 @@
 ---
-title: 'Validating JSON Inputs'
-description: 'Allowing arbitrary JSON input objects can lead to injections, learn how to prevent them.'
+title: 'Validate JSON Inputs'
+description: 'Explore techniques for validating JSON input objects to mitigate the risk of injection vulnerabilities.'
 category: 'Injection'
 difficulty: 'medium'
 owasp: 'API8:2019'

@@ -1,6 +1,6 @@
 ---
-title: 'Abort Expensive Queries'
-description: 'Learn how to abort time-consuming queries to protect your database.'
+title: 'Abort Expensive Queries for Database Protection'
+description: 'Discover how to identify and terminate resource-intensive queries, thereby safeguarding your database from undue stress.'
 category: 'DoS'
 difficulty: 'hard'
 todo: true
