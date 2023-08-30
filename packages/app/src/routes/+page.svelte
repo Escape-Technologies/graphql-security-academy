@@ -13,6 +13,7 @@
 
   $: advanced = data.lessons
     .filter(({ category }) => !filter || category === filter)
+    .sort((a, z) => (a.todo ? 1 : 0) - (z.todo ? 1 : 0))
     .sort(
       (a, z) =>
         ['easy', 'medium', 'hard'].indexOf(a.difficulty) -

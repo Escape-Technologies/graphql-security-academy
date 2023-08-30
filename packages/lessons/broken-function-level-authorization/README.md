@@ -1,7 +1,7 @@
 ---
 title: 'Resolver-Level Authorization'
 description: 'Learn how to properly setup authorization for GraphQL mutations.'
-category: 'Authorization'
+category: 'Access Control'
 difficulty: 'hard'
 owasp: 'API5:2023'
 authors: ['escape']

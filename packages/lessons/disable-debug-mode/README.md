@@ -1,7 +1,7 @@
 ---
 title: 'Disabling Debug Mode'
 description: 'Learn how to disable debug mode in production, to prevent information disclosure.'
-category: 'Configuration'
+category: 'Information Disclosure'
 difficulty: 'easy'
 owasp: 'API7:2023'
 introduction: true

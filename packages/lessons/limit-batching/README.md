@@ -1,7 +1,7 @@
 ---
 title: 'Limit Query Batching'
 description: 'Learn how to limit query batching to prevent DoS attacks.'
-category: 'DoS'
+category: 'Complexity'
 difficulty: 'hard'
 todo: true
 ---
