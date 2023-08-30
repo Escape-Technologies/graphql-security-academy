@@ -10,7 +10,7 @@
   --focused: #fff;
   --hovered: #6c678f40;
   --text: #333;
-  --accent: #05e2b7;
+  --accent: #07c9ac;
 
   // Main colors
   --bg: var(--main);
@@ -50,6 +50,15 @@
   background-color: rgb(155 155 155 / 35%);
   border: transparent;
   border-radius: 20px;
+}
+
+* {
+  outline: 0 solid transparent;
+  transition: outline 0.1s ease-out;
+
+  &:focus-visible {
+    outline: 0.125em solid #07c9ac80;
+  }
 }
 
 body {
@@ -99,5 +108,56 @@ a {
   h3 & {
     width: 1.25em;
     height: 1.25em;
+  }
+}
+
+:where(button, input) {
+  display: inline-flex;
+  gap: 0.25em;
+  align-items: center;
+  padding: 0.375em;
+  color: #838383;
+  background: #f2f2f2;
+  border: 0.125em solid #f2f2f2;
+  border-radius: 0.25em;
+  outline: 0 solid transparent;
+  transition: all 0.1s ease-in-out;
+}
+
+input {
+  border-color: #e2e2e2;
+
+  &:enabled {
+    color: #000;
+    background: #fff;
+
+    &:hover,
+    &:focus {
+      border-color: #acacac;
+    }
+
+    &:focus-visible {
+      outline: 0.25em solid #e2e2e280;
+    }
+  }
+}
+
+:where(button:enabled) {
+  color: white;
+  background: #05e2b7;
+  border-color: #05e2b7;
+
+  &:where(:hover) {
+    background: #04c19c;
+    border-color: #04c19c;
+  }
+
+  &:where(:active) {
+    background: #06ab8a;
+    border-color: #06ab8a;
+  }
+
+  &:where(:focus-visible) {
+    outline: 0.25em solid #05e2b780;
   }
 }

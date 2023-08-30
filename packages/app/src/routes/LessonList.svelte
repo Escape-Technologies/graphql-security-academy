@@ -109,7 +109,8 @@
       row-gap: 0;
     }
 
-    &:not(.todo):hover {
+    &:not(.todo):hover,
+    &:not(.todo):focus-within {
       z-index: 1;
       border-radius: 0.25rem;
       box-shadow: 0 0 1rem var(--dark);
@@ -130,6 +131,7 @@
   h3 a {
     color: inherit;
     text-decoration: inherit;
+    outline: 0;
 
     &::before {
       position: absolute;
@@ -192,7 +194,8 @@
     }
   }
 
-  article:hover .stamp {
+  article:hover .stamp,
+  article:focus-within .stamp {
     animation: wiggle 0.5s ease-in-out;
   }
 
