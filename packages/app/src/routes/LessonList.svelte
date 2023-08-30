@@ -6,7 +6,7 @@
   import { onMount } from 'svelte';
   import { slide } from 'svelte/transition';
   import RiCheckLine from '~icons/ri/check-line';
-  import RiCheckboxBlankCircleLine from '~icons/ri/checkbox-blank-circle-line';
+  import PlayFill from '~icons/ri/play-line';
 
   let completed = new Map<string, Date>();
 
@@ -34,7 +34,7 @@
           <div class="stamp" transition:slide><RiCheckLine /> Done</div>
         {:else}
           <div class="stamp-todo" transition:slide>
-            <RiCheckboxBlankCircleLine /> Start
+            <PlayFill /> Start
           </div>
         {/if}
       </div>
@@ -234,14 +234,6 @@
     .stamp-todo {
       padding: 0.25em 0.75em 0.25em 0.5em;
       font-size: 0.8em;
-      color: #838383;
-      background: #f2f2f2;
-      border-radius: 99px; // Round ends
-    }
-
-    .coming-soon {
-      padding: 0.25em 0.75em 0.25em 0.5em;
-      font-size: 0.8em; /* new property, adjust as needed */
       color: var(--text);
       background: linear-gradient(
         90deg,
@@ -252,9 +244,17 @@
       border-radius: 99px; // Round ends
     }
 
+    .coming-soon {
+      padding: 0.25em 0.75em 0.25em 0.5em;
+      font-size: 0.8em; /* new property, adjust as needed */
+      background: #f2f2f2;
+      color: #838383;
+      border-radius: 99px; // Round ends
+    }
+
     .stamp {
-      color: #5b9b78;
-      background: #cff2cf;
+      color: var(--text);
+      background: var(--accent);
     }
   }
 
