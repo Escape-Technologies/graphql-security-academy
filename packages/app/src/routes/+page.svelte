@@ -1,11 +1,11 @@
 <script lang="ts">
+  import Discord from '~icons/simple-icons/discord';
   import Github from '~icons/simple-icons/github';
   import Linkedin from '~icons/simple-icons/linkedin';
   import Twitter from '~icons/simple-icons/twitter';
   import Filters from './Filters.svelte';
   import Header from './Header.svelte';
   import LessonList from './LessonList.svelte';
-  import SimpleIconsGithub from '~icons/simple-icons/github';
 
   export let data;
 
@@ -41,9 +41,12 @@
     </p>
     <p>
       <button>
-        <SimpleIconsGithub /> Star on GitHub {#await data.github.stars then stars}
+        <Github /> Star on GitHub {#await data.github.stars then stars}
           ({stars})
         {/await}
+      </button>
+      <button>
+        <Discord /> Join Escape Community
       </button>
     </p>
   </section>
@@ -65,6 +68,9 @@
     </a>
     <a href="https://github.com/Escape-Technologies/learn">
       <Github aria-label="Open on GitHub" />
+    </a>
+    <a href="https://discord.escape.tech">
+      <Discord aria-label="Open on Discord" />
     </a>
   </p>
 </footer>
