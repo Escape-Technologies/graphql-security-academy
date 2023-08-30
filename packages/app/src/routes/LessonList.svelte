@@ -39,42 +39,49 @@
         {/if}
       </div>
       <h3>
-        <span class="category" style:color={categoryMap.get(category)?.color}>
+        <span class="category">
           {category}
         </span>&nbsp;
-        {#if todo}
-          <span>{title}</span>
-        {:else}
-          <a href={path}>{title}</a>
-        {/if}
+        <div>
+          {#if todo}
+            <span class="title">{title}</span>
+          {:else}
+            <a class="title" href={path}>{title}</a>
+          {/if}
+        </div>
       </h3>
       <div class="description">
         <p>{description}</p>
-        <!-- Placeholder to double the gap -->
-        <div />
-        <div class="tags">
-          {#if owasp}
-            <span class="tag">OWASP <span>{owasp}</span></span>
-          {/if}
-          <span>
-            {difficulty === 'Easy'
-              ? '🟢 Easy'
-              : difficulty === 'Medium'
-              ? '🟡 Medium'
-              : '🔴 Hard'}
-          </span>
-          {#if authors?.length}
-            <ul class="authors">
-              <li>Author:</li>
-              {#each getAuthorsDetails(authors) as { name, github }}
-                <li>
-                  <img src="{base}/github-image/{github}" alt="" />
-                  {name}
-                </li>
-              {/each}
-            </ul>
-          {/if}
-        </div>
+        {#if owasp || todo}
+          <!-- Placeholder to double the gap -->
+          <div />
+          <div class="tags">
+            {#if owasp}
+              <div class="badge">
+                <div class="label">OWASP</div>
+                <div class="value">{owasp}</div>
+              </div>
+            {/if}
+            <span>
+              {difficulty === 'Easy'
+                ? '🟢 Easy'
+                : difficulty === 'Medium'
+                ? '🟡 Medium'
+                : '🔴 Hard'}
+            </span>
+            {#if authors?.length}
+              <ul class="authors">
+                <li>Author:</li>
+                {#each getAuthorsDetails(authors) as { name, github }}
+                  <li>
+                    <img src="{base}/github-image/{github}" alt="" />
+                    {name}
+                  </li>
+                {/each}
+              </ul>
+            {/if}
+          </div>
+        {/if}
       </div>
     </article>
   {/each}
@@ -104,7 +111,7 @@
         'icon title points' auto
         'icon description points' 1fr
         / auto 1fr auto;
-      row-gap: 0;
+      row-gap: 0.5rem;
     }
 
     &:not(.todo):hover,
@@ -164,7 +171,27 @@
     height: 4rem;
     font-size: 2rem;
     background: linear-gradient(165deg, var(--from), var(--to));
-    border-radius: 0.25rem;
+    border-radius: 0.75rem;
+  }
+
+  .badge {
+    display: flex;
+    align-items: stretch;
+    font-size: 0.8em;
+    background-color: #f2f2f4;
+    border: 1px solid #f2f2f4;
+    border-radius: 5px;
+  }
+
+  .badge .label {
+    padding: 0.25rem 0.5rem;
+    overflow: hidden;
+    font-weight: 600;
+  }
+
+  .badge .value {
+    padding: 0.25rem 0.5rem;
+    background-color: white;
   }
 
   .points {
@@ -241,8 +268,18 @@
 
   .category {
     grid-area: category;
-    font-size: 0.8em;
+    font-size: 0.55em;
+
+    // border-radius: 0.25em;
+    color: #6762d5;
+
+    // font-weight: 600;
     text-transform: uppercase;
+  }
+
+  .title {
+    font-size: 1em;
+    font-weight: 400;
   }
 
   .authors {
@@ -270,24 +307,6 @@
     display: flex;
     gap: 0.5rem;
     font-size: 0.8em;
-  }
-
-  .tag {
-    display: flex;
-    gap: 0.25em;
-    align-items: center;
-    padding: 0 0.125em;
-    background: var(--dark);
-    border-radius: 0.25em;
-
-    > span {
-      display: inline-block;
-      padding: 0 0.25em;
-      line-height: 1.25;
-      background: var(--main);
-      border-block: 0.125em solid var(--dark);
-      border-radius: 0 0.25em 0.25em 0;
-    }
   }
 
   .todo {

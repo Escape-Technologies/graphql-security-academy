@@ -9,6 +9,9 @@
     "lint:prettier": "prettier --check --ignore-unknown --ignore-path .lintignore $INIT_CWD",
     "lint:stylelint": "stylelint --ignore-path .lintignore $INIT_CWD"
   },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.0.8"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",

@@ -702,6 +702,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource-variable/inter@npm:^5.0.8":
+  version: 5.0.8
+  resolution: "@fontsource-variable/inter@npm:5.0.8"
+  checksum: 74175d6051584d7b50410eefc5d454de5ff96d809aeaf6ae46ff4c7f2b04f2d412025ac241cd7a082f93d7456b644e324eeb7089418bd9e39800d92e33ac3225
+  languageName: node
+  linkType: hard
+
+"@fontsource/inter@npm:^5.0.8":
+  version: 5.0.8
+  resolution: "@fontsource/inter@npm:5.0.8"
+  checksum: baca5d14b64699ebe96b597f9a40eba904ad4463939b282a3b211024c6bd99980acfe128f72e613e47e825549600cd26ca030e562bff564907a5b040f5d159d4
+  languageName: node
+  linkType: hard
+
 "@fontsource/open-sans@npm:^5.0.5":
   version: 5.0.5
   resolution: "@fontsource/open-sans@npm:5.0.5"
@@ -5957,6 +5971,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root@workspace:."
   dependencies:
+    "@fontsource-variable/inter": "npm:^5.0.8"
+    "@fontsource/inter": "npm:^5.0.8"
     "@typescript-eslint/eslint-plugin": "npm:^6.1.0"
     "@typescript-eslint/parser": "npm:^6.1.0"
     eslint: "npm:^8.45.0"
