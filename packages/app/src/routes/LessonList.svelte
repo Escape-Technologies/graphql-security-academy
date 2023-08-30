@@ -31,7 +31,7 @@
         {#if completed.has(path)}
           <div class="stamp" transition:slide><RiCheckLine /> Done</div>
         {:else}
-          <div class="todo" transition:slide>
+          <div class="stamp-todo" transition:slide>
             <RiCheckboxBlankCircleLine /> Todo
           </div>
         {/if}
@@ -180,7 +180,7 @@
     text-align: center;
 
     .stamp,
-    .todo {
+    .stamp-todo {
       padding: 0.25em 0.75em 0.25em 0.5em;
       font-size: 0.8em;
       color: #838383;
@@ -189,11 +189,8 @@
     }
 
     .stamp {
-      padding: 0.25em 0.75em 0.25em 0.5em;
-      font-size: 0.8em;
       color: #5b9b78;
       background: #cff2cf;
-      border-radius: 99px; // Round ends
     }
   }
 

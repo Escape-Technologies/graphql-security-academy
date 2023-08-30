@@ -47,23 +47,8 @@
       </button>
     </p>
   </section>
-  <!-- <section> -->
-  <!-- <header>
-      <h2>Introduction</h2>
-      <p>These lessons cover common security concerns with simple solutions.</p>
-    </header> -->
-  <!-- <LessonList lessons={introduction} /> -->
-  <!-- </section> -->
 
   <section>
-    <!-- <header> -->
-    <!-- <h2>Advanced topics</h2> -->
-    <!-- <p>
-        These lessons cover more specific security concerns, exploiting
-        lesser-known GraphQL features and requiring careful considerations to be
-        prevented.
-      </p> -->
-    <!-- </header> -->
     <Filters bind:filter />
     <LessonList lessons={advanced} />
   </section>
@@ -94,14 +79,6 @@
 
   section {
     margin-block: 2rem;
-  }
-
-  section header {
-    margin-block: 1rem;
-
-    > * {
-      margin-block: 0;
-    }
   }
 
   footer {
