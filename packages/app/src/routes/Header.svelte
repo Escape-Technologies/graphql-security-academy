@@ -1,20 +1,5 @@
 <script lang="ts">
-  import { getCompleted } from '$lib/progress.js';
-  import { onMount } from 'svelte';
-  import { tweened } from 'svelte/motion';
   import logo from '$assets/logo.svg?url';
-  import type { PageData } from './$types.js';
-
-  export let lessons: PageData['lessons'];
-
-  const points = tweened(0, { duration: 500 });
-  onMount(() => {
-    const completed = getCompleted();
-    $points = lessons.reduce(
-      (points, lesson) => (completed.has(lesson.path) ? points + 1 : points),
-      0
-    );
-  });
 </script>
 
 <div class="page-header">
@@ -23,9 +8,6 @@
     <h1>Escape Academy</h1>
     <span class="beta">Beta</span>
     <div style="flex: 1" />
-    <div class="points">
-      <strong>{Math.ceil($points)}</strong>/{lessons.length}
-    </div>
   </header>
 </div>
 
@@ -64,13 +46,5 @@
     vertical-align: middle;
     background: #07c9ac;
     border-radius: 0.25em;
-  }
-
-  .points {
-    text-align: center;
-
-    strong {
-      font-size: 2em;
-    }
   }
 </style>
