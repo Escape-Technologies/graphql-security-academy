@@ -50,33 +50,31 @@
       </h3>
       <div class="description">
         <p>{description}</p>
-        {#if owasp || todo}
-          <!-- Placeholder to double the gap -->
-          <div />
-          <div class="tags">
-            {#if owasp}
-              <span class="tag">OWASP <span>{owasp}</span></span>
-            {/if}
-            <span>
-              {difficulty === 'Easy'
-                ? '🟢 Easy'
-                : difficulty === 'Medium'
-                ? '🟡 Medium'
-                : '🔴 Hard'}
-            </span>
-            {#if authors?.length}
-              <ul class="authors">
-                <li>Author:</li>
-                {#each getAuthorsDetails(authors) as { name, github }}
-                  <li>
-                    <img src="{base}/github-image/{github}" alt="" />
-                    {name}
-                  </li>
-                {/each}
-              </ul>
-            {/if}
-          </div>
-        {/if}
+        <!-- Placeholder to double the gap -->
+        <div />
+        <div class="tags">
+          {#if owasp}
+            <span class="tag">OWASP <span>{owasp}</span></span>
+          {/if}
+          <span>
+            {difficulty === 'Easy'
+              ? '🟢 Easy'
+              : difficulty === 'Medium'
+              ? '🟡 Medium'
+              : '🔴 Hard'}
+          </span>
+          {#if authors?.length}
+            <ul class="authors">
+              <li>Author:</li>
+              {#each getAuthorsDetails(authors) as { name, github }}
+                <li>
+                  <img src="{base}/github-image/{github}" alt="" />
+                  {name}
+                </li>
+              {/each}
+            </ul>
+          {/if}
+        </div>
       </div>
     </article>
   {/each}
