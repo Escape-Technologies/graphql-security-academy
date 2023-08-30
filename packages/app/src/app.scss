@@ -9,7 +9,9 @@
   --focused: #fff;
   --hovered: #6c678f40;
   --text: #333;
-  --accent: #07c9ac;
+  --accent: #05e2b7;
+  --secondary-accent: #6762d5;
+  --weak-color: #d1d7da;
 
   // Main colors
   --bg: var(--main);
@@ -61,7 +63,6 @@
 }
 
 body {
-  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: 'Inter', sans-serif;
   color: var(--color);
   background-color: var(--bg);

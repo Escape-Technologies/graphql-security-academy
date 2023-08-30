@@ -7,8 +7,8 @@
 
 <div>
   Categories:
-  {#each categories as { label, color, bg }}
-    <label class:active={label === filter} style:color style:--bg={bg}>
+  {#each categories as { label }}
+    <label class:active={label === filter}>
       <input type="radio" bind:group={filter} value={label} />
       {label}
     </label>
@@ -36,18 +36,23 @@
   label {
     position: relative;
     gap: 0.25em;
-    padding: 0 0.125em;
-    font-family: 'Titillium Web', sans-serif;
-    font-weight: bold;
+    padding: 0.325em 0.65em;
+    font-size: 0.75em;
+    font-weight: 500;
+    color: var(--weak-color);
     text-transform: uppercase;
     cursor: pointer;
     background: var(--main);
-    border-radius: 0.25em;
+    border: 1px solid var(--weak-color);
+    border-radius: 0.5em;
     transition: background 0.1s ease-out;
 
     &.active,
     &:focus-within {
+      font-weight: 600;
+      color: var(--secondary-accent);
       background: var(--bg);
+      border: 1px solid var(--secondary-accent);
     }
   }
 

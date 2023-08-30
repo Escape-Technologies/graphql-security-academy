@@ -269,11 +269,7 @@
   .category {
     grid-area: category;
     font-size: 0.55em;
-
-    // border-radius: 0.25em;
-    color: #6762d5;
-
-    // font-weight: 600;
+    color: var(--secondary-accent);
     text-transform: uppercase;
   }
 
