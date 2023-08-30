@@ -35,7 +35,7 @@
 
 <main>
   <section>
-    <h1>Welcome to the GraphQL Security Academy 👋</h1>
+    <h1>Welcome on Board 👋</h1>
     <p>
       The GraphQL Security Academy offers hands-on lessons that walk you through
       various vulnerabilities and security best practices specific to GraphQL directly in your browser.

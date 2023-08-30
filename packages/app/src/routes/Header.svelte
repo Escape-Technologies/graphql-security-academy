@@ -5,7 +5,7 @@
 <div class="page-header">
   <header>
     <img src={logo} alt="" />
-    <h1>Escape Academy</h1>
+    <h1>GraphQL Security Academy</h1>
     <span class="beta">Beta</span>
     <div style="flex: 1" />
   </header>
