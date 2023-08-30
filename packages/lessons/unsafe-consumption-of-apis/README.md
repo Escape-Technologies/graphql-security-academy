@@ -2,7 +2,7 @@
 title: 'Secure Third-Party API Interactions'
 description: 'Learn to safeguard against injection risks when interacting with APIs that return user-provided data.'
 category: 'Injection'
-difficulty: 'hard'
+difficulty: 'Hard'
 owasp: 'API10:2023'
 todo: true
 ---

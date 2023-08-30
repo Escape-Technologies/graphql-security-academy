@@ -2,7 +2,7 @@
 title: 'Configure HTTP Headers for User Protection'
 description: 'Understand the role of the Access-Control-Allow-Origin header in safeguarding users from cross-site request forgery (CSRF) attacks.'
 category: 'HTTP'
-difficulty: 'medium'
+difficulty: 'Medium'
 owasp: 'API7:2023'
 authors: ['escape']
 ---

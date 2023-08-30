@@ -2,7 +2,7 @@
 title: 'Disable Debug Mode for Production'
 description: 'Explore the importance of turning off debug mode in a production environment to safeguard against unwanted information disclosure.'
 category: 'Information Disclosure'
-difficulty: 'easy'
+difficulty: 'Easy'
 owasp: 'API7:2023'
 authors: ['escape']
 ---

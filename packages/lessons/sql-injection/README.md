@@ -2,7 +2,7 @@
 title: 'Combat SQL Injections'
 description: 'Delve into the mechanisms of SQL injections—how to exploit them and the strategies for preventing this enduring vulnerability.'
 category: 'Injection'
-difficulty: 'easy'
+difficulty: 'Easy'
 owasp: 'API8:2019'
 authors: ['escape']
 ---

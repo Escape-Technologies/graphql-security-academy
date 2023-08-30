@@ -2,7 +2,7 @@
 title: 'Implement Object-Level Authorization'
 description: 'Master the essentials of object-level authorization for secure data access and improved application security.'
 category: 'Access Control'
-difficulty: 'easy'
+difficulty: 'Easy'
 owasp: 'API1:2023'
 authors: ['escape']
 ---

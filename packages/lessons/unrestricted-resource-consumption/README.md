@@ -2,7 +2,7 @@
 title: 'Limit Query Complexity'
 description: 'Discover techniques to restrict expensive queries using GraphQL Armor, enhancing performance and security.'
 category: 'Complexity'
-difficulty: 'easy'
+difficulty: 'Easy'
 owasp: 'API4:2023'
 authors: ['escape']
 ---

@@ -58,9 +58,9 @@
               <span class="tag">OWASP <span>{owasp}</span></span>
             {/if}
             <span>
-              {difficulty === 'easy'
+              {difficulty === 'Easy'
                 ? '🟢 Easy'
-                : difficulty === 'medium'
+                : difficulty === 'Medium'
                 ? '🟡 Medium'
                 : '🔴 Hard'}
             </span>

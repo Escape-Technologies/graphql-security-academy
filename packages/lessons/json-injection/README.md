@@ -2,7 +2,7 @@
 title: 'Validate JSON Inputs'
 description: 'Explore techniques for validating JSON input objects to mitigate the risk of injection vulnerabilities.'
 category: 'Injection'
-difficulty: 'medium'
+difficulty: 'Medium'
 owasp: 'API8:2019'
 authors: ['escape']
 ---

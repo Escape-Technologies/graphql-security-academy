@@ -11,7 +11,7 @@ export interface Lesson {
     title: string;
     description: string;
     category: string;
-    difficulty: 'easy' | 'medium' | 'hard';
+    difficulty: 'Easy' | 'Medium' | 'Hard';
     owasp?: string;
     todo?: boolean;
     authors?: string[];

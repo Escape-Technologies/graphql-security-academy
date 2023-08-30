@@ -21,8 +21,8 @@
     .sort((a, z) => (a.todo ? 1 : 0) - (z.todo ? 1 : 0))
     .sort(
       (a, z) =>
-        ['easy', 'medium', 'hard'].indexOf(a.difficulty) -
-        ['easy', 'medium', 'hard'].indexOf(z.difficulty)
+        ['Easy', 'Medium', 'Hard'].indexOf(a.difficulty) -
+        ['Easy', 'Medium', 'Hard'].indexOf(z.difficulty)
     );
 
   let done = 0;
