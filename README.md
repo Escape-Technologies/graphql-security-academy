@@ -15,7 +15,7 @@ A lesson is a regular npm package that contains at least a `package.json` file a
 
 ```bash
 # Clone the repository
-git clone https://github.com/Escape-Technologies/learn.git
+git clone https://github.com/Escape-Technologies/academy.git
 cd learn
 
 # Install the dependencies

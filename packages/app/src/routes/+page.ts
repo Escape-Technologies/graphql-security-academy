@@ -10,7 +10,7 @@ export const load = ({ fetch }) => ({
     })
   ),
   github: {
-    stars: fetch('https://api.github.com/repos/Escape-Technologies/learn')
+    stars: fetch('https://api.github.com/repos/Escape-Technologies/academy')
       .then((response) => response.json())
       .then((data) => data.stargazers_count),
   },

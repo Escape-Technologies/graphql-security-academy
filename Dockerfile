@@ -2,7 +2,7 @@ FROM node:18-bullseye-slim as build
 ENV USER=node
 ENV HOME=/home/node
 USER node
-WORKDIR $HOME/learn
+WORKDIR $HOME/academy
 
 ADD --chown=$USER:$USER . .
 

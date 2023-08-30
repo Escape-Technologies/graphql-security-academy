@@ -33,7 +33,7 @@
     </p>
     <p>
       The Academy is entirely
-      <a href="https://github.com/Escape-Technologies/learn">
+      <a href="https://github.com/Escape-Technologies/academy">
         free and open-source!
       </a>
       You can support the project by leaving a star on GitHub, reporting bugs or
@@ -66,7 +66,7 @@
     <a href="https://www.linkedin.com/company/escapetech/">
       <Linkedin aria-label="Open on LinkedIn" />
     </a>
-    <a href="https://github.com/Escape-Technologies/learn">
+    <a href="https://github.com/Escape-Technologies/academy">
       <Github aria-label="Open on GitHub" />
     </a>
     <a href="https://discord.escape.tech">

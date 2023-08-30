@@ -8,7 +8,7 @@ introduction: true
 authors: ['escape']
 ---
 
-If this is the first lesson you are doing, welcome! This learning platform is developed conjointly by ['escape'](https://escape.tech/) and [the open-source community](https://github.com/Escape-Technologies/learn). All the content of this site is open-source and contributions are welcome.
+If this is the first lesson you are doing, welcome! This learning platform is developed conjointly by ['escape'](https://escape.tech/) and [the open-source community](https://github.com/Escape-Technologies/academy). All the content of this site is open-source and contributions are welcome.
 
 This lesson is about properly setting up object-level authorization in GraphQL with Apollo. The server code is given, with authentication developed following [Apollo's recommandations](https://www.apollographql.com/docs/apollo-server/security/authentication/). Small oversights have made **the authorization mechanism vulnerable**. Our goal is to exploit it and then fix it.
 

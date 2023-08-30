@@ -23,13 +23,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ secrets.DOCKERHUB_REPO}}/learn
+          images: ${{ secrets.DOCKERHUB_REPO}}/academy
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
           platforms: linux/amd64
-          tags: escapetech/learn:latest
+          tags: escapetech/academy:latest
 
   k8s-deploy:
     needs: docker-push
