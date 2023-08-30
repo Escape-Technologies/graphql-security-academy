@@ -4,7 +4,6 @@ description: 'Explore the importance of turning off debug mode in a production e
 category: 'Information Disclosure'
 difficulty: 'easy'
 owasp: 'API7:2023'
-introduction: true
 authors: ['escape']
 ---
 

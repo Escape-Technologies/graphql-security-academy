@@ -4,7 +4,6 @@ description: 'Discover techniques to restrict expensive queries using GraphQL Ar
 category: 'Complexity'
 difficulty: 'easy'
 owasp: 'API4:2023'
-introduction: true
 authors: ['escape']
 ---
 

@@ -10,10 +10,9 @@ export interface Lesson {
   metadata: {
     title: string;
     description: string;
-    category: 'Authorization' | 'DoS' | 'Configuration' | 'Injection';
+    category: string;
     difficulty: 'easy' | 'medium' | 'hard';
     owasp?: string;
-    introduction?: boolean;
     todo?: boolean;
     authors?: string[];
   };

@@ -4,7 +4,6 @@ description: 'Delve into the mechanisms of SQL injections—how to exploit them 
 category: 'Injection'
 difficulty: 'easy'
 owasp: 'API8:2019'
-introduction: true
 authors: ['escape']
 ---
 
