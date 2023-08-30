@@ -25,27 +25,22 @@
 
 <main>
   <section>
-    <h1>Welcome to GraphQL Security Academy 👋</h1>
+    <h1>Welcome to the GraphQL Security Academy 👋</h1>
     <p>
-      If you're a developer or a security engineer interested in fortifying GraphQL applications,
-      you've come to the right place. Here, we offer hands-on lessons that walk you through
-      various vulnerabilities and security best practices specific to GraphQL.
+      The GraphQL Security Academy offers hands-on lessons that walk you through
+      various vulnerabilities and security best practices specific to GraphQL directly in your browser.
     </p>
     <p>
-      Each lesson is built around a WebContainer containing a real-world GraphQL application,
+      Each lesson is built around a WebContainer containing a live GraphQL application,
       so you'll not only understand <em>why</em> a vulnerability is risky, but also
       <em>how</em> to exploit it and, most importantly, <em>how</em> to fix it.
     </p>
-    <p>
-      Feel free to jump in and start learning. Secure coding awaits!
-    </p>
-    <p>🔒 Happy Learning! 🔒</p>
     <p>
       The Academy is entirely
       <a href="https://github.com/Escape-Technologies/academy">
         free and open-source!
       </a>
-      You can support the project by leaving a star on GitHub, reporting bugs or
+      You can support the project by leaving a star, reporting bugs or
       even creating new lessons. <strong>We welcome all contributions!</strong>
     </p>
     <p>
@@ -57,6 +52,9 @@
       <button>
         <Discord /> Join Escape Community
       </button>
+    </p>
+    <p>
+      Feel free to jump in and start your first lesson. Happy Learning! 🔒
     </p>
   </section>
 
