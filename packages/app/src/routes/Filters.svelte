@@ -30,6 +30,7 @@
     flex-wrap: wrap;
     gap: 0.5rem;
     align-items: center;
+    margin-block: 1rem;
   }
 
   label {
