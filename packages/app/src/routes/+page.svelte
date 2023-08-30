@@ -10,6 +10,7 @@
   import LessonList from './LessonList.svelte';
   import Newsletter from './Newsletter.svelte';
   import Progress from './Progress.svelte';
+  import Social from './Social.svelte';
 
   export let data;
 
@@ -55,16 +56,7 @@
       You can support the project by leaving a star, reporting bugs or even creating
       new lessons. <strong>We welcome all contributions!</strong>
     </p>
-    <p>
-      <button>
-        <Github /> Star on GitHub {#await data.github.stars then stars}
-          ({stars})
-        {/await}
-      </button>
-      <button>
-        <Discord /> Join Escape Community
-      </button>
-    </p>
+    <Social />
     <p>Feel free to jump in and start your first lesson. Happy Learning! 🔒</p>
     <Newsletter />
   </section>
