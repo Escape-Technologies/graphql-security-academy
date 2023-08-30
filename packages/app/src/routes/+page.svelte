@@ -68,17 +68,15 @@
     </p>
   </section>
 
+
   <section>
-    <h2>Progress</h2>
+    <h1>Lessons</h1>
     <div class="flex">
       <span>{Math.ceil($count)}/{data.lessons.length}</span>
       <meter value={$count} max={data.lessons.length} />
       <span style="font-size: 2em"> 🏆 </span>
     </div>
-  </section>
-
-  <section>
-    <h2>Lessons</h2>
+    <br />
     <Filters bind:filter />
     <LessonList lessons={advanced} />
   </section>
