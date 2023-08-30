@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { cubicOut } from 'svelte/easing';
+  import { tweened } from 'svelte/motion';
   import Discord from '~icons/simple-icons/discord';
   import Github from '~icons/simple-icons/github';
   import Linkedin from '~icons/simple-icons/linkedin';
@@ -6,6 +8,8 @@
   import Filters from './Filters.svelte';
   import Header from './Header.svelte';
   import LessonList from './LessonList.svelte';
+  import { onMount } from 'svelte';
+  import { getCompleted } from '$lib/progress.js';
 
   export let data;
 
@@ -19,9 +23,15 @@
         ['easy', 'medium', 'hard'].indexOf(a.difficulty) -
         ['easy', 'medium', 'hard'].indexOf(z.difficulty)
     );
+
+  const count = tweened(0, { easing: cubicOut });
+  onMount(() => {
+    const completed = getCompleted();
+    $count = data.lessons.filter(({ path }) => completed.has(path)).length;
+  });
 </script>
 
-<Header lessons={data.lessons} />
+<Header />
 
 <main>
   <section>
@@ -59,7 +69,16 @@
   </section>
 
   <section>
-    <h1>Lessons</h1>
+    <h2>Progress</h2>
+    <div class="flex">
+      <span>{Math.ceil($count)}/{data.lessons.length}</span>
+      <meter value={$count} max={data.lessons.length} />
+      <span style="font-size: 2em"> 🏆 </span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Lessons</h2>
     <Filters bind:filter />
     <LessonList lessons={advanced} />
   </section>
@@ -105,6 +124,21 @@
         color: var(--accent);
       }
     }
+  }
+
+  meter {
+    display: block;
+    width: 100%;
+    height: 1em;
+    appearance: none;
+    border: none;
+    border-radius: 0.25rem;
+  }
+
+  .flex {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
   }
 
   .icons {
