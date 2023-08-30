@@ -709,27 +709,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/inter@npm:^5.0.8":
-  version: 5.0.8
-  resolution: "@fontsource/inter@npm:5.0.8"
-  checksum: baca5d14b64699ebe96b597f9a40eba904ad4463939b282a3b211024c6bd99980acfe128f72e613e47e825549600cd26ca030e562bff564907a5b040f5d159d4
-  languageName: node
-  linkType: hard
-
-"@fontsource/open-sans@npm:^5.0.5":
-  version: 5.0.5
-  resolution: "@fontsource/open-sans@npm:5.0.5"
-  checksum: 8c8f8d39b51c80bc07aade15b69b4d1241156e3634c162a984eb1fd64c59938165a895e348bc5147be632d65fe061974d6aff624e8b41ad221ab4dddedca7354
-  languageName: node
-  linkType: hard
-
-"@fontsource/titillium-web@npm:^5.0.5":
-  version: 5.0.5
-  resolution: "@fontsource/titillium-web@npm:5.0.5"
-  checksum: 1b9254a8c73159fe3d90eaf70e23ca134126bf393b1f5d65bd0e6d70b8a2ada67af49f1297f217ba6fda8989b28ff8c3503e0ffefed615e364952aa63b2913fc
-  languageName: node
-  linkType: hard
-
 "@gar/promisify@npm:^1.0.1, @gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -1868,8 +1847,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "app@workspace:packages/app"
   dependencies:
-    "@fontsource/open-sans": "npm:^5.0.5"
-    "@fontsource/titillium-web": "npm:^5.0.5"
     "@iconify-json/ri": "npm:^1.1.10"
     "@iconify-json/simple-icons": "npm:^1.1.61"
     "@sveltejs/adapter-node": "npm:^1.3.1"
@@ -5972,7 +5949,6 @@ __metadata:
   resolution: "root@workspace:."
   dependencies:
     "@fontsource-variable/inter": "npm:^5.0.8"
-    "@fontsource/inter": "npm:^5.0.8"
     "@typescript-eslint/eslint-plugin": "npm:^6.1.0"
     "@typescript-eslint/parser": "npm:^6.1.0"
     eslint: "npm:^8.45.0"

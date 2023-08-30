@@ -239,6 +239,19 @@
       border-radius: 99px; // Round ends
     }
 
+    .coming-soon {
+      padding: 0.25em 0.75em 0.25em 0.5em;
+      font-size: 0.8em; /* new property, adjust as needed */
+      color: var(--text);
+      background: linear-gradient(
+        90deg,
+        #17e2bd 0%,
+        #38c8fb 48.09%,
+        #918aff 100%
+      );
+      border-radius: 99px; // Round ends
+    }
+
     .stamp {
       color: #5b9b78;
       background: #cff2cf;
@@ -337,14 +350,5 @@
     pointer-events: none;
     background: #f8f8f8;
     opacity: 0.9;
-  }
-
-  .coming-soon {
-    padding: 0.12em 0.3em;
-    font-size: 0.8em; /* new property, adjust as needed */
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(165deg, #727486, #5b5669);
-    border-radius: 0.25em;
   }
 </style>

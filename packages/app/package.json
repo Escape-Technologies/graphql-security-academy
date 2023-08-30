@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fontsource/open-sans": "^5.0.5",
-    "@fontsource/titillium-web": "^5.0.5",
     "@webcontainer/api": "^1.1.5",
     "chalk": "^5.3.0",
     "monaco-editor": "^0.40.0",
