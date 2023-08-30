@@ -1,6 +1,5 @@
 @import 'modern-normalize/modern-normalize.css';
-@import '@fontsource/titillium-web';
-@import '@fontsource/open-sans';
+@import '@fontsource-variable/inter';
 
 :root {
   // Theme
@@ -10,7 +9,9 @@
   --focused: #fff;
   --hovered: #6c678f40;
   --text: #333;
-  --accent: #07c9ac;
+  --accent: #05e2b7;
+  --secondary-accent: #6762d5;
+  --weak-color: #babbbb;
 
   // Main colors
   --bg: var(--main);
@@ -62,7 +63,7 @@
 }
 
 body {
-  font-family: 'Open Sans', system-ui, sans-serif;
+  font-family: Inter, sans-serif;
   color: var(--color);
   background-color: var(--bg);
 }
@@ -73,7 +74,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Titillium Web', sans-serif;
+  font-family: Inter, sans-serif;
 }
 
 h1 {

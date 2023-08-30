@@ -29,7 +29,15 @@
     justify-content: end;
     height: 1em;
     overflow: hidden;
-    background: linear-gradient(to right, #5b9b78, #52cd89);
+    background-image: linear-gradient(
+      70deg,
+      hsl(169deg 82% 49%) 0%,
+      hsl(182deg 100% 44%) 29%,
+      hsl(192deg 100% 50%) 43%,
+      hsl(197deg 100% 50%) 57%,
+      hsl(202deg 100% 50%) 71%,
+      hsl(243deg 100% 76%) 100%
+    );
     border-radius: 0.25rem;
 
     > div {

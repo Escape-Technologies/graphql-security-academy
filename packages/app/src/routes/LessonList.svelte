@@ -6,7 +6,7 @@
   import { onMount } from 'svelte';
   import { slide } from 'svelte/transition';
   import RiCheckLine from '~icons/ri/check-line';
-  import RiCheckboxBlankCircleLine from '~icons/ri/checkbox-blank-circle-line';
+  import PlayFill from '~icons/ri/play-line';
 
   let completed = new Map<string, Date>();
 
@@ -34,47 +34,64 @@
           <div class="stamp" transition:slide><RiCheckLine /> Done</div>
         {:else}
           <div class="stamp-todo" transition:slide>
-            <RiCheckboxBlankCircleLine /> Start
+            <PlayFill /> Start
           </div>
         {/if}
       </div>
       <h3>
-        <span class="category" style:color={categoryMap.get(category)?.color}>
+        <span class="category">
           {category}
         </span>&nbsp;
-        {#if todo}
-          <span>{title}</span>
-        {:else}
-          <a href={path}>{title}</a>
-        {/if}
+        <div>
+          {#if todo}
+            <span class="title">{title}</span>
+          {:else}
+            <a class="title" href={path}>{title}</a>
+          {/if}
+        </div>
       </h3>
       <div class="description">
         <p>{description}</p>
-        <!-- Placeholder to double the gap -->
-        <div />
-        <div class="tags">
-          {#if owasp}
-            <span class="tag">OWASP <span>{owasp}</span></span>
-          {/if}
-          <span>
-            {difficulty === 'Easy'
-              ? '🟢 Easy'
-              : difficulty === 'Medium'
-              ? '🟡 Medium'
-              : '🔴 Hard'}
-          </span>
-          {#if authors?.length}
-            <ul class="authors">
-              <li>Author:</li>
-              {#each getAuthorsDetails(authors) as { name, github }}
-                <li>
-                  <img src="{base}/github-image/{github}" alt="" />
-                  {name}
-                </li>
-              {/each}
-            </ul>
-          {/if}
-        </div>
+        {#if owasp || todo}
+          <!-- Placeholder to double the gap -->
+          <div />
+          <div class="tags">
+            {#if owasp}
+              <div class="badge">
+                <div class="label">OWASP</div>
+                <div class="value">{owasp}</div>
+              </div>
+            {/if}
+            <span
+              class="difficulty {difficulty === 'Easy'
+                ? 'easy'
+                : difficulty === 'Medium'
+                ? 'medium'
+                : 'hard'}"
+            >
+              {difficulty === 'Easy'
+                ? 'Easy'
+                : difficulty === 'Medium'
+                ? 'Medium'
+                : 'Hard'}
+            </span>
+            {#if authors?.length}
+              <div class="authors">
+                <span class="label">
+                  Author {#if authors.length > 1}s{/if}:
+                </span>
+                <ul>
+                  {#each getAuthorsDetails(authors) as { name, github }}
+                    <li>
+                      <img src="{base}/github-image/{github}" alt="" />
+                      {name}
+                    </li>
+                  {/each}
+                </ul>
+              </div>
+            {/if}
+          </div>
+        {/if}
       </div>
     </article>
   {/each}
@@ -104,7 +121,7 @@
         'icon title points' auto
         'icon description points' 1fr
         / auto 1fr auto;
-      row-gap: 0;
+      row-gap: 0.5rem;
     }
 
     &:not(.todo):hover,
@@ -118,6 +135,7 @@
     h3 {
       grid-area: title;
       margin: 0;
+      margin-top: -8px;
       line-height: 1.25;
 
       > * {
@@ -164,7 +182,48 @@
     height: 4rem;
     font-size: 2rem;
     background: linear-gradient(165deg, var(--from), var(--to));
-    border-radius: 0.25rem;
+    border-radius: 0.75rem;
+  }
+
+  .badge {
+    display: flex;
+    align-items: stretch;
+    font-size: 0.8em;
+    background-color: #f2f2f4;
+    border: 1px solid #f2f2f4;
+    border-radius: 5px;
+  }
+
+  .badge .label {
+    padding: 0.25rem 0.5rem;
+    overflow: hidden;
+    font-weight: 600;
+  }
+
+  .badge .value {
+    padding: 0.25rem 0.5rem;
+    background-color: white;
+    border-radius: 0 5px 5px 0;
+  }
+
+  .difficulty {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 5px;
+  }
+
+  .difficulty.easy {
+    background-color: #a7daff;
+  }
+
+  .difficulty.medium {
+    background-color: #ffedb3;
+  }
+
+  .difficulty.hard {
+    background-color: #fdccc1;
   }
 
   .points {
@@ -181,14 +240,27 @@
     .stamp-todo {
       padding: 0.25em 0.75em 0.25em 0.5em;
       font-size: 0.8em;
+      color: var(--text);
+      background: linear-gradient(
+        90deg,
+        #17e2bd 0%,
+        #38c8fb 48.09%,
+        #918aff 100%
+      );
+      border-radius: 99px; // Round ends
+    }
+
+    .coming-soon {
+      padding: 0.25em 0.75em 0.25em 0.5em;
+      font-size: 0.8em; /* new property, adjust as needed */
       color: #838383;
       background: #f2f2f2;
       border-radius: 99px; // Round ends
     }
 
     .stamp {
-      color: #5b9b78;
-      background: #cff2cf;
+      color: var(--text);
+      background: var(--accent);
     }
   }
 
@@ -241,22 +313,43 @@
 
   .category {
     grid-area: category;
-    font-size: 0.8em;
+    font-size: 0.55em;
+    color: var(--secondary-accent);
     text-transform: uppercase;
+  }
+
+  .title {
+    font-size: 1em;
+    font-weight: 600;
+    color: #313048;
   }
 
   .authors {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5em;
-    padding: 0;
-    margin: 0;
-    list-style: none;
+    align-items: center;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+      padding: 0;
+      padding: 0.25rem 0.5rem;
+      margin: 0;
+      list-style: none;
+    }
+
+    .label {
+      padding: 0.25rem 0.25rem 0.25rem 0;
+      font-size: 1em;
+    }
 
     li {
       display: flex;
       gap: 0.25rem;
       align-items: center;
+      padding: 0.25rem 0.5rem;
+      background-color: #f2f2f4;
+      border-radius: 5px;
 
       img {
         width: 1.5em;
@@ -269,25 +362,8 @@
   .tags {
     display: flex;
     gap: 0.5rem;
-    font-size: 0.8em;
-  }
-
-  .tag {
-    display: flex;
-    gap: 0.25em;
     align-items: center;
-    padding: 0 0.125em;
-    background: var(--dark);
-    border-radius: 0.25em;
-
-    > span {
-      display: inline-block;
-      padding: 0 0.25em;
-      line-height: 1.25;
-      background: var(--main);
-      border-block: 0.125em solid var(--dark);
-      border-radius: 0 0.25em 0.25em 0;
-    }
+    font-size: 0.8em;
   }
 
   .todo {
@@ -295,14 +371,5 @@
     pointer-events: none;
     background: #f8f8f8;
     opacity: 0.9;
-  }
-
-  .coming-soon {
-    padding: 0.12em 0.3em;
-    font-size: 0.8em; /* new property, adjust as needed */
-    font-weight: bold;
-    color: #fff;
-    background: linear-gradient(165deg, #727486, #5b5669);
-    border-radius: 0.25em;
   }
 </style>
