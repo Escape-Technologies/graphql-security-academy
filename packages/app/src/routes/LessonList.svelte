@@ -76,15 +76,19 @@
                 : 'Hard'}
             </span>
             {#if authors?.length}
-              <ul class="authors">
-                <li>Author:</li>
-                {#each getAuthorsDetails(authors) as { name, github }}
-                  <li>
-                    <img src="{base}/github-image/{github}" alt="" />
-                    {name}
-                  </li>
-                {/each}
-              </ul>
+              <div class="authors">
+                <span class="label">
+                  Author {#if authors.length > 1}s{/if}:
+                </span>
+                <ul>
+                  {#each getAuthorsDetails(authors) as { name, github }}
+                    <li>
+                      <img src="{base}/github-image/{github}" alt="" />
+                      {name}
+                    </li>
+                  {/each}
+                </ul>
+              </div>
             {/if}
           </div>
         {/if}
@@ -204,6 +208,7 @@
   .difficulty {
     padding: 0.25rem 0.5rem;
     font-size: 0.8em;
+    font-weight: 600;
     text-transform: uppercase;
     border-radius: 5px;
   }
@@ -213,11 +218,11 @@
   }
 
   .difficulty.medium {
-    background-color: #fde7a0;
+    background-color: #ffedb3;
   }
 
   .difficulty.hard {
-    background-color: #fdaf9d;
+    background-color: #fdccc1;
   }
 
   .points {
@@ -247,8 +252,8 @@
     .coming-soon {
       padding: 0.25em 0.75em 0.25em 0.5em;
       font-size: 0.8em; /* new property, adjust as needed */
-      background: #f2f2f2;
       color: #838383;
+      background: #f2f2f2;
       border-radius: 99px; // Round ends
     }
 
@@ -320,16 +325,30 @@
 
   .authors {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5em;
-    padding: 0;
-    margin: 0;
-    list-style: none;
+    align-items: center;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+      padding: 0;
+      padding: 0.25rem 0.5rem;
+      margin: 0;
+      list-style: none;
+    }
+
+    .label {
+      padding: 0.25rem 0.25rem 0.25rem 0;
+      font-size: 1em;
+    }
 
     li {
       display: flex;
       gap: 0.25rem;
       align-items: center;
+      padding: 0.25rem 0.5rem;
+      background-color: #f2f2f4;
+      border-radius: 5px;
 
       img {
         width: 1.5em;
@@ -342,6 +361,7 @@
   .tags {
     display: flex;
     gap: 0.5rem;
+    align-items: center;
     font-size: 0.8em;
   }
 
