@@ -29,7 +29,7 @@
     padding: 0.5em;
     color: #fff;
     text-decoration: none;
-    border-radius: 0.5em;
+    border-radius: 0.325em;
     transition: box-shadow 0.1s ease-out;
   }
 

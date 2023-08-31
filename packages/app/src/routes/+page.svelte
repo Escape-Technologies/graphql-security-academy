@@ -48,17 +48,25 @@
       risky, but also
       <em>how</em> to exploit it and, most importantly, <em>how</em> to fix it.
     </p>
-    <p>
-      The Academy is entirely
-      <a href="https://github.com/Escape-Technologies/graphql-security-academy">
-        free and open-source!
-      </a>
-      You can support the project by leaving a star, reporting bugs or even creating
-      new lessons. <strong>We welcome all contributions!</strong>
-    </p>
-    <Social />
-    <p>Feel free to jump in and start your first lesson. Happy Learning! 🔒</p>
+    <article>
+      <h3>
+        The Academy is entirely
+        <a
+          href="https://github.com/Escape-Technologies/graphql-security-academy"
+        >
+          free and open-source!
+        </a>
+      </h3>
+      <p>
+        You can support the project by leaving a star, reporting bugs or even
+        creating new lessons. <strong>We welcome all contributions!</strong>
+      </p>
+      <Social />
+    </article>
     <Newsletter />
+    <h3>
+      Feel free to jump in and start your first lesson. Happy Learning! 🔒
+    </h3>
   </section>
 
   <section>
@@ -88,6 +96,12 @@
 </footer>
 
 <style lang="scss">
+  article {
+    padding: 0.75rem 1rem;
+    background-color: var(--bg-secondary);
+    border-radius: 5px;
+  }
+
   main,
   footer {
     max-width: 50rem;
