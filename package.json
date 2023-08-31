@@ -10,7 +10,6 @@
     "lint:stylelint": "stylelint --ignore-path .lintignore $INIT_CWD"
   },
   "devDependencies": {
-    "@fontsource-variable/inter": "^5.0.8",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
     "eslint": "^8.45.0",
