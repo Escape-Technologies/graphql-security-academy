@@ -4,9 +4,8 @@
 </script>
 
 <svelte:head>
-  <title>
-    {$page.data.title ? `${$page.data.title} – ` : ''}Escape Academy (beta)
-  </title>
+  <title>{$page.data.title}</title>
+  <meta name="description" content={$page.data.description} />
 </svelte:head>
 
 <slot />

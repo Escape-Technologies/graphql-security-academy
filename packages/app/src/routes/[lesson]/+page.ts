@@ -10,5 +10,10 @@ export const load = async ({ params }) => {
     default: FileSystemTree;
   }>;
   const readme = await load();
-  return { readme, files, title: readme.metadata.title };
+  return {
+    readme,
+    files,
+    title: readme.metadata.title,
+    description: readme.metadata.description,
+  };
 };
