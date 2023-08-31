@@ -7,8 +7,8 @@
   <header>
     <div class="title">
       <img src={logo} alt="" />
-      <h1>GraphQL Security Academy</h1>
-      <span class="beta">Beta</span>
+      <h1>GraphQL Security Academy</h1> by 
+      <span class="beta">Escape</span>
     </div>
     <div class="links">
       <a href="https//escape.tech">Website <RiShareBoxFill /></a>
