@@ -1,5 +1,6 @@
 <script lang="ts">
   import { tweened } from 'svelte/motion';
+  import cup from '$assets/cup.svg?url';
 
   export let done: number;
   export let total: number;
@@ -9,18 +10,37 @@
 </script>
 
 <div class="wrapper">
-  <span>{Math.ceil($progress)}/{total}</span>
-  <div class="progress">
-    <div style="width: {100 - ($progress / total) * 100}%" />
+  <span><span>{Math.ceil($progress)}</span>/{total}</span>
+  <div class="rate">
+    <div class="progress">
+      <div style="width: {100 - ($progress / total) * 100}%" />
+    </div>
+    <div class="cup" class:complete={done >= total}>
+      <img src={cup} alt="Cup" />
+    </div>
   </div>
-  <span class="cup" class:complete={done >= total}> 🏆 </span>
 </div>
 
 <style lang="scss">
   .wrapper {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+  }
+
+  .rate {
+    display: flex;
+    flex: 1;
+    gap: 1em;
     align-items: center;
+  }
+
+  .wrapper > span {
+    margin-bottom: -10px;
+
+    span {
+      font-size: 1.2em;
+      font-weight: 800;
+    }
   }
 
   .progress {
@@ -42,28 +62,22 @@
 
     > div {
       height: 100%;
-      background: #f2f2f2;
+      background: var(--bg-secondary);
     }
   }
 
   .cup {
-    font-size: 3em;
-    line-height: 1;
-    color: #0004;
-    text-shadow: #838383 0 0 0;
-    opacity: 0.5;
-    transition: 0.2s all ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75em;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    border-radius: 100%;
 
-    .wrapper:hover & {
-      color: #0004;
-      opacity: 1;
-      transform: scale(1.1);
-    }
-
-    &.complete,
-    .wrapper:hover &.complete {
-      color: inherit;
-      opacity: 1;
+    img {
+      width: 1.5em;
+      height: 1.5em;
     }
   }
 </style>

@@ -20,78 +20,86 @@
 <div class="list">
   {#each lessons as { path, title, description, category, difficulty, owasp, todo, authors } (path)}
     <article transition:slide={{ duration: 200 }} class:todo>
-      <div
-        class="icon"
-        style:--from={categoryMap.get(category)?.bg}
-        style:--to={categoryMap.get(category)?.color}
-      >
-        {categoryMap.get(category)?.icon}
+      <div class="side">
+        <div
+          class="icon"
+          style:--from={categoryMap.get(category)?.bg}
+          style:--to={categoryMap.get(category)?.color}
+        >
+          {categoryMap.get(category)?.icon}
+        </div>
+        <span
+          class="difficulty {difficulty === 'Easy'
+            ? 'easy'
+            : difficulty === 'Medium'
+            ? 'medium'
+            : 'hard'}"
+        >
+          {difficulty === 'Easy'
+            ? 'Easy'
+            : difficulty === 'Medium'
+            ? 'Medium'
+            : 'Hard'}
+        </span>
       </div>
-      <div class="points">
-        {#if todo}
-          <span class="coming-soon">Coming soon</span>
-        {:else if completed.has(path)}
-          <div class="stamp" transition:slide><RiCheckLine /> Done</div>
-        {:else}
-          <div class="stamp-todo" transition:slide>
-            <PlayFill /> Start
+
+      <div class="main">
+        <div class="header">
+          <div class="category">
+            <span>{category}</span>
+            <div class="tags">
+              {#if owasp}
+                <div class="badge">
+                  <div class="label">OWASP</div>
+                  <div class="value">{owasp}</div>
+                </div>
+              {/if}
+            </div>
           </div>
-        {/if}
-      </div>
-      <h3>
-        <span class="category">
-          {category}
-        </span>&nbsp;
-        <div>
-          {#if todo}
-            <span class="title">{title}</span>
-          {:else}
-            <a class="title" href={path}>{title}</a>
+          <h3>
+            {#if todo}
+              <span class="title">{title}</span>
+            {:else}
+              <a class="title" href={path}>{title}</a>
+            {/if}
+          </h3>
+        </div>
+        <div class="description">
+          <p>{description}</p>
+          {#if owasp || todo}
+            <!-- Placeholder to double the gap -->
+            <div />
+          {/if}
+          {#if authors?.length}
+            <div class="authors">
+              <span class="label">
+                by {#if authors.length > 1}s{/if}
+              </span>
+              <ul>
+                {#each getAuthorsDetails(authors) as { name, github }}
+                  <li>
+                    <img src="{base}/github-image/{github}" alt="" />
+                    {name}
+                  </li>
+                {/each}
+              </ul>
+            </div>
           {/if}
         </div>
-      </h3>
-      <div class="description">
-        <p>{description}</p>
-        {#if owasp || todo}
-          <!-- Placeholder to double the gap -->
-          <div />
-          <div class="tags">
-            {#if owasp}
-              <div class="badge">
-                <div class="label">OWASP</div>
-                <div class="value">{owasp}</div>
-              </div>
-            {/if}
-            <span
-              class="difficulty {difficulty === 'Easy'
-                ? 'easy'
-                : difficulty === 'Medium'
-                ? 'medium'
-                : 'hard'}"
-            >
-              {difficulty === 'Easy'
-                ? 'Easy'
-                : difficulty === 'Medium'
-                ? 'Medium'
-                : 'Hard'}
-            </span>
-            {#if authors?.length}
-              <div class="authors">
-                <span class="label">
-                  Author {#if authors.length > 1}s{/if}:
-                </span>
-                <ul>
-                  {#each getAuthorsDetails(authors) as { name, github }}
-                    <li>
-                      <img src="{base}/github-image/{github}" alt="" />
-                      {name}
-                    </li>
-                  {/each}
-                </ul>
-              </div>
-            {/if}
-          </div>
-        {/if}
+      </div>
+
+      <div class="action">
+        <div class="points">
+          {#if todo}
+            <span class="coming-soon">Coming soon</span>
+          {:else if completed.has(path)}
+            <div class="stamp" transition:slide><RiCheckLine /> Done</div>
+          {:else}
+            <div class="stamp-todo" transition:slide>
+              <PlayFill /> Start
+            </div>
+          {/if}
+        </div>
       </div>
     </article>
   {/each}
@@ -100,15 +108,32 @@
 <style lang="scss">
   @use 'sass:math';
 
+  .description {
+    display: flex;
+    flex-direction: column;
+    grid-area: description;
+    gap: 0.25rem;
+    line-height: 1.25;
+
+    p {
+      text-align: justify;
+    }
+
+    > * {
+      margin: 0;
+    }
+  }
+
   article {
     position: relative;
     display: grid;
     grid-template:
-      'icon title title'
-      'description description points'
+      'side main action'
+      'side main action'
       / auto 1fr auto;
     gap: 0.75rem;
-    align-items: center;
+    row-gap: 0.25rem;
+    align-items: start;
     padding: 1rem;
     margin-top: -0.125rem;
     background-color: var(--main);
@@ -118,10 +143,9 @@
     /* stylelint-disable-next-line media-feature-range-notation */
     @media (min-width: 30rem) {
       grid-template:
-        'icon title points' auto
-        'icon description points' 1fr
+        'side main action' auto
+        'side main action' 1fr
         / auto 1fr auto;
-      row-gap: 0.5rem;
     }
 
     &:not(.todo):hover,
@@ -132,10 +156,11 @@
       transform: scale(#{math.div(51rem, 50rem)});
     }
 
-    h3 {
+    .header {
       grid-area: title;
       margin: 0;
-      margin-top: -8px;
+
+      // margin-top: -8px;
       line-height: 1.25;
 
       > * {
@@ -144,7 +169,7 @@
     }
   }
 
-  h3 a {
+  .header a {
     color: inherit;
     text-decoration: inherit;
     outline: 0;
@@ -155,6 +180,10 @@
       z-index: 1;
       content: '';
     }
+  }
+
+  .header h3 {
+    margin-block: 0.25em;
   }
 
   .list {
@@ -170,6 +199,12 @@
       border-bottom-right-radius: 0.25rem;
       border-bottom-left-radius: 0.25rem;
     }
+  }
+
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
   }
 
   .icon {
@@ -208,8 +243,9 @@
 
   .difficulty {
     padding: 0.25rem 0.5rem;
-    font-size: 0.8em;
+    font-size: 0.65em;
     font-weight: 600;
+    text-align: center;
     text-transform: uppercase;
     border-radius: 5px;
   }
@@ -226,13 +262,14 @@
     background-color: #fdccc1;
   }
 
-  .points {
+  .action {
     position: relative;
     display: flex;
     flex-direction: column;
-    grid-area: points;
+    grid-area: action;
     gap: 0.25rem;
     align-items: center;
+    align-self: center;
     min-width: 6em;
     text-align: center;
 
@@ -244,8 +281,8 @@
       background: linear-gradient(
         90deg,
         #17e2bd 0%,
-        #38c8fb 48.09%,
-        #918aff 100%
+        #6dd9ff 48.09%,
+        #b3aeff 100%
       );
       border-radius: 99px; // Round ends
     }
@@ -295,27 +332,18 @@
     }
   }
 
-  .description {
-    display: flex;
-    flex-direction: column;
-    grid-area: description;
-    gap: 0.25rem;
-    line-height: 1.25;
-
-    p {
-      text-align: justify;
-    }
-
-    > * {
-      margin: 0;
-    }
-  }
-
   .category {
+    display: flex;
     grid-area: category;
-    font-size: 0.55em;
-    color: var(--secondary-accent);
+    align-items: center;
     text-transform: uppercase;
+
+    > span {
+      margin-right: 1em;
+      font-size: 0.9em;
+      font-weight: 600;
+      color: var(--secondary-accent);
+    }
   }
 
   .title {
@@ -327,13 +355,13 @@
   .authors {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    font-size: 0.8em;
 
     ul {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5em;
       padding: 0;
-      padding: 0.25rem 0.5rem;
       margin: 0;
       list-style: none;
     }
@@ -347,9 +375,6 @@
       display: flex;
       gap: 0.25rem;
       align-items: center;
-      padding: 0.25rem 0.5rem;
-      background-color: #f2f2f4;
-      border-radius: 5px;
 
       img {
         width: 1.5em;
@@ -363,7 +388,8 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    font-size: 0.8em;
+    font-size: 0.9em;
+    font-weight: 400;
   }
 
   .todo {
