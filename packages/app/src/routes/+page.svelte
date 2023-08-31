@@ -70,7 +70,7 @@
 </main>
 
 <footer>
-  <p>© {new Date().getFullYear()} — Escape Technologies</p>
+  <p>© {new Date().getFullYear()} — Escape</p>
   <p class="icons">
     <a href="https://twitter.com/escapetechHQ">
       <Twitter aria-label="Open on Twitter" />
