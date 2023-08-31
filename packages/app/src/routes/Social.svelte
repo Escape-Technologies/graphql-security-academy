@@ -12,7 +12,7 @@
     <Github /> Star on GitHub
   </a>
   <a href="https://discord.escape.tech" class="discord" target="_blank">
-    <Discord /> Join Escape Community
+    <Discord /> Join Community
   </a>
 </p>
 
