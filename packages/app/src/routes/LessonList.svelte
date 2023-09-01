@@ -105,11 +105,11 @@
   @use 'sass:math';
 
   .description {
-    font-size: 0.8em;
     display: flex;
     flex-direction: column;
     grid-area: description;
     gap: 0.25rem;
+    font-size: 0.8em;
     line-height: 1.25;
     color: #898e97;
 
@@ -329,8 +329,8 @@
     display: flex;
     grid-area: category;
     align-items: center;
-    text-transform: uppercase;
     justify-content: space-between;
+    text-transform: uppercase;
 
     > span {
       margin-right: 1em;
