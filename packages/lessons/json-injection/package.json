@@ -8,14 +8,14 @@
     "studio": "node prisma/studio.js"
   },
   "dependencies": {
-    "@graphql-yoga/render-graphiql": "^4.0.3",
-    "@prisma/client": "^5.0.0",
-    "@whatwg-node/fetch": "^0.9.9",
-    "graphql": "^16.7.1",
+    "@graphql-yoga/render-graphiql": "^4.0.4",
+    "@prisma/client": "^5.2.0",
+    "@whatwg-node/fetch": "^0.9.10",
+    "graphql": "^16.8.0",
     "graphql-scalars": "^1.22.2",
-    "graphql-yoga": "^4.0.3",
+    "graphql-yoga": "^4.0.4",
     "nodemon": "^3.0.1",
-    "prisma": "^5.0.0"
+    "prisma": "^5.2.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

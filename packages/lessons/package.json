@@ -10,10 +10,10 @@
     "dev": "yarn build && chokidar '**' -c 'yarn build'"
   },
   "devDependencies": {
-    "@types/node": "^18.16.19",
+    "@types/node": "^18.17.12",
     "@webcontainer/api": "^1.1.5",
     "chokidar-cli": "^3.0.0",
-    "tsx": "^3.12.7"
+    "tsx": "^3.12.8"
   },
   "volta": {
     "extends": "../../package.json"
