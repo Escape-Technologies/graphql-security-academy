@@ -13,5 +13,5 @@ export const categories = [
 ];
 
 export const categoryMap = new Map(
-  categories.map((category) => [category.label, category])
+  categories.map((category) => [category.label, category]),
 );

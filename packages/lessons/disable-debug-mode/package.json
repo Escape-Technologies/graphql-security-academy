@@ -1,7 +1,7 @@
 {
   "name": "disable-debug-mode-lesson",
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
     "start": "dotenv node src/index.js"
   },

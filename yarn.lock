@@ -5591,44 +5591,61 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-jsdoc@npm:^0.4.2":
-  version: 0.4.2
-  resolution: "prettier-plugin-jsdoc@npm:0.4.2"
+"prettier-plugin-jsdoc@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "prettier-plugin-jsdoc@npm:1.0.1"
   dependencies:
     binary-searching: "npm:^2.0.5"
     comment-parser: "npm:^1.3.1"
     mdast-util-from-markdown: "npm:^1.2.0"
   peerDependencies:
-    prettier: ">=2.1.2"
-  checksum: 8ac8ee80ba1a285f4e226df20ebbe67ac820020b661a1b74f3b299c0e0ba6267a45981bf01ec603092958099054ac55fdb28ab39fbd68389c7b23a2882156bc7
+    prettier: ^3.0.0
+  checksum: 6ec6a2eb199d05090cd8c515652c642fb2397904e4863094c722d6e9a6e61966102808a9547ead32a49ebe229c095487cd88ff7615c136c084f1208eb870968c
   languageName: node
   linkType: hard
 
-"prettier-plugin-package@npm:^1.3.1":
-  version: 1.3.1
-  resolution: "prettier-plugin-package@npm:1.3.1"
+"prettier-plugin-organize-imports@npm:^3.2.3":
+  version: 3.2.3
+  resolution: "prettier-plugin-organize-imports@npm:3.2.3"
   peerDependencies:
-    prettier: ^2.0.0
-  checksum: 434ceb83cf566b4547e164498bb1c6d021b2401e8f555a7234c140321ffb276751f4e35c82ecf0e84989e9564741bcd49621809b67831a42e71d1db539e9cb9d
+    "@volar/vue-language-plugin-pug": ^1.0.4
+    "@volar/vue-typescript": ^1.0.4
+    prettier: ">=2.0"
+    typescript: ">=2.9"
+  peerDependenciesMeta:
+    "@volar/vue-language-plugin-pug":
+      optional: true
+    "@volar/vue-typescript":
+      optional: true
+  checksum: 30a9c083998b056680b110ad2dcae796649fd1e31739ccfe3d38901fe0a63b3f2a85490cd2083a223291f86b8758fbaa21425681e1f0cc794ca4da378d2b5e28
   languageName: node
   linkType: hard
 
-"prettier-plugin-svelte@npm:^2.10.1":
-  version: 2.10.1
-  resolution: "prettier-plugin-svelte@npm:2.10.1"
+"prettier-plugin-pkg@npm:^0.18.0":
+  version: 0.18.0
+  resolution: "prettier-plugin-pkg@npm:0.18.0"
   peerDependencies:
-    prettier: ^1.16.4 || ^2.0.0
+    prettier: ^3.0.0
+  checksum: 01b7e5e74f4446e99718ffb6ab9528d6a1a6922d8092c9c1b9e3af1d85ee96312256d6416a608666944ef858f06701c0a080821b97b5cbe7d66d916ddc0f1675
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-svelte@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "prettier-plugin-svelte@npm:3.0.3"
+  peerDependencies:
+    prettier: ^3.0.0
     svelte: ^3.2.0 || ^4.0.0-next.0
-  checksum: eb2e4ee49e703013f6b314186fc8de5e0e161c672261ba5e9344f00cde627c8ce08de0b750f42a72fcd6b5d541f83bc09e2891a1c17aede96b39a436d96bfa86
+  checksum: a0876d8faaa885739efce3c8181e32aaccadd8933b6724bca8a07d2ac15c4443872d3b6553af2a9ae82cfcff6409283964a5d2fe83a8b235d4a739d6c6ce7689
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.8.8":
-  version: 2.8.8
-  resolution: "prettier@npm:2.8.8"
+"prettier@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "prettier@npm:3.0.3"
   bin:
-    prettier: bin-prettier.js
-  checksum: 463ea8f9a0946cd5b828d8cf27bd8b567345cf02f56562d5ecde198b91f47a76b7ac9eae0facd247ace70e927143af6135e8cf411986b8cb8478784a4d6d724a
+    prettier: bin/prettier.cjs
+  checksum: f950887bc03c5b970d8c6dd129364acfbbc61e7b46aec5d5ce17f4adf6404e2ef43072c98b51c4786e0eaca949b307d362a773fd47502862d754b5a328fa2b26
   languageName: node
   linkType: hard
 
@@ -5955,10 +5972,11 @@ __metadata:
     eslint-config-prettier: "npm:^8.8.0"
     eslint-plugin-svelte: "npm:^2.32.3"
     postcss-html: "npm:^1.5.0"
-    prettier: "npm:^2.8.8"
-    prettier-plugin-jsdoc: "npm:^0.4.2"
-    prettier-plugin-package: "npm:^1.3.1"
-    prettier-plugin-svelte: "npm:^2.10.1"
+    prettier: "npm:^3.0.3"
+    prettier-plugin-jsdoc: "npm:^1.0.1"
+    prettier-plugin-organize-imports: "npm:^3.2.3"
+    prettier-plugin-pkg: "npm:^0.18.0"
+    prettier-plugin-svelte: "npm:^3.0.3"
     stylelint: "npm:^15.10.2"
     stylelint-config-recess-order: "npm:^4.3.0"
     stylelint-config-standard-scss: "npm:^10.0.0"

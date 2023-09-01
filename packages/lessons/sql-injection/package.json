@@ -1,7 +1,7 @@
 {
   "name": "sql-injection-lesson",
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
     "start": "nodemon src/index.js"
   },

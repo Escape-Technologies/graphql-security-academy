@@ -4,6 +4,7 @@
  * @module
  */
 
+import type { FileSystemTree } from '@webcontainer/api';
 import {
   copyFile,
   mkdir,
@@ -11,7 +12,6 @@ import {
   readFile,
   writeFile,
 } from 'node:fs/promises';
-import type { FileSystemTree } from '@webcontainer/api';
 
 /** Computes a path relative to this file. */
 const relative = (path: string) => new URL(path, import.meta.url);
@@ -23,7 +23,7 @@ const build = async () => {
   const dirs = entries.filter((entry) => entry.isDirectory());
   await copyFile(relative('authors.json'), `${dest}authors.json`);
   return Promise.all(
-    dirs.map((dir) => buildLesson(dir.name, relative(`${dir.name}/`)))
+    dirs.map((dir) => buildLesson(dir.name, relative(`${dir.name}/`))),
   );
 };
 
@@ -67,8 +67,8 @@ const buildLessonFiles = async (dir: URL): Promise<FileSystemTree> => {
             },
           },
         ];
-      })
-    )
+      }),
+    ),
   );
 };
 

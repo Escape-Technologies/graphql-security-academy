@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { createSchema } from 'graphql-yoga';
 import { JSONDefinition, JSONResolver } from 'graphql-scalars';
+import { createSchema } from 'graphql-yoga';
 
 const prisma = new PrismaClient();
 

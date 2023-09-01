@@ -1,7 +1,7 @@
 {
   "name": "json-injection-lesson",
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
     "exploit": "node exploit/index.js",
     "start": "nodemon src/index.js",

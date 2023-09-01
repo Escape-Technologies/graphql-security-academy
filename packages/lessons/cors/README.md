@@ -34,7 +34,7 @@ app.post(
   // Copy the value after `Server origin:` on the vulnerable server
   cors({ origin: '<Server origin>' }),
   bodyParser.json(),
-  expressMiddleware(server)
+  expressMiddleware(server),
 );
 ```
 

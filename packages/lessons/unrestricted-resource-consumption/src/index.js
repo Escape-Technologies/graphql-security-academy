@@ -54,7 +54,7 @@ app.get('/graphql', (req, res) => {
     renderGraphiQL({
       defaultQuery:
         'query {\n\tuser(id: 1) {\n\t\tname\n\t\tfriends { name }\n\t}\n}',
-    })
+    }),
   );
 });
 app.post('/graphql', bodyParser.json(), expressMiddleware(server));

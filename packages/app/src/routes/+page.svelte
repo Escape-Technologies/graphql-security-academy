@@ -22,7 +22,7 @@
     .sort(
       (a, z) =>
         ['Easy', 'Medium', 'Hard'].indexOf(a.difficulty) -
-        ['Easy', 'Medium', 'Hard'].indexOf(z.difficulty)
+        ['Easy', 'Medium', 'Hard'].indexOf(z.difficulty),
     );
 
   let done = 0;

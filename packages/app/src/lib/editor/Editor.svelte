@@ -34,7 +34,7 @@
         type: 'browser',
         context: { url },
       } satisfies PaneChild<'browser'>);
-    })
+    }),
   );
 
   const saveAll = async () => {
@@ -42,12 +42,12 @@
     saving = true;
     try {
       for (const child of children.filter(
-        (child): child is PaneChild<'file'> => child.type === 'file'
+        (child): child is PaneChild<'file'> => child.type === 'file',
       )) {
         await container.fs.writeFile(
           child.name,
           child.context.contents,
-          'utf8'
+          'utf8',
         );
         child.dirty = false;
       }
@@ -104,7 +104,7 @@
               path,
               extension: path.split('.').pop() ?? '',
             },
-          } satisfies PaneChild<'file'>)
+          } satisfies PaneChild<'file'>),
     );
   };
 

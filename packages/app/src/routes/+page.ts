@@ -7,7 +7,7 @@ export const load = () => ({
     [...lessons].map(async ([path, load]) => {
       const { metadata } = await load();
       return { path, ...metadata };
-    })
+    }),
   ),
   title: 'GraphQL Security Academy – Master API vulnerabilities',
   description:

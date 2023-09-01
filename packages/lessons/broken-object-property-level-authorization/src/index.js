@@ -33,7 +33,7 @@ app.get('/graphql', (req, res) => {
     renderGraphiQL({
       defaultQuery: 'query {\n\tusers {\n\t\tname\n\t\tlocation\n\t}\n}',
       headers: JSON.stringify({ Authorization: 'Bearer 3' }, undefined, 2),
-    })
+    }),
   );
 });
 app.post(
@@ -41,7 +41,7 @@ app.post(
   bodyParser.json(),
   expressMiddleware(server, {
     context: async ({ req }) => getContext(req),
-  })
+  }),
 );
 
 app.listen(4000, () => {

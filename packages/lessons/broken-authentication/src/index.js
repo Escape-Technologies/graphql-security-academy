@@ -65,7 +65,7 @@ app.get('/graphql', (req, res) => {
   res.send(
     renderGraphiQL({
       defaultQuery: 'query {\n\tusers {\n\t\tname\n\t}\n}',
-    })
+    }),
   );
 });
 app.post('/graphql', bodyParser.json(), expressMiddleware(server));

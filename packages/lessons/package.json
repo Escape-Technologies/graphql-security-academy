@@ -1,7 +1,10 @@
 {
   "name": "lessons",
-  "private": true,
   "type": "module",
+  "private": true,
+  "workspaces": [
+    "*"
+  ],
   "scripts": {
     "build": "tsx build.ts",
     "dev": "yarn build && chokidar '**' -c 'yarn build'"
@@ -14,8 +17,5 @@
   },
   "volta": {
     "extends": "../../package.json"
-  },
-  "workspaces": [
-    "*"
-  ]
+  }
 }

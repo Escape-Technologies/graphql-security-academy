@@ -58,7 +58,7 @@ db.run(
   `INSERT INTO users (email, password, admin) VALUES ('${email}', '${password}', 0)`,
   (err) => {
     // ...
-  }
+  },
 );
 ```
 
@@ -129,7 +129,7 @@ export const createUser = async (email, password) =>
       (err) => {
         if (err) reject(err);
         else resolve(undefined);
-      }
+      },
     );
   });
 

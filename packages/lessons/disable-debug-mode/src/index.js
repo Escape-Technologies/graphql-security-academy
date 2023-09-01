@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 });
 app.get('/graphql', (req, res) => {
   res.send(
-    renderGraphiQL({ defaultQuery: 'query {\n\tlessons {\n\t\ttitle\n\t}\n}' })
+    renderGraphiQL({ defaultQuery: 'query {\n\tlessons {\n\t\ttitle\n\t}\n}' }),
   );
 });
 app.post('/graphql', bodyParser.json(), expressMiddleware(server));

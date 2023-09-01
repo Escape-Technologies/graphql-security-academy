@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 });
 app.get('/graphql', (req, res) => {
   res.send(
-    renderGraphiQL({ defaultQuery: 'query {\n\tusers {\n\t\temail\n\t}\n}' })
+    renderGraphiQL({ defaultQuery: 'query {\n\tusers {\n\t\temail\n\t}\n}' }),
   );
 });
 app.post('/graphql', bodyParser.json(), expressMiddleware(server));

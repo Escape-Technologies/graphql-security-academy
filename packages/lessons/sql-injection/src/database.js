@@ -2,7 +2,7 @@ import sqlite3 from 'sqlite3';
 
 // Create a new database in memory
 const db = new sqlite3.Database(':memory:').run(
-  'CREATE TABLE users (id INTEGER PRIMARY KEY, email TEXT, password TEXT, admin INTEGER)'
+  'CREATE TABLE users (id INTEGER PRIMARY KEY, email TEXT, password TEXT, admin INTEGER)',
 );
 
 /** Returns all users. */
@@ -22,7 +22,7 @@ export const createUser = async (email, password) =>
       (err) => {
         if (err) reject(err);
         else resolve(undefined);
-      }
+      },
     );
   });
 

@@ -24,15 +24,15 @@ export class ShellService {
     });
     terminal.write(
       `# Welcome! Run ${chalk.yellowBright(
-        'npm install'
-      )} and ${chalk.yellowBright('npm start')} to get started.\n`
+        'npm install',
+      )}and ${chalk.yellowBright('npm start')} to get started.\n`,
     );
     shell.output.pipeTo(
       new WritableStream({
         write(data) {
           terminal.write(data);
         },
-      })
+      }),
     );
 
     return shell;

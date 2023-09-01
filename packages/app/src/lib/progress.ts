@@ -12,7 +12,7 @@ export const getCompleted = () => {
   try {
     const parsed = JSON.parse(progress);
     return new Map<string, Date>(
-      parsed.map(([id, date]: [string, string]) => [id, new Date(date)])
+      parsed.map(([id, date]: [string, string]) => [id, new Date(date)]),
     );
   } catch {
     return new Map<string, Date>();

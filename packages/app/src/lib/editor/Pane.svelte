@@ -340,7 +340,9 @@
       pointer-events: none;
       background-color: var(--hovered);
       opacity: 0;
-      transition: transform 0.1s, opacity 0.1s;
+      transition:
+        transform 0.1s,
+        opacity 0.1s;
       transition-delay: 0.1s, 0s;
     }
 

@@ -1,5 +1,5 @@
-import { createYoga } from 'graphql-yoga';
 import { renderGraphiQL } from '@graphql-yoga/render-graphiql';
+import { createYoga } from 'graphql-yoga';
 import { createServer } from 'node:http';
 import { schema } from './schema.js';
 
