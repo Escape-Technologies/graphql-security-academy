@@ -7,12 +7,27 @@
   import { slide } from 'svelte/transition';
   import RiCheckLine from '~icons/ri/check-line';
   import PlayFill from '~icons/ri/play-line';
+  import AccessControl from '$lib/editor/icons/categories/AccessControl.svelte';
+  import Http from '$lib/editor/icons/categories/Http.svelte';
+  import InformationDiclosure from '$lib/editor/icons/categories/InformationDiclosure.svelte';
+  import Dos from '$lib/editor/icons/categories/Dos.svelte';
+  import Injection from '$lib/editor/icons/categories/Injection.svelte';
+  import Complexity from '$lib/editor/icons/categories/Complexity.svelte';
 
   let completed = new Map<string, Date>();
 
   onMount(() => {
     completed = getCompleted();
   });
+
+  const iconCategories = {
+    AccessControl: AccessControl,
+    Http: Http,
+    InformationDiclosure: InformationDiclosure,
+    Dos: Dos,
+    Injection: Injection,
+    Complexity: Complexity,
+  };
 
   export let lessons: Array<{ path: string } & Lesson['metadata']>;
 </script>
@@ -21,8 +36,20 @@
   {#each lessons as { path, title, description, category, difficulty, owasp, todo, authors } (path)}
     <article transition:slide={{ duration: 200 }} class:todo>
       <div class="side">
-        <div class="icon" style="background-color: #f3f4f7">
-          {categoryMap.get(category)?.icon}
+        <div
+          class="icon"
+          style:--from={categoryMap.get(category)?.bg}
+          style:--to={categoryMap.get(category)?.color}
+        >
+          <div>
+            {#if categoryMap.get(category)?.component}
+              <svelte:component
+                this={iconCategories[categoryMap.get(category)?.component]}
+              />
+            {/if}
+          </div>
+          <!-- {categoryMap.get(category)?.svg} -->
+          <!-- <img src={categoryMap.get(category)?.svg} /> -->
         </div>
       </div>
 
@@ -120,6 +147,16 @@
     > * {
       margin: 0;
     }
+  }
+
+  .icon > div {
+    width: 1.1em;
+    height: 1.1em;
+    vertical-align: bottom;
+  }
+
+  .icon {
+    background-color: #6762d5;
   }
 
   article {
