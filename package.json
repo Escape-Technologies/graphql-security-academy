@@ -6,8 +6,8 @@
   ],
   "packageManager": "yarn@4.0.0-rc.50",
   "scripts": {
-    "build": "yarn workspaces foreach -piv --topological-dev run build",
-    "dev": "yarn workspaces foreach -piv run dev",
+    "build": "yarn workspaces foreach --all -piv --topological-dev run build",
+    "dev": "yarn workspaces foreach --all -piv run dev",
     "format": "yarn prettier -wu '**/*' --ignore-path .lintignore",
     "lint": "yarn lint:eslint && yarn lint:prettier && yarn lint:stylelint",
     "lint:eslint": "eslint --ignore-path .lintignore $INIT_CWD",

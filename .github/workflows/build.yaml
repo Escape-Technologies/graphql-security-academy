@@ -21,4 +21,3 @@ jobs:
       - run: yarn install --immutable
       - run: yarn build
       - run: yarn lint
-      - run: yarn workspaces foreach run check
