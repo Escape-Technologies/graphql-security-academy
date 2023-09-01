@@ -20,15 +20,6 @@
     completed = getCompleted();
   });
 
-  const iconCategories = {
-    AccessControl: AccessControl,
-    Http: Http,
-    InformationDiclosure: InformationDiclosure,
-    Dos: Dos,
-    Injection: Injection,
-    Complexity: Complexity,
-  };
-
   export let lessons: Array<{ path: string } & Lesson['metadata']>;
 </script>
 
@@ -42,14 +33,20 @@
           style:--to={categoryMap.get(category)?.color}
         >
           <div>
-            {#if categoryMap.get(category)?.component}
-              <svelte:component
-                this={iconCategories[categoryMap.get(category)?.component]}
-              />
+            {#if categoryMap.get(category)?.component === 'AccessControl'}
+              <AccessControl />
+            {:else if categoryMap.get(category)?.component === 'Http'}
+              <Http />
+            {:else if categoryMap.get(category)?.component === 'InformationDiclosure'}
+              <InformationDiclosure />
+            {:else if categoryMap.get(category)?.component === 'Dos'}
+              <Dos />
+            {:else if categoryMap.get(category)?.component === 'Injection'}
+              <Injection />
+            {:else if categoryMap.get(category)?.component === 'Complexity'}
+              <Complexity />
             {/if}
           </div>
-          <!-- {categoryMap.get(category)?.svg} -->
-          <!-- <img src={categoryMap.get(category)?.svg} /> -->
         </div>
       </div>
 
@@ -153,10 +150,6 @@
     width: 1.1em;
     height: 1.1em;
     vertical-align: bottom;
-  }
-
-  .icon {
-    background-color: #6762d5;
   }
 
   article {

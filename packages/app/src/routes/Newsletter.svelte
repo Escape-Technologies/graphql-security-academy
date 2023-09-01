@@ -76,5 +76,6 @@
 
   button {
     padding: 0.375rem 0.5rem;
+    color: var(--text);
   }
 </style>
