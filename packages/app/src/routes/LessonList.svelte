@@ -21,26 +21,9 @@
   {#each lessons as { path, title, description, category, difficulty, owasp, todo, authors } (path)}
     <article transition:slide={{ duration: 200 }} class:todo>
       <div class="side">
-        <div
-          class="icon"
-          style:--from={categoryMap.get(category)?.bg}
-          style:--to={categoryMap.get(category)?.color}
-        >
+        <div class="icon" style="background-color: #f3f4f7">
           {categoryMap.get(category)?.icon}
         </div>
-        <span
-          class="difficulty {difficulty === 'Easy'
-            ? 'easy'
-            : difficulty === 'Medium'
-            ? 'medium'
-            : 'hard'}"
-        >
-          {difficulty === 'Easy'
-            ? 'Easy'
-            : difficulty === 'Medium'
-            ? 'Medium'
-            : 'Hard'}
-        </span>
       </div>
 
       <div class="main">
@@ -48,6 +31,19 @@
           <div class="category">
             <span>{category}</span>
             <div class="tags">
+              <span
+                class="difficulty {difficulty === 'Easy'
+                  ? 'easy'
+                  : difficulty === 'Medium'
+                  ? 'medium'
+                  : 'hard'}"
+              >
+                {difficulty === 'Easy'
+                  ? 'Easy'
+                  : difficulty === 'Medium'
+                  ? 'Medium'
+                  : 'Hard'}
+              </span>
               {#if owasp}
                 <div class="badge">
                   <div class="label">OWASP</div>
@@ -113,7 +109,9 @@
     flex-direction: column;
     grid-area: description;
     gap: 0.25rem;
+    font-size: 0.8em;
     line-height: 1.25;
+    color: #898e97;
 
     p {
       text-align: justify;
@@ -230,19 +228,19 @@
   }
 
   .badge .label {
-    padding: 0.25rem 0.5rem;
+    padding: 0.125rem 0.25rem;
     overflow: hidden;
     font-weight: 600;
   }
 
   .badge .value {
-    padding: 0.25rem 0.5rem;
+    padding: 0.125rem 0.25rem;
     background-color: white;
     border-radius: 0 5px 5px 0;
   }
 
   .difficulty {
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem;
     font-size: 0.65em;
     font-weight: 600;
     text-align: center;
@@ -251,15 +249,15 @@
   }
 
   .difficulty.easy {
-    background-color: #a7daff;
+    background-color: #bbe2fe;
   }
 
   .difficulty.medium {
-    background-color: #ffedb3;
+    background-color: #fef2c7;
   }
 
   .difficulty.hard {
-    background-color: #fdccc1;
+    background-color: #fdddd6;
   }
 
   .action {
@@ -278,13 +276,8 @@
       padding: 0.25em 0.75em 0.25em 0.5em;
       font-size: 0.8em;
       color: var(--text);
-      background: linear-gradient(
-        90deg,
-        #17e2bd 0%,
-        #6dd9ff 48.09%,
-        #b3aeff 100%
-      );
-      border-radius: 99px; // Round ends
+      background-color: #12e0ab;
+      border-radius: 5px;
     }
 
     .coming-soon {
@@ -292,12 +285,12 @@
       font-size: 0.8em; /* new property, adjust as needed */
       color: #838383;
       background: #f2f2f2;
-      border-radius: 99px; // Round ends
+      border-radius: 5px;
     }
 
     .stamp {
       color: var(--text);
-      background: var(--accent);
+      background-color: #f3f4f7;
     }
   }
 
@@ -336,6 +329,7 @@
     display: flex;
     grid-area: category;
     align-items: center;
+    justify-content: space-between;
     text-transform: uppercase;
 
     > span {

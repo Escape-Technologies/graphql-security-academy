@@ -4,6 +4,9 @@
 </script>
 
 <p>
+  <a href="https://discord.escape.tech" class="discord" target="_blank">
+    <Discord /> Join Community
+  </a>
   <a
     href="https://github.com/Escape-Technologies/graphql-security-academy"
     class="github"
@@ -11,41 +14,43 @@
   >
     <Github /> Star on GitHub
   </a>
-  <a href="https://discord.escape.tech" class="discord" target="_blank">
-    <Discord /> Join Community
-  </a>
 </p>
 
 <style lang="scss">
   p {
     display: flex;
     gap: 1em;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   a {
     display: flex;
     gap: 0.5em;
     padding: 0.5em;
+    font-size: 0.9em;
     color: #fff;
     text-decoration: none;
-    border-radius: 0.325em;
+    border-radius: 0.25em;
     transition: box-shadow 0.1s ease-out;
   }
 
   .discord {
-    background: #5865f2;
+    color: #5865f2;
+    border: 1px solid #5865f2;
 
     &:hover {
-      box-shadow: 0 0 1em #5865f280;
+      color: #fff;
+      background: #5865f2;
     }
   }
 
   .github {
-    background: #1f2328;
+    color: #1f2328;
+    border: 1px solid #1f2328;
 
     &:hover {
-      box-shadow: 0 0 1em #1f232880;
+      color: #fff;
+      background: #1f2328;
     }
   }
 </style>
