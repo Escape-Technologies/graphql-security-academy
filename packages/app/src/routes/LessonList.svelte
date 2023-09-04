@@ -306,7 +306,7 @@
       padding: 0.25em 0.75em 0.25em 0.5em;
       font-size: 0.8em;
       color: var(--text);
-      background-color: #12e0ab;
+      background-color: #81ceff;
       border-radius: 5px;
     }
 
@@ -320,7 +320,7 @@
 
     .stamp {
       color: var(--text);
-      background-color: #f3f4f7;
+      background-color: var(--accent);
     }
   }
 
