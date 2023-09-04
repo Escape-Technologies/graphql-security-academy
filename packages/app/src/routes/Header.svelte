@@ -1,22 +1,31 @@
 <script lang="ts">
   import logo from '$assets/logo.svg?url';
   import byEscape from '$assets/byEscape.svg?url';
-  import RiShareBoxFill from '~icons/ri/share-box-fill';
 </script>
 
 <div class="page-header">
   <header>
     <div class="title">
-      <img src={logo} alt="API Security Academy logo" width="60" />
+      <img
+        src={logo}
+        alt="API Security Academy logo"
+        width="60"
+        height="auto"
+      />
       <div>
         <h1>API Security Academy</h1>
-        <img src={byEscape} alt="API Security Academy by Escape" width="100" />
+        <img
+          src={byEscape}
+          alt="API Security Academy by Escape"
+          width="80"
+          height="auto"
+        />
       </div>
     </div>
     <div class="links">
-      <a href="https//escape.tech">Website <RiShareBoxFill /></a>
-      <a href="https//escape.tech/company/">About Escape <RiShareBoxFill /></a>
-      <a href="https//escape.tech/blog/">Blog <RiShareBoxFill /></a>
+      <a href="https://escape.tech">Website </a>
+      <a href="https://escape.tech/company/">About Escape </a>
+      <a href="https://escape.tech/blog/">Blog </a>
     </div>
   </header>
 </div>
@@ -24,12 +33,30 @@
 <style lang="scss">
   header {
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
     gap: 0.5rem;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+    max-width: 1400px;
     padding-inline: 0.5rem;
     margin: 0 auto;
+
+    .links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      align-self: flex-end;
+    }
+
+    /* stylelint-disable-next-line media-feature-range-notation */
+    @media (min-width: 50rem) {
+      flex-direction: row;
+      align-items: center;
+
+      .links {
+        align-self: inherit;
+      }
+    }
   }
 
   h1 {
@@ -62,11 +89,5 @@
       flex-direction: column;
       align-items: flex-end;
     }
-  }
-
-  .links {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
   }
 </style>
