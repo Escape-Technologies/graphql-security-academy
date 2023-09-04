@@ -145,7 +145,7 @@ input {
 }
 
 :where(button:enabled) {
-  color: white;
+  color: var(--text);
   background: #05e2b7;
   border-color: #05e2b7;
 
