@@ -18,12 +18,12 @@
 
   $: advanced = data.lessons
     .filter(({ category }) => !filter || category === filter)
-    .sort((a, z) => (a.todo ? 1 : 0) - (z.todo ? 1 : 0))
     .sort(
       (a, z) =>
         ['Easy', 'Medium', 'Hard'].indexOf(a.difficulty) -
         ['Easy', 'Medium', 'Hard'].indexOf(z.difficulty),
-    );
+    )
+    .sort((a, z) => (a.todo ? 1 : 0) - (z.todo ? 1 : 0));
 
   let done = 0;
   onMount(() => {
@@ -71,7 +71,8 @@
 
   <section>
     <h2>Lessons</h2>
-    <Progress {done} total={data.lessons.length} />
+    <div class="space" />
+    <Progress {done} total={data.lessons.filter(({ todo }) => !todo).length} />
     <Filters bind:filter />
     <LessonList lessons={advanced} />
   </section>
