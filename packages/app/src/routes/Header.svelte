@@ -1,15 +1,17 @@
 <script lang="ts">
   import logo from '$assets/logo.svg?url';
+  import byEscape from '$assets/byEscape.svg?url';
   import RiShareBoxFill from '~icons/ri/share-box-fill';
 </script>
 
 <div class="page-header">
   <header>
     <div class="title">
-      <img src={logo} alt="" />
-      <h1>GraphQL Security Academy</h1>
-      by
-      <span class="beta">Escape</span>
+      <img src={logo} alt="API Security Academy logo" width="60" />
+      <div>
+        <h1>API Security Academy</h1>
+        <img src={byEscape} alt="API Security Academy by Escape" width="100" />
+      </div>
     </div>
     <div class="links">
       <a href="https//escape.tech">Website <RiShareBoxFill /></a>
@@ -32,6 +34,8 @@
 
   h1 {
     margin: 0;
+    font-size: 1.4em;
+    font-weight: 400;
   }
 
   a {
@@ -52,22 +56,17 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
   }
 
   .links {
     display: flex;
     gap: 1rem;
     align-items: center;
-  }
-
-  .beta {
-    padding: 0 0.25em;
-    font-family: Inter, sans-serif;
-    font-size: 0.8em;
-    font-weight: bold;
-    color: #fff;
-    vertical-align: middle;
-    background: #07c9ac;
-    border-radius: 0.25em;
   }
 </style>
