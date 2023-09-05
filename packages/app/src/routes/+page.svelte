@@ -1,5 +1,6 @@
 <script lang="ts">
   import { getCompleted } from '$lib/progress.js';
+  import { page } from '$app/stores';
   import { onMount } from 'svelte';
   import Discord from '~icons/simple-icons/discord';
   import Github from '~icons/simple-icons/github';
@@ -29,6 +30,13 @@
   onMount(() => {
     const completed = getCompleted();
     done = data.lessons.filter(({ path }) => completed.has(path)).length;
+    if ($page.url.hash === '#lessons') {
+      const id = $page.url.hash.substring(1);
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
   });
 </script>
 
@@ -70,7 +78,7 @@
   </section>
 
   <section>
-    <h2>Lessons</h2>
+    <h2 id="lessons">Lessons</h2>
     <div class="space" />
     <Progress {done} total={data.lessons.filter(({ todo }) => !todo).length} />
     <Filters bind:filter />
