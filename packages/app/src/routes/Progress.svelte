@@ -14,12 +14,12 @@
   <meta
     name="title"
     property="og:title"
-    content="My GraphQL Security certification"
+    content="My GraphQL Security Certification"
   />
   <meta
     name="image"
     property="og:image"
-    content="%sveltekit.assets%/certification_badge.png"
+    content="https://escape.tech/academy/certification_badge.png"
   />
   <meta
     name="image"
