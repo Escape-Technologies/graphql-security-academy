@@ -119,6 +119,9 @@
   }
 
   .page-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     padding: 1rem;
     background: var(--main);
     box-shadow: 0 0 0.5rem var(--dark);

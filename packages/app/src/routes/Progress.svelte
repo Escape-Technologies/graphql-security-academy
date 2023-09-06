@@ -1,6 +1,7 @@
 <script lang="ts">
   import { tweened } from 'svelte/motion';
   import cup from '$assets/cup.svg?url';
+  import Linkedin from '~icons/simple-icons/linkedin';
 
   export let done: number;
   export let total: number;
@@ -15,11 +16,46 @@
     <div class="progress">
       <div style="width: {100 - ($progress / total) * 100}%" />
     </div>
-    <div class="cup" class:complete={done >= total}>
+    <div class="round cup" class:complete={done >= total}>
       <img src={cup} alt="Cup" />
     </div>
   </div>
 </div>
+
+{#if done >= total}
+  <section id="test">
+    <article>
+      <div class="badge" class:complete={done >= total}>
+        <img
+          src="/certification_badge.png"
+          alt="GraphQL Security Certification"
+        />
+      </div>
+      <div>
+        <h3>Congratulations! You have done all lessons</h3>
+        <p>
+          You can post your certification of completion on your LinkedIn
+          profile.
+        </p>
+        <div class="button-container">
+          <button
+            on:click={() => {
+              window.open(
+                'https://www.linkedin.com/sharing/share-offsite/?url=https://escape.tech/academy/',
+                '',
+                '_blank, width=500, height=500, resizable=yes, scrollbars=yes',
+              );
+            }}
+            class="linkedin"
+          >
+            <Linkedin aria-label="Share on LinkedIn" />
+            Share on Linkedin
+          </button>
+        </div>
+      </div>
+    </article>
+  </section>
+{/if}
 
 <style lang="scss">
   .wrapper {
@@ -66,18 +102,64 @@
     }
   }
 
-  .cup {
+  .round {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 3em;
+    height: 3em;
     padding: 0.75em;
     overflow: hidden;
-    background: var(--bg-secondary);
     border-radius: 100%;
+  }
+
+  .cup {
+    background: var(--bg-secondary);
+
+    &.complete {
+      background: var(--accent);
+    }
 
     img {
       width: 1.5em;
       height: 1.5em;
+    }
+  }
+
+  .badge {
+    img {
+      width: 9em;
+      height: auto;
+    }
+  }
+
+  article {
+    display: flex;
+    gap: 1em;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    background-color: var(--bg-secondary);
+    border-radius: 5px;
+
+    > div:last-child {
+      flex: 1;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .linkedin {
+      gap: 0.5em;
+      padding: 0.5em;
+      font-size: 0.9em;
+      color: white;
+      text-decoration: none;
+      background: #0073b1;
+      border-color: #0073b1;
+      border-radius: 0.25em;
+      transition: box-shadow 0.1s ease-out;
     }
   }
 </style>
