@@ -33,6 +33,7 @@
     content="My GraphQL Security certification from API Security Academy by Escape"
   />
   <meta property="og:url" content="https://escape.tech/academy/" />
+  <meta name="author" content="Escape AppSec Company" />
 </svelte:head>
 
 <div class="wrapper">
@@ -163,7 +164,8 @@
     gap: 1em;
     padding: 0.75rem 1rem;
     margin: 1rem 0;
-    background-color: var(--bg-secondary);
+    background-color: #f7f6f6;
+    border: 1px solid var(--accent);
     border-radius: 5px;
 
     > div:last-child {
