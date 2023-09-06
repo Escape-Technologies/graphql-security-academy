@@ -10,6 +10,31 @@
   $: $progress = done;
 </script>
 
+<svelte:head>
+  <meta
+    name="title"
+    property="og:title"
+    content="My GraphQL Security certification"
+  />
+  <meta
+    name="image"
+    property="og:image"
+    content="%sveltekit.assets%/certification_badge.png"
+  />
+  <meta
+    name="image"
+    property="og:image:alt"
+    content="GraphQL security certification"
+  />
+  <meta name="image" property="og:image:width" content="500" />
+  <meta
+    name="description"
+    property="og:description"
+    content="My GraphQL Security certification from API Security Academy by Escape"
+  />
+  <meta property="og:url" content="https://escape.tech/academy/" />
+</svelte:head>
+
 <div class="wrapper">
   <span><span>{Math.ceil($progress)}</span>/{total}</span>
   <div class="rate">
@@ -27,7 +52,7 @@
     <article>
       <div class="badge" class:complete={done >= total}>
         <img
-          src="/certification_badge.png"
+          src="/academy/certification_badge.png"
           alt="GraphQL Security Certification"
         />
       </div>
