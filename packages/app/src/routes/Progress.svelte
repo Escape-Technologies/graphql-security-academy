@@ -26,7 +26,6 @@
     property="og:image:alt"
     content="GraphQL security certification"
   />
-  <meta name="image" property="og:image:width" content="300" />
   <meta
     name="description"
     property="og:description"
