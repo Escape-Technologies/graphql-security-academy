@@ -5,6 +5,7 @@
   import logo from '$assets/logo.svg?url';
   import byEscape from '$assets/byEscape.svg?url';
   import Burger from '$lib/layout/nav/Burger.svelte';
+  import ListItems from '$lib/layout/nav/ListItems.svelte';
 
   export let mobile = $page.data.mobile;
   export let menuOpen = false;
@@ -51,15 +52,13 @@
       />
     {:else}
       <div class="links">
-        <a href="https://escape.tech">About Escape</a>
-        <a href="https://escape.tech/blog/">The GraphQL Security Blog</a>
+        <ListItems />
       </div>
     {/if}
   </header>
   {#if mobile && menuOpen}
     <div class="mobile-links" transition:fade={{ duration: 100 }}>
-      <a href="https://escape.tech">About Escape</a>
-      <a href="https://escape.tech/blog/">The GraphQL Security Blog</a>
+      <ListItems />
     </div>
   {/if}
 </div>
@@ -73,17 +72,6 @@
     max-width: 1400px;
     padding-inline: 0.5rem;
     margin: 0 auto;
-
-    .links {
-      display: none;
-    }
-  }
-
-  .mobile-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 2rem 1rem;
   }
 
   /* stylelint-disable-next-line media-feature-range-notation */
@@ -93,10 +81,7 @@
       align-items: center;
 
       .links {
-        display: flex;
-        gap: 1.5rem;
-        align-items: center;
-        align-self: inherit;
+        display: block;
       }
     }
 
@@ -108,14 +93,6 @@
   h1 {
     margin: 0;
     font-size: 1.4em;
-  }
-
-  a {
-    text-decoration: none;
-
-    > :global(svg) {
-      width: 1em;
-    }
   }
 
   .page-header {
