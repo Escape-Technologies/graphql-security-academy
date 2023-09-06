@@ -19,14 +19,14 @@
   <meta
     name="image"
     property="og:image"
-    content="https://escape.tech/academy/certification_badge.png"
+    content="https://escape.tech/academy/certification_badge_for_linkedin.jpg"
   />
   <meta
     name="image"
     property="og:image:alt"
     content="GraphQL security certification"
   />
-  <meta name="image" property="og:image:width" content="500" />
+  <meta name="image" property="og:image:width" content="300" />
   <meta
     name="description"
     property="og:description"
