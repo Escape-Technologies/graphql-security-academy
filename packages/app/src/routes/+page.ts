@@ -9,7 +9,7 @@ export const load = () => ({
       return { path, ...metadata };
     }),
   ),
-  title: 'GraphQL Security Academy – Master API vulnerabilities',
+  title: 'API Security Academy – Master GraphQL API vulnerabilities',
   description:
-    'The GraphQL Security Academy is a set of free and interactive online modules that will teach you how to secure your GraphQL applications.',
+    'The API Security Academy is a set of free and interactive online modules that will teach you how to secure your GraphQL applications.',
 });
