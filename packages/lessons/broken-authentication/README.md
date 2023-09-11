@@ -93,3 +93,5 @@ const server = new ApolloServer({
 ```
 
 You can try to re-run the attack, it should now fail, with an error stating that your query contains too many aliases. **Our server is now protected from aliasing brute-force!** You can read more about GraphQL Armor and all its protections [on GitHub](https://github.com/Escape-Technologies/graphql-armor).
+
+> Need extra help to get started with GraphQL Armor? Check out [GraphQL Armor docs](https://escape.tech/graphql-armor/docs/getting-started).
