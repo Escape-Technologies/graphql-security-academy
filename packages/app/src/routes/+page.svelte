@@ -44,11 +44,11 @@
 
 <main>
   <section>
-    <h1>Welcome on Board 👋</h1>
+    <h1>Welcome on board 👋</h1>
     <p>
-      The GraphQL Security Academy offers hands-on lessons that walk you through
-      various vulnerabilities and security best practices specific to GraphQL
-      directly in your browser.
+      API Security Academy provides hands-on, interactive lessons that teach
+      various vulnerabilities and best practices in GraphQL security. You can
+      access its full learning potential directly in your browser.
     </p>
     <p>
       Each lesson is built around a WebContainer containing a live GraphQL
@@ -58,7 +58,7 @@
     </p>
     <article>
       <h3>
-        The Academy is entirely
+        The API Security Academy is entirely
         <a
           href="https://github.com/Escape-Technologies/graphql-security-academy"
         >
@@ -73,7 +73,7 @@
     </article>
     <Newsletter />
     <h3>
-      Feel free to jump in and start your first lesson. Happy Learning! 🔒
+      Feel free to jump in and start your first lesson. Happy learning! 🔒
     </h3>
   </section>
 
