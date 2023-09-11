@@ -24,7 +24,7 @@
 </script>
 
 <div>
-  <h3>Want to get notified of new lessons?</h3>
+  <h3>Want to get notified about new lessons?</h3>
   <form
     on:submit|preventDefault={({ currentTarget }) => submit(currentTarget)}
     action="https://formspree.io/f/mpzgrape"
