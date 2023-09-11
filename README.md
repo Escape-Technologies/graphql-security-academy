@@ -2,7 +2,7 @@
 
 ## What is it?
 
-API Security Academy provides hands-on, interactive lessons that teach various vulnerabilities and best practices in GraphQL security.  Discover its full learning potential directly in your browser. Each lesson features a WebContainer with a live GraphQL application, demonstrating not just the risks but also how to **exploit** and **fix** them. 
+API Security Academy provides hands-on, interactive lessons that teach various vulnerabilities and best practices in GraphQL security. Discover its full learning potential directly in your browser. Each lesson features a WebContainer with a live GraphQL application, demonstrating not just the risks but also how to **exploit** and **fix** them.
 
 > 💡 The [API Security Academy](https://www.escape.tech/academy?utm_source=github&utm_medium=social&utm_campaign=description-call-out) is accessible for free. We initially chose to prioritize GraphQL, as it’s at the core of our expertise, but anticipate introducing additional API types in the future!
 
