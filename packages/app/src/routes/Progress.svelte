@@ -75,7 +75,7 @@
           <button
             on:click={() => {
               window.open(
-                'https://www.linkedin.com/sharing/share-offsite/?url=https://escape.tech/academy/',
+                'https://www.linkedin.com/sharing/share-offsite/?url=bit.ly/3r9f1pN',
                 '',
                 '_blank, width=500, height=500, resizable=yes, scrollbars=yes',
               );
