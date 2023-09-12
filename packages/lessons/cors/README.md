@@ -7,7 +7,7 @@ owasp: 'API7:2023'
 authors: ['escape']
 ---
 
-Modern browsers all feature new security mechanisms offering developers ways to protect their users from online threats. A common threat is cross-site request forgery (CSRF), which is an attack that tricks a user into performing an action they didn't intend to do. In this lesson, you'll learn how to setup the `Access-Control-Allow-Origin` header to protect your users from CSRF attacks.
+Modern browsers all feature new security mechanisms offering developers ways to protect their users from online threats. A common threat is [cross-site request forgery (CSRF)](https://escape.tech/blog/understanding-and-dealing-with-cross-site-request-forgery-attacks/), which is an attack that tricks a user into performing an action they didn't intend to do. In this lesson, you'll learn how to setup the `Access-Control-Allow-Origin` header to protect your users from CSRF attacks.
 
 ## Cross-site request forgery
 
