@@ -7,9 +7,9 @@ owasp: 'API1:2023'
 authors: ['escape']
 ---
 
-If this is the first lesson you are doing, welcome! This learning platform is developed conjointly by [Escape](https://escape.tech/) and [the open-source community](https://github.com/Escape-Technologies/graphql-security-academy). All the content of this site is open-source and contributions are welcome.
+If this is the first lesson you are doing, welcome! This learning platform is developed conjointly by [Escape](https://escape.tech/) and [the open-source community](https://github.com/Escape-Technologies/graphql-security-academy). All the content of this site is open-source, and contributions are welcome.
 
-This lesson is about properly setting up object-level authorization in GraphQL with Apollo. The server code is given, with authentication developed following [Apollo's recommandations](https://www.apollographql.com/docs/apollo-server/security/authentication/). Small oversights have made **the authorization mechanism vulnerable**. Our goal is to exploit it and then fix it.
+This lesson is about properly setting up object-level authorization in GraphQL with Apollo. The server code is given, with authentication developed following [Apollo's recommendations](https://www.apollographql.com/docs/apollo-server/security/authentication/). Small oversights have made **the authorization mechanism vulnerable**. Our goal is to exploit it and then fix it.
 
 ## The vulnerable server
 
@@ -127,3 +127,5 @@ export const Query = {
 ```
 
 Running this query as Eve (`Authorization: Bearer 3`) will now throw an error, whereas running it as Alice (`Authorization: Bearer 1`) will properly return the post. **No more unauthorized access!**
+
+Want to learn further about Access Control vulnerability? Check out [this article](https://escape.tech/blog/authentication-authorization-access-control/).
