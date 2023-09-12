@@ -8,6 +8,12 @@
 
   const progress = tweened(0);
   $: $progress = done;
+
+  $: {
+    if ($progress >= total) {
+      window.location.hash = '#certification';
+    }
+  }
 </script>
 
 <svelte:head>
@@ -31,7 +37,10 @@
     property="og:description"
     content="My GraphQL Security certification from API Security Academy by Escape"
   />
-  <meta property="og:url" content="https://escape.tech/academy/" />
+  <meta
+    property="og:url"
+    content="https://escape.tech/academy/#certification"
+  />
   <meta name="author" content="Escape AppSec Company" />
 </svelte:head>
 
