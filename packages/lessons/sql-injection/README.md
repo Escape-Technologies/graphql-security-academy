@@ -7,7 +7,8 @@ owasp: 'API8:2019'
 authors: ['escape']
 ---
 
-A SQL injection is a common attack vector that allows an attacker to execute arbitrary SQL queries on a database. This can be used to steal data, modify data, or even execute arbitrary code on the database server. This lesson focuses on a privilege escalation attack leveraging a SQL injection.
+A SQL injection is a common attack vector that allows an attacker to execute arbitrary SQL queries on a database. This can be used to steal data, modify data, or even execute arbitrary code on the database server. This lesson focuses on a privilege escalation attack [leveraging a SQL injection](https://escape.tech/blog/sql-injection-in-graphql/).
+
 
 This lesson comes with a GraphQL server offering a login and registration service. To start the server, run the following command:
 
@@ -114,7 +115,7 @@ mutation {
 
 ## Preventing SQL injections
 
-There are many ways to prevent SQL injections. Most modern ORMs and database libraries will automatically escape the values you provide to prevent SQL injections. We use [sqlite3](https://www.npmjs.com/package/sqlite3) in this lesson, and it does feature an escaping mechanism: we use the `?` placeholder to escape the values we provide to the query, and provide the values separately as an array.
+There are many ways to [prevent SQL injections](https://escape.tech/blog/sql-injection-in-graphql/#how-to-remediate). Most modern ORMs and database libraries will automatically escape the values you provide to prevent SQL injections. We use [sqlite3](https://www.npmjs.com/package/sqlite3) in this lesson, and it does feature an escaping mechanism: we use the `?` placeholder to escape the values we provide to the query, and provide the values separately as an array.
 
 Replace the database functions in `src/database.js` with the following:
 
@@ -143,4 +144,4 @@ export const getUserByEmail = async (email) =>
   });
 ```
 
-You can retry the attack, but this time it won't work: **our server is now safe from SQL injections!** It however still lacks proper validation mechanisms for the email, allowing us to register with an invalid email address, but this is the subject of another lesson.
+You can retry the attack, but this time it won't work: **our server is now safe from SQL injections!** It, however still lacks proper validation mechanisms for the email, allowing us to register with an invalid email address, but this is the subject of another lesson.
