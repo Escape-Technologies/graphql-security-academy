@@ -16,34 +16,6 @@
   }
 </script>
 
-<svelte:head>
-  <meta
-    name="title"
-    property="og:title"
-    content="My GraphQL Security Certification"
-  />
-  <meta
-    name="image"
-    property="og:image"
-    content="https://escape.tech/academy/certification_badge_for_linkedin.jpg"
-  />
-  <meta
-    name="image"
-    property="og:image:alt"
-    content="GraphQL security certification"
-  />
-  <meta
-    name="description"
-    property="og:description"
-    content="My GraphQL Security certification from API Security Academy by Escape"
-  />
-  <meta
-    property="og:url"
-    content="https://escape.tech/academy/#certification"
-  />
-  <meta name="author" content="Escape AppSec Company" />
-</svelte:head>
-
 <div class="wrapper">
   <span><span>{Math.ceil($progress)}</span>/{total}</span>
   <div class="rate">
