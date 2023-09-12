@@ -9,7 +9,7 @@
   <meta
     name="title"
     property="og:title"
-    content="GraphQL Security Academy – Master API vulnerabilities"
+    content="API Security Academy – Master GraphQL API vulnerabilities"
   />
   <meta
     name="image"
@@ -19,12 +19,12 @@
   <meta
     name="image"
     property="og:image:alt"
-    content="GraphQL Security Academy"
+    content="API Security Academy"
   />
   <meta
     name="description"
     property="og:description"
-    content="The GraphQL Security Academy is a set of free and interactive online modules that will teach you how to secure your GraphQL applications."
+    content="The API Security Academy is a set of free and interactive online modules that will teach you how to secure your GraphQL applications."
   />
   <meta property="og:url" content="https://escape.tech/academy/" />
   <meta name="author" content="Escape AppSec Company" />
