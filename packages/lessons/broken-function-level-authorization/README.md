@@ -7,7 +7,7 @@ owasp: 'API5:2023'
 authors: ['escape']
 ---
 
-This lesson is about properly setting up function-level authorization in GraphQL with Apollo. The server code is given, with authentication developed following [Apollo's recommandations](https://www.apollographql.com/docs/apollo-server/security/authentication/). Small oversights have made **the authorization mechanism vulnerable**. Our goal is to exploit it and then fix it.
+This lesson is about [properly setting up](https://escape.tech/blog/authentication-authorization-access-control/#access-control-best-practices-to-secure-your-graphql-api) function-level authorization in GraphQL with Apollo. The server code is given, with authentication developed following [Apollo's recommendations](https://www.apollographql.com/docs/apollo-server/security/authentication/). Small oversights have made **the authorization mechanism vulnerable**. Our goal is to exploit it and then fix it.
 
 ## The vulnerable server
 
