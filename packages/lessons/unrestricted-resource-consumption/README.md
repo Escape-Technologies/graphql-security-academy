@@ -7,7 +7,8 @@ owasp: 'API4:2023'
 authors: ['escape']
 ---
 
-GraphQL engines ship without complexity limits by default, allowing you to ship complex applications rapidly, but also enabling attackers to perform expensive queries. Cycles in the graph can lead to arbitrarily deep queries, which cause degraded performance or even denial of service.
+GraphQL engines ship without complexity limits by default, allowing you to ship complex applications rapidly, but also enabling attackers to perform expensive queries. Cycles in the graph [can lead to arbitrarily deep queries](https://escape.tech/blog/cyclic-queries-and-depth-limit/), which cause degraded performance or even denial of service.
+
 
 This lesson contains a _very_ simple social network with users and friends. Because users have friends and friends have friends, it is possible to construct a query that will cause the server to run out of memory:
 
@@ -46,7 +47,7 @@ This attack is one of the many that GraphQL Armor can protect you from.
 
 Your goal is to install GraphQL Armor and protect your server from the attack: install GraphQL Armor with `npm install @escape.tech/graphql-armor`.
 
-Having GraphQL Armor to work is as simple as two lines of code:
+Having GraphQL Armor work is as simple as two lines of code:
 
 ```js
 import { ApolloArmor } from '@escape.tech/graphql-armor';
