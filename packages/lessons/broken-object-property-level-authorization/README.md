@@ -9,10 +9,7 @@ authors: ['escape']
 
 This lesson is about [properly setting up](https://escape.tech/blog/authentication-authorization-access-control/#access-control-best-practices-to-secure-your-graphql-api) Object Property Level Authorization in GraphQL with Apollo. The server code is given, with authentication developed following [Apollo's recommendations](https://www.apollographql.com/docs/apollo-server/security/authentication/). Our goal is to protect sensitive data from leaking to unauthorized users.
 
-
-
 The GraphQL server of this lesson has the same structure as [Broken Object-Level Authorization](https://escape.tech/academy/broken-object-level-authorization). The data it severs is a list of users, with various details about them. Let's take a look at the data served by starting the server:
-
 
 - Open a new terminal.
 - Run `npm install` to install the dependencies.

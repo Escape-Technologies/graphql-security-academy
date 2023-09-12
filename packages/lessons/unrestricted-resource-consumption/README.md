@@ -9,7 +9,6 @@ authors: ['escape']
 
 GraphQL engines ship without complexity limits by default, allowing you to ship complex applications rapidly, but also enabling attackers to perform expensive queries. Cycles in the graph [can lead to arbitrarily deep queries](https://escape.tech/blog/cyclic-queries-and-depth-limit/), which cause degraded performance or even denial of service.
 
-
 This lesson contains a _very_ simple social network with users and friends. Because users have friends and friends have friends, it is possible to construct a query that will cause the server to run out of memory:
 
 ```graphql

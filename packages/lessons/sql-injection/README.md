@@ -9,7 +9,6 @@ authors: ['escape']
 
 A SQL injection is a common attack vector that allows an attacker to execute arbitrary SQL queries on a database. This can be used to steal data, modify data, or even execute arbitrary code on the database server. This lesson focuses on a privilege escalation attack [leveraging a SQL injection](https://escape.tech/blog/sql-injection-in-graphql/).
 
-
 This lesson comes with a GraphQL server offering a login and registration service. To start the server, run the following command:
 
 - Install the dependencies with `npm install`
