@@ -30,13 +30,3 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: escapetech/academy:latest
-
-  k8s-deploy:
-    needs: docker-push
-    runs-on: ubuntu-latest
-    steps:
-      - name: Rollout deployment
-        uses: danielr1996/kubectl-action@1.0.0
-        with:
-          kubeconfig: ${{ secrets.KUBECONFIG }}
-          args: rollout restart deployment.apps/${{ secrets.LEARN_DEPS }}
