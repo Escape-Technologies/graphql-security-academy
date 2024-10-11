@@ -1,11 +1,11 @@
 <script lang="ts">
-  import Discord from '~icons/simple-icons/discord';
+  import Slack from '~icons/simple-icons/slack';
   import Github from '~icons/simple-icons/github';
 </script>
 
 <p>
-  <a href="https://discord.escape.tech" class="discord" target="_blank">
-    <Discord /> Join Community
+  <a href="https://slack.escape.tech" class="slack" target="_blank">
+    <Slack /> Join our Slack
   </a>
   <a
     href="https://github.com/Escape-Technologies/graphql-security-academy"
@@ -34,13 +34,13 @@
     transition: box-shadow 0.1s ease-out;
   }
 
-  .discord {
-    color: #5865f2;
-    border: 1px solid #5865f2;
+  .slack {
+    color: #4a154b;
+    border: 1px solid #4a154b;
 
     &:hover {
       color: #fff;
-      background: #5865f2;
+      background: #4a154b;
     }
   }
 
