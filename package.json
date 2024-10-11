@@ -4,7 +4,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.0.1",
+  "packageManager": "yarn@4.5.0",
   "scripts": {
     "build": "yarn workspaces foreach --all -piv --topological-dev run build",
     "dev": "yarn workspaces foreach --all -piv run dev",
@@ -36,6 +36,6 @@
   },
   "volta": {
     "node": "18.17.0",
-    "yarn": "1.22.19"
+    "yarn": "4.5.0"
   }
 }
