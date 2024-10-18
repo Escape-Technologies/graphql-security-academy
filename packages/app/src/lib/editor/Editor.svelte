@@ -52,6 +52,8 @@
         child.dirty = false;
       }
       children = [...children];
+    } catch (error) {
+      console.error(error);
     } finally {
       saving = false;
     }
