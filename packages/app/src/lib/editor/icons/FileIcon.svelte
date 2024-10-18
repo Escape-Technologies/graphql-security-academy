@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { ComponentType, SvelteComponent } from 'svelte';
-  import type { SVGAttributes } from 'svelte/elements';
+  import type { SvelteComponent } from 'svelte';
+  import type { SvelteHTMLElements } from 'svelte/elements';
   import Book from '~icons/ri/book-open-fill';
   import Database from '~icons/ri/database-2-fill';
   import File from '~icons/ri/file-3-fill';
@@ -25,7 +25,7 @@
   ] satisfies Array<{
     t: 'matches' | 'startsWith' | 'endsWith';
     v: string;
-    i: ComponentType<SvelteComponent<SVGAttributes<EventTarget>>>;
+    i: typeof SvelteComponent<SvelteHTMLElements['svg']>;
     l?: boolean;
     c?: string;
   }>;

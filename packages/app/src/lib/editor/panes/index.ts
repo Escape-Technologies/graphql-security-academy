@@ -1,5 +1,5 @@
+import type { Terminal } from '@xterm/xterm';
 import type { ComponentType } from 'svelte';
-import type { Terminal } from 'xterm';
 import Browser from './Browser.svelte';
 import File from './File.svelte';
 import Markdown from './Markdown.svelte';

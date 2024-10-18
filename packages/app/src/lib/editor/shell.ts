@@ -1,6 +1,6 @@
 import { chalk } from '$lib/chalk.js';
 import type { WebContainer } from '@webcontainer/api';
-import type { Terminal } from 'xterm';
+import type { Terminal } from '@xterm/xterm';
 
 export class ShellService {
   readonly tasks: Array<Promise<void>> = [];
