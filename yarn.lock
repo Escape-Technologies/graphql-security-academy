@@ -6523,7 +6523,7 @@ __metadata:
     supports-preserve-symlinks-flag: "npm:^1.0.0"
   bin:
     resolve: bin/resolve
-  checksum: 10c0/60ca179599acf8b1bb17b850280a7081781b457d235d48197dc893b82d75741f191c5fe2d93e5729292234d0b0d88e9add273df4b9e04755eeed4fd7d23f1c79
+  checksum: 10c0/d3674e4ef6368a0094c7c5b99173e5ca65c42d285e03024d24b2a458b991db8494164c5449f2c4d89f5149a8e89d533845e67bb43d357c63038e445026a216f7
   languageName: node
   linkType: hard
 
@@ -7583,7 +7583,7 @@ __metadata:
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/7c9d2e07c81226d60435939618c91ec2ff0b75fbfa106eec3430f0fcf93a584bc6c73176676f532d78c3594fe28a54b36eb40b3d75593071a7ec91301533ace7
+  checksum: 10c0/0869ee3e165fa53006d779b13554be9018c5ac62d6d9171266558720a4ba322852b56bbb977012c9844c94c92c550155d1ba141c6517f4979c08eea4f2fb1fe0
   languageName: node
   linkType: hard
 
