@@ -58,8 +58,7 @@
   }
 
   h3 {
-    margin-block-start: 0;
-    margin-block-end: 0.25rem;
+    margin-block: 0 0.25rem;
   }
 
   form {
