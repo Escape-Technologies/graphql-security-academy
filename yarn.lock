@@ -1023,6 +1023,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@neoconfetti/svelte@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@neoconfetti/svelte@npm:2.2.1"
+  checksum: 10c0/f69f498039bb03910e765d7f097b0068f62a7b1e934f633abd2b8cfb4e6678999098e9bab83830bc41435a35c582a3f542c3057cd25f4b8d5e1ecea1037d091b
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -2175,6 +2182,7 @@ __metadata:
     "@fontsource-variable/inter": "npm:^5.1.0"
     "@iconify-json/ri": "npm:^1.2.1"
     "@iconify-json/simple-icons": "npm:^1.2.8"
+    "@neoconfetti/svelte": "npm:^2.2.1"
     "@sveltejs/adapter-node": "npm:^5.2.8"
     "@sveltejs/kit": "npm:^2.7.1"
     "@sveltejs/vite-plugin-svelte": "npm:^3.1.2"
@@ -2186,7 +2194,6 @@ __metadata:
     mdsvex: "npm:^0.12.3"
     modern-normalize: "npm:^3.0.1"
     monaco-editor: "npm:^0.52.0"
-    party-js: "npm:^2.2.0"
     rehype-external-links: "npm:^3.0.0"
     sass: "npm:^1.80.2"
     svelte: "npm:^4.2.19"
@@ -5969,13 +5976,6 @@ __metadata:
   version: 1.3.3
   resolution: "parseurl@npm:1.3.3"
   checksum: 10c0/90dd4760d6f6174adb9f20cf0965ae12e23879b5f5464f38e92fce8073354341e4b3b76fa3d878351efe7d01e617121955284cfd002ab087fba1a0726ec0b4f5
-  languageName: node
-  linkType: hard
-
-"party-js@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "party-js@npm:2.2.0"
-  checksum: 10c0/f99439c31d281c8bfe74ba4627e25f4745b1dc4aebf7ef4528d84b8a2f799ce0ba14d5598707298861162a24a695f88c96b6dfae5404ab805a8a965290c00d12
   languageName: node
   linkType: hard
 

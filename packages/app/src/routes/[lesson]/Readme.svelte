@@ -9,10 +9,10 @@
     getCompleted,
     markCompleted,
   } from '$lib/progress.js';
-  import party from 'party-js';
-  import { onMount } from 'svelte';
-  import type { PageData } from './$types.js';
+  import { confetti } from '@neoconfetti/svelte';
+  import { onMount, tick } from 'svelte';
   import Github from '~icons/simple-icons/github';
+  import type { PageData } from './$types.js';
 
   $: ({ readme } = $page.data as PageData);
 
@@ -20,9 +20,20 @@
   onMount(() => {
     completed = getCompleted().has($page.params.lesson);
   });
+
+  let showConfetti = false;
 </script>
 
 <article class="markdown-content">
+  {#if showConfetti}
+    <div
+      style="position: absolute; inset: 0;
+      display: flex; justify-content: center; pointer-events: none"
+    >
+      <div use:confetti />
+    </div>
+  {/if}
+
   <h1>{readme.metadata.title}</h1>
 
   <aside>
@@ -59,13 +70,13 @@
 
     <p>
       <button
-        on:click={({ target }) => {
+        on:click={() => {
           if (completed) {
             deleteCompleted($page.params.lesson);
             completed = false;
           } else {
-            // @ts-expect-error target is not properly typed
-            party.confetti(target);
+            showConfetti = false;
+            tick().then(() => (showConfetti = true));
             markCompleted($page.params.lesson);
             completed = true;
           }
