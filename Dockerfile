@@ -1,4 +1,4 @@
-FROM node:18-bullseye-slim as build
+FROM node:23-bullseye-slim as build
 ENV USER=node
 ENV HOME=/home/node
 USER node

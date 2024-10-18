@@ -6,5 +6,5 @@ import { redirect } from '@sveltejs/kit';
  */
 export const GET = async ({ params, fetch }) => {
   const response = await fetch(`https://github.com/${params.user}.png`);
-  throw redirect(302, response.url);
+  redirect(302, response.url);
 };

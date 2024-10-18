@@ -4,12 +4,14 @@ import type { FileSystemTree } from '@webcontainer/api';
 
 export const load = async ({ params }) => {
   const load = lessons.get(params.lesson);
-  if (!load) throw error(404, `Lesson ${params.lesson} found`);
+  if (!load) error(404, `Lesson ${params.lesson} found`);
   // https://github.com/sveltejs/kit/issues/9296
-  const files = import(`../../lessons/${params.lesson}/files.json`) as Promise<{
-    default: FileSystemTree;
-  }>;
-  const readme = await load();
+  const [files, readme] = await Promise.all([
+    import(`../../lessons/${params.lesson}/files.json`).then(
+      (module) => module.default as FileSystemTree,
+    ),
+    load(),
+  ]);
   return {
     readme,
     files,
