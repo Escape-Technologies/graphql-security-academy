@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { FitAddon } from '@xterm/addon-fit';
+  import { Terminal } from '@xterm/xterm';
+  import '@xterm/xterm/css/xterm.css';
   import { createEventDispatcher, onMount } from 'svelte';
-  import { Terminal } from 'xterm';
-  import { FitAddon } from 'xterm-addon-fit';
-  import 'xterm/css/xterm.css';
   import type { Contexts } from './index.js';
 
   export let context: Contexts['terminal'];

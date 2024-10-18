@@ -1,10 +1,10 @@
 <script lang="ts">
   // This component is browser only thanks to `{#await}` in its parent
   import { base } from '$app/paths';
+  import logo from '$assets/logo.svg?url';
   import type { WebContainer } from '@webcontainer/api';
   import { onMount, type ComponentType } from 'svelte';
-  import logo from '$assets/logo.svg?url';
-  import Editor from './Explorer.svelte';
+  import Explorer from './Explorer.svelte';
   import Pane, { open } from './Pane.svelte';
   import type { PaneChild } from './panes/index.js';
   import { ShellService } from './shell.js';
@@ -52,6 +52,8 @@
         child.dirty = false;
       }
       children = [...children];
+    } catch (error) {
+      console.error(error);
     } finally {
       saving = false;
     }
@@ -141,7 +143,7 @@
     <button on:click={openTerminal}>New terminal</button>
   </div>
   <div class="directory container">
-    <Editor
+    <Explorer
       name="/"
       path=""
       {container}

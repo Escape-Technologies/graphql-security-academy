@@ -4,18 +4,17 @@
   "private": true,
   "scripts": {
     "exploit": "node exploit/index.js",
-    "start": "nodemon src/index.js",
+    "start": "node --watch src/index.js",
     "studio": "node prisma/studio.js"
   },
   "dependencies": {
-    "@graphql-yoga/render-graphiql": "^4.0.4",
-    "@prisma/client": "^5.2.0",
-    "@whatwg-node/fetch": "^0.9.10",
-    "graphql": "^16.8.0",
-    "graphql-scalars": "^1.22.2",
-    "graphql-yoga": "^4.0.4",
-    "nodemon": "^3.0.1",
-    "prisma": "^5.2.0"
+    "@graphql-yoga/render-graphiql": "^5.7.0",
+    "@prisma/client": "^5.21.1",
+    "@whatwg-node/fetch": "^0.9.21",
+    "graphql": "^16.9.0",
+    "graphql-scalars": "^1.23.0",
+    "graphql-yoga": "^5.7.0",
+    "prisma": "^5.21.1"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

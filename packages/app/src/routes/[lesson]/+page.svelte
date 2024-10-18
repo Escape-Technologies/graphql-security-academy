@@ -14,7 +14,7 @@
 
     const container = await window.webcontainer;
     await container.fs.mkdir('.', { recursive: true });
-    await container.mount(data.files.default);
+    await container.mount(data.files);
     return container;
   };
 
