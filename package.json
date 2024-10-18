@@ -10,7 +10,7 @@
     "dev": "yarn workspaces foreach --all -piv run dev",
     "format": "yarn prettier -wu '**/*' --ignore-path .lintignore",
     "lint": "yarn lint:eslint && yarn lint:prettier && yarn lint:stylelint",
-    "lint:eslint": "eslint --ignore-path .lintignore $INIT_CWD",
+    "lint:eslint": "eslint --ignore-pattern .lintignore $INIT_CWD",
     "lint:prettier": "prettier --check --ignore-unknown --ignore-path .lintignore $INIT_CWD",
     "lint:stylelint": "stylelint --ignore-path .lintignore $INIT_CWD",
     "postinstall": "husky install"

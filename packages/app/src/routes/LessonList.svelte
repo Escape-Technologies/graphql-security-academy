@@ -59,14 +59,14 @@
                 class="difficulty {difficulty === 'Easy'
                   ? 'easy'
                   : difficulty === 'Medium'
-                  ? 'medium'
-                  : 'hard'}"
+                    ? 'medium'
+                    : 'hard'}"
               >
                 {difficulty === 'Easy'
                   ? 'Easy'
                   : difficulty === 'Medium'
-                  ? 'Medium'
-                  : 'Hard'}
+                    ? 'Medium'
+                    : 'Hard'}
               </span>
               {#if owasp}
                 <div class="badge">
