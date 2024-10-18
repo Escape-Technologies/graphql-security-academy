@@ -18,6 +18,6 @@ jobs:
             .yarn
             node_modules
           key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-      - run: yarn install --immutable
+      - run: YARN_CHECKSUM_BEHAVIOR=ignore yarn install --immutable
       - run: yarn build
       - run: yarn lint

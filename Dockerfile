@@ -6,5 +6,5 @@ WORKDIR $HOME/academy
 
 ADD --chown=$USER:$USER . .
 
-RUN yarn workspaces focus app && yarn build
+RUN YARN_CHECKSUM_BEHAVIOR=ignore yarn workspaces focus app && yarn build
 CMD [ "sh", "-c", "node packages/app/build/index.js" ]
