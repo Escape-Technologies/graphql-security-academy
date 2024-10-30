@@ -2,10 +2,10 @@
   <a href="https://escape.tech/?ref=academy">About Escape</a>
   <a href="https://escape.tech/blog/?ref=academy">The GraphQL Security Blog</a>
   <a
-    href="https://app.escape.tech/register/?ref=academy"
+    href="https://calendly.com/d/46g-xzy-dgw"
     class="scan-for-free"
     target="register"
-    rel="nofollow">Scan your API for free</a
+     >Reach out to test your APIs</a
   >
 </div>
 
