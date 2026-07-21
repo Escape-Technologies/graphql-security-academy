@@ -4,8 +4,7 @@
   <a
     href="https://calendly.com/d/46g-xzy-dgw"
     class="scan-for-free"
-    target="register"
-     >Reach out to test your APIs</a
+    target="register">Reach out to test your APIs</a
   >
 </div>
 
@@ -24,9 +23,13 @@
   .scan-for-free {
     display: block;
     padding: 0.5rem 0.75rem;
-    color: var(--text);
+    color: #000;
     background-color: var(--accent);
-    border-radius: 0.25rem;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: var(--accent-hover);
+    }
   }
 
   /* stylelint-disable-next-line media-feature-range-notation */
