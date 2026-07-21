@@ -9,26 +9,40 @@ authors: ['escape']
 
 Because the authentication mechanisms are exposed and complex, they are a target of choice for attackers. This lesson will show you how lesser-known GraphQL features can be used against your application.
 
-Start the GraphQL server with `npm install` and `npm start` to get started.
+## Getting Started
 
-## GraphQL Aliasing
+To begin the lesson, we need to start the GraphQL server. In order to do so, we first need to [install all modules listed as dependencies](https://docs.npmjs.com/cli/v11/commands/npm-install#description) in `package.json` on a terminal window:
 
-Aliasing is a GraphQL feature allowing a developer to rename a field in the resulting object. For example, the following query:
+```shell
+npm install
+```
+
+Once that process execution is completed, we can start the GraphQL server:
+
+```shell
+npm start
+```
+
+This command will start the GraphQL server and open [Yoga GraphiQL](https://the-guild.dev/graphql/yoga-server/docs/features/graphiql), where we will run the GraphQL queries of this lesson.
+
+## Running GraphQL Queries
+
+In the GraphiQLtab that opened, we can see a basic query is already provided:
 
 ```graphql
 query {
-  myAlias: users {
+  users {
     name
   }
 }
 ```
 
-Will return the following object:
+Running the query will return the following object:
 
 ```json
 {
   "data": {
-    "myAlias": [
+    "users": [
       {
         "name": "alice"
       }
@@ -37,20 +51,62 @@ Will return the following object:
 }
 ```
 
-In the results, the field is now named `myAlias` instead of its original name `users`. This also allows a developer to query the same field several times, for different purposes:
+## GraphQL Aliasing
+
+[Aliasing](https://graphql.org/learn/queries/#aliases) is a GraphQL feature that allows a developer to use an `alias` for any `field name` in the query, which results in the field being renamed in the resulting object. For example, aliasing the `users` field in the first query would look like: 
+
+```graphql
+query {
+  myUsersAlias: users {
+    name
+  }
+}
+```
+
+And running the query will return the following object:
+
+```json
+{
+  "data": {
+    "myUsersAlias": [
+      {
+        "name": "alice"
+      }
+    ]
+  }
+}
+```
+
+Comparing these results to the results of the first query we ran, we can see that the `users` field is now named `myUsersAlias` in the returned object. 
+Aliasing also allows a developer to query the same field several times, for different purposes:
 
 ```graphql
 query {
   users {
     name
-    myAlias: name
+    myNameAlias: name
   }
 }
 ```
 
 This query will show `"alice"` twice in the results.
 
-An attacker can exploit aliasing to run the same mutation several times:
+```json
+{
+  "data": {
+    "users": [
+      {
+        "name": "alice",
+        "myNameAlias": "alice"
+      }
+    ]
+  }
+}
+```
+
+## Exploiting Aliasing
+
+An attacker looking to obtain a user's login details, can exploit aliasing together with a [mutation](https://graphql.org/learn/mutations/) to run the same attempt several times in serial order; that is, to run the first attempt, wait until it's finished processing, then run the following line:
 
 ```graphql
 mutation {
@@ -63,22 +119,27 @@ mutation {
 }
 ```
 
-An attacker is able to send several login attempts in a single request, effectively brute-forcing Alice's password.
+In this way, an attacker is able to send several login attempts in a single request, effectively brute-forcing Alice's password.
 
 ## Installing GraphQL Armor
 
 [GraphQL Armor](https://github.com/Escape-Technologies/graphql-armor) is a library that helps you protect your GraphQL API from malicious queries and mutations. It runs on all major GraphQL engines without configuration, and adds various security features to your GraphQL API.
 
-This attack is one of the many that GraphQL Armor can protect you from.
+The attack in this lesson is one of the many that GraphQL Armor can protect you from.
 
-Your goal is to install GraphQL Armor and protect your server from the attack: install GraphQL Armor with `npm install @escape.tech/graphql-armor`.
+Your goal is to install GraphQL Armor and protect your server from the attack: install GraphQL Armor with: 
 
-Having GraphQL Armor to work is as simple as two lines of code:
+```shell
+npm install @escape.tech/graphql-armor
+```
+
+Once the installation is completed, getting GraphQL Armor to work in our project is as simple as adding a few lines of code to our `ìndex.js`:
 
 ```js
+// First: Import GraphQL Armor
 import { ApolloArmor } from '@escape.tech/graphql-armor';
 
-// Instantiate GraphQL Armor
+// Second: Instantiate GraphQL Armor
 const armor = new ApolloArmor({
   // Completely disable aliases for this lesson
   maxAliases: { n: 0 },
@@ -87,7 +148,7 @@ const armor = new ApolloArmor({
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  // Add the protections to the server
+  // Third: Add the protections to the ApolloServer
   ...armor.protect(),
 });
 ```
