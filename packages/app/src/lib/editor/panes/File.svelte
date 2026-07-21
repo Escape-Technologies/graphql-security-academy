@@ -24,6 +24,7 @@
       language,
       minimap: { enabled: false },
       automaticLayout: true,
+      fontFamily: '"JetBrains Mono Variable", Consolas, Monaco, monospace',
     });
 
     editor.onDidChangeModelContent(() => {

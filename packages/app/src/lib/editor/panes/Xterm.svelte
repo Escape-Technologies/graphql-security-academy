@@ -16,7 +16,8 @@
   onMount(() => {
     terminal = new Terminal({
       convertEol: true,
-      fontFamily: 'Consolas, Monaco, "Ubuntu Mono", monospace',
+      fontFamily:
+        '"JetBrains Mono Variable", Consolas, Monaco, "Ubuntu Mono", monospace',
     });
     fitAddon = new FitAddon();
     terminal.loadAddon(fitAddon);

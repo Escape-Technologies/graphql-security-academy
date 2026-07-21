@@ -1,4 +1,5 @@
 @use '@fontsource-variable/inter';
+@use '@fontsource-variable/jetbrains-mono';
 @import 'modern-normalize/modern-normalize.css';
 
 :root {
@@ -9,11 +10,17 @@
   --focused: #fff;
   --hovered: #6c678f40;
   --text: #333;
-  --accent: #05e2b7;
+  --accent: #ffbf00;
+  --accent-hover: #e6ac00;
+  --accent-active: #c90;
   --secondary-accent: #6762d5;
   --weak-color: #babbbb;
   --bg-secondary: #f2f2f2;
   --bg-hover: #e7e7e7;
+
+  // Fonts
+  --font-mono: 'JetBrains Mono Variable', consolas, monaco, 'Ubuntu Mono',
+    monospace;
 
   // Main colors
   --bg: var(--main);
@@ -37,7 +44,7 @@
 }
 
 ::selection {
-  background-color: #05e2b780;
+  background-color: #ffbf0080;
 }
 
 ::-webkit-scrollbar {
@@ -60,7 +67,7 @@
   transition: outline 0.1s ease-out;
 
   &:focus-visible {
-    outline: 0.125em solid #07c9ac80;
+    outline: 0.125em solid #e6ac0080;
   }
 }
 
@@ -93,6 +100,13 @@ h3 {
   font-size: 1.25em;
 }
 
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+}
+
 a {
   color: inherit;
 
@@ -122,7 +136,7 @@ a {
   color: #838383;
   background: #f2f2f2;
   border: 0.125em solid #f2f2f2;
-  border-radius: 0.25em;
+  border-radius: 4px;
   outline: 0 solid transparent;
   transition: all 0.1s ease-in-out;
 }
@@ -146,21 +160,21 @@ input {
 }
 
 :where(button:enabled) {
-  color: var(--text);
-  background: #05e2b7;
-  border-color: #05e2b7;
+  color: #000;
+  background: var(--accent);
+  border-color: var(--accent);
 
   &:where(:hover) {
-    background: #04c19c;
-    border-color: #04c19c;
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
   }
 
   &:where(:active) {
-    background: #06ab8a;
-    border-color: #06ab8a;
+    background: var(--accent-active);
+    border-color: var(--accent-active);
   }
 
   &:where(:focus-visible) {
-    outline: 0.25em solid #05e2b780;
+    outline: 0.25em solid #ffbf0080;
   }
 }
