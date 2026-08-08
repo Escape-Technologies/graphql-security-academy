@@ -4,7 +4,7 @@
 
 API Security Academy provides hands-on, interactive lessons that teach various vulnerabilities and best practices in GraphQL security. Discover its full learning potential directly in your browser. Each lesson features a WebContainer with a live GraphQL application, demonstrating not just the risks but also how to **exploit** and **fix** them.
 
-> 💡 The [API Security Academy](https://www.escape.tech/academy?utm_source=github&utm_medium=social&utm_campaign=description-call-out) is accessible for free. We initially chose to prioritize GraphQL, as it’s at the core of our expertise, but anticipate introducing additional API types in the future!
+> 💡 The [API Security Academy](https://escape.tech/academy/) is accessible for free. We initially chose to prioritize GraphQL, as it’s at the core of our expertise, but anticipate introducing additional API types in the future!
 
 ## Why learn with API Security Academy?
 
@@ -57,4 +57,4 @@ Feel free to submit a pull request or create an issue to discuss any changes you
 
 Thank you for contributing to making GraphQL more secure!
 
-> And hurry up to start your first lesson [here](https://escape.tech/academy/broken-authentication?utm_source=github&utm_medium=social)!
+> And hurry up to start your first lesson [here](https://escape.tech/academy/broken-authentication?utm_source=github&utm_medium=social)](https://escape.tech/academy/)!
