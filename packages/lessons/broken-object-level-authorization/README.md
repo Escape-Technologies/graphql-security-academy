@@ -7,26 +7,26 @@ owasp: 'API1:2023'
 authors: ['escape']
 ---
 
-If this is the first lesson you are doing, welcome! This learning platform is developed conjointly by [Escape](https://escape.tech/) and [the open-source community](https://github.com/Escape-Technologies/graphql-security-academy). All the content of this site is open-source, and contributions are welcome.
+If this is your first lesson, welcome! This learning platform is jointly developed by [Escape](https://escape.tech/) and [the open-source community](https://github.com/Escape-Technologies/graphql-security-academy). All of the content on this site is open-source, and contributions are welcome.
 
-This lesson is about properly setting up object-level authorization in GraphQL with Apollo. The server code is given, with authentication developed following [Apollo's recommendations](https://www.apollographql.com/docs/apollo-server/security/authentication/). Small oversights have made **the authorization mechanism vulnerable**. Our goal is to exploit it and then fix it.
+This lesson is about GraphQL object-level authorization using Apollo. Server code is provided, and authentication generally follows [Apollo's recommendations](https://www.apollographql.com/docs/apollo-server/security/authentication/). However, small oversights make **the authorization mechanism vulnerable**. The goal of this lesson is to exploit the application and then fix it.
 
 ## The vulnerable server
 
-The GraphQL server of this lesson is made of 4 files:
+The GraphQL server used in this lesson consists of 4 files:
 
-- `index.js` is the entry point of the server. It creates the Apollo server with a schema and starts it.
-- `resolvers.js` contains the resolvers of the GraphQL schema.
-- `context.js` contains the function that creates the context of each request. It allows authentication of the current user.
+- `index.js` is the server entry point. It creates and starts the Apollo server with the given schema.
+- `resolvers.js` contains the GraphQL resolvers.
+- `context.js` defines request context including user authentication.
 - `database.js` contains a mock database of users and posts.
 
-The data served by the GraphQL server is a list of posts, each post having an author. Let's take a look at the data served by starting the server:
+The GraphQL server returns a list of posts, each post having an author. Let's look at the data returned by starting the server.
 
-- Open a new terminal.
+- Open a new terminal by selecting the **New terminal** tab.
 - Run `npm install` to install the dependencies.
-- Run `npm start` to start the server. It starts in development mode, so it will restart automatically when you make changes to the code.
+- Run `npm start` to start the server in development mode, which then automatically restarts when you change the code.
 
-You should now see GraphQL IDE with the following query:
+You should now see the GraphQL IDE populated with the following query:
 
 ```graphql
 query {
@@ -39,27 +39,27 @@ query {
 }
 ```
 
-Running this query allows you to see the list of users and their **published** posts. Is there a way to access the **unpublished** posts of a user?
+Running this query results in a list of users and their **published** posts. Is there a way to access the **unpublished** posts of a user?
 
 ## Missing authorization
 
-As an attacker, the first step is usually to collect information about the target. Let's try to add all the fields possible to the query above:
+As a first step, attackers usually collect as much information about their target as possible. In GraphQL there are various methods available, including retrieving the GraphQL introspection schema if introspection is enabled or by simply guessing fields. For example, it wouldn't be surprising to find a field named **id**, **clientId**, **invoiceId**, or **accountId** in any schema. As this is a vulnerability example, we'll assume that an attacker has identified several other fields.  Let's try a new query with some additional fields:
 
 ```graphql
 query {
   users {
-    id # One more field here
+    id # added field
     name
     posts {
-      id # Two more there
-      published
+      id # added field
+      published # added field
       title
     }
   }
 }
 ```
 
-We now notice something very interesting: ids are sequential. This means that we can easily guess the id of a post: here `2` is missing, let's try to access it:
+With the additional data returned, we see that that post ids are squential - very interesting. Even if the post id was not sequential, it's easy for an attacker to enumerate fixed length fields. Non-sequential ids are security by obscurity, which isn't secure, but certainly an added step for an attacker. Because this is an example, we'll stick with sequential ids. Looking at the returned data, it's obvious that post #2 is missing. As an attacker would do, let's try to access it:
 
 ```graphql
 query {
@@ -72,7 +72,7 @@ query {
 }
 ```
 
-**It worked!** In all its glory, here is the unpublished post:
+**It worked!** Here is the unpublished post:
 
 ```json
 {
@@ -87,15 +87,15 @@ query {
 }
 ```
 
-Our server lacks object-level authorization, and this allows any attacker to access unpublished data. Let's fix it!
+Although the post has not been published, any user or attacker can access it because our server lacks object-level authorization. Let's fix it!
 
 ## Limiting access to published posts
 
-Since the beginning of this lesson, we issue requests as Eve, whose id is 3. The server identify us thanks to the `Authorization: Bearer 3` header, defined in the bottom left corner of the IDE. Eve should not be able to access Alice's unpublished posts.
+Since the beginning of this lesson, we have been issuing requests as Eve, whose id is 3. The server identies us thanks to the `Authorization: Bearer 3` header defined in the bottom left corner of the IDE. However, Eve, or any other user except for Alice, should not be able to access Alice's unpublished posts.
 
-Our authentication mechanism is rather simple, but enough for this lesson. It is implemented in `context.js`. The `getContext` functions returns either an object containing the current user, or an empty if the user is not authenticated. This object is then passed to the resolvers as the `context` argument, in third position.
+Our authentication mechanism is rather simple as implemented in `context.js`, but enough for this lesson. The `getContext` function returns either an object containing the current user, or an empty object if the user is not authenticated. This object is then passed to the resolvers as the `context` argument.
 
-We already have a resolver that relies on authentication: `me`. You can see that you are properly identified as Eve by running the following query:
+We already have a resolver that relies on authentication: `me`. You can see that you are correctly identified as Eve by running the following query:
 
 ```graphql
 query {
@@ -106,7 +106,7 @@ query {
 }
 ```
 
-We can use the context argument to check if the user accessing an unpublished post is its author. If not, we can return an error. Let's do that in `resolvers.js`:
+To fix the broken authorization, we can use the context argument to check if the user accessing an unpublished post is the author. If not, we can return an error. Let's edit `resolvers.js` to fix the authorization vulnerability:
 
 ```js
 export const Query = {
@@ -126,6 +126,6 @@ export const Query = {
 };
 ```
 
-Running this query as Eve (`Authorization: Bearer 3`) will now throw an error, whereas running it as Alice (`Authorization: Bearer 1`) will properly return the post. **No more unauthorized access!**
+Running the same query as Eve (`Authorization: Bearer 3`) will now throw an error, whereas running it as Alice (`Authorization: Bearer 1`) will correctly return the post. **No more unauthorized access!**
 
-Want to learn further about Access Control vulnerability? Check out [this article](https://escape.tech/blog/authentication-authorization-access-control/).
+Want to learn further about Access Control? Check out [this article](https://escape.tech/blog/authentication-authorization-access-control/).
