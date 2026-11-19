@@ -22,7 +22,7 @@
     "@fontsource-variable/jetbrains-mono": "^5.1.0",
     "@iconify-json/ri": "^1.2.1",
     "@iconify-json/simple-icons": "^1.2.8",
-    "@sveltejs/adapter-node": "^5.2.8",
+    "@sveltejs/adapter-static": "3.0.11",
     "@sveltejs/kit": "^2.7.1",
     "@sveltejs/vite-plugin-svelte": "^3.1.2",
     "lessons": "workspace:^",

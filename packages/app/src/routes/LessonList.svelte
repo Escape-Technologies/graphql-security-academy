@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths';
   import { getAuthorsDetails, type Lesson } from '$lessons';
   import { categoryMap } from '$lib/categories.js';
   import { getCompleted } from '$lib/progress.js';
@@ -79,7 +80,7 @@
             {#if todo}
               <span class="title">{title}</span>
             {:else}
-              <a class="title" href={path}>{title}</a>
+              <a class="title" href="{base}/{path}">{title}</a>
             {/if}
           </h3>
         </div>
