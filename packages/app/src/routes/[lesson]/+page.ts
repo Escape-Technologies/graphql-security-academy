@@ -1,6 +1,12 @@
 import { lessons } from '$lessons';
 import { error } from '@sveltejs/kit';
 import type { FileSystemTree } from '@webcontainer/api';
+import inventory from '../../../routes-inventory.json';
+
+export const entries = () =>
+  inventory
+    .filter((route) => route !== '/academy' && route !== '/academy/hello-world')
+    .map((route) => ({ lesson: route.slice('/academy/'.length) }));
 
 export const load = async ({ params }) => {
   const load = lessons.get(params.lesson);

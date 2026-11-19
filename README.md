@@ -6,6 +6,8 @@ API Security Academy provides hands-on, interactive lessons that teach various v
 
 > 💡 The [API Security Academy](https://www.escape.tech/academy?utm_source=github&utm_medium=social&utm_campaign=description-call-out) is accessible for free. We initially chose to prioritize GraphQL, as it’s at the core of our expertise, but anticipate introducing additional API types in the future!
 
+The site uses the `/academy` base path and is served through the escape.tech rewrite from `/academy/*` to `https://escape-technologies.github.io/graphql-security-academy/`; the Pages URL alone will not load assets.
+
 ## Why learn with API Security Academy?
 
 - 📚 Comprehensive lessons: Covering everything from basic to advanced GraphQL security topics.

@@ -1,0 +1,20 @@
+[
+  "/academy",
+  "/academy/hello-world",
+  "/academy/abort-expensive-queries",
+  "/academy/broken-authentication",
+  "/academy/broken-function-level-authorization",
+  "/academy/broken-object-level-authorization",
+  "/academy/broken-object-property-level-authorization",
+  "/academy/cors",
+  "/academy/disable-debug-mode",
+  "/academy/improper-inventory-management",
+  "/academy/json-injection",
+  "/academy/lack-of-protection-from-automated-threats",
+  "/academy/limit-batching",
+  "/academy/list-pagination",
+  "/academy/server-side-request-forgery",
+  "/academy/sql-injection",
+  "/academy/unrestricted-resource-consumption",
+  "/academy/unsafe-consumption-of-apis"
+]

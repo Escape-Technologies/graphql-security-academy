@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { base } from '$app/paths';
   import { page } from '$app/stores';
   import '$assets/markdown-content.scss';
   import '$assets/prism.scss';
@@ -44,7 +43,14 @@
         {#each getAuthorsDetails(readme.metadata.authors) as { name, github }}
           <li>
             <a href="https://github.com/{github}" target="_blank">
-              <img src="{base}/github-image/{github}" alt="" />
+              <img
+                src="https://avatars.githubusercontent.com/{github}?s=48"
+                alt=""
+                width="24"
+                height="24"
+                crossorigin="anonymous"
+                loading="lazy"
+              />
               {name}
             </a>
           </li>

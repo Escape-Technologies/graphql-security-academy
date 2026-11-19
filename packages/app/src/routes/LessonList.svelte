@@ -80,7 +80,7 @@
             {#if todo}
               <span class="title">{title}</span>
             {:else}
-              <a class="title" href={path}>{title}</a>
+              <a class="title" href="{base}/{path}">{title}</a>
             {/if}
           </h3>
         </div>
@@ -98,7 +98,14 @@
               <ul>
                 {#each getAuthorsDetails(authors) as { name, github }}
                   <li>
-                    <img src="{base}/github-image/{github}" alt="" />
+                    <img
+                      src="https://avatars.githubusercontent.com/{github}?s=48"
+                      alt=""
+                      width="24"
+                      height="24"
+                      crossorigin="anonymous"
+                      loading="lazy"
+                    />
                     {name}
                   </li>
                 {/each}
