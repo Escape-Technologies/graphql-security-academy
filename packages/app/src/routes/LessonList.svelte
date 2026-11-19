@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { base } from '$app/paths';
   import { getAuthorsDetails, type Lesson } from '$lessons';
   import { categoryMap } from '$lib/categories.js';
   import { getCompleted } from '$lib/progress.js';
@@ -98,7 +97,14 @@
               <ul>
                 {#each getAuthorsDetails(authors) as { name, github }}
                   <li>
-                    <img src="{base}/github-image/{github}" alt="" />
+                    <img
+                      src="https://avatars.githubusercontent.com/{github}?s=48"
+                      alt=""
+                      width="24"
+                      height="24"
+                      crossorigin="anonymous"
+                      loading="lazy"
+                    />
                     {name}
                   </li>
                 {/each}
